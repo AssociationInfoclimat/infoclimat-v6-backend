@@ -1,0 +1,177 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model cartes_tuiles {
+  nom     String @id @db.VarChar(255)
+  donnees String @db.VarChar(255)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model historic_events {
+  id                     Int      @id @default(autoincrement()) @db.UnsignedInt
+  nom                    String   @db.VarChar(255)
+  localisation           String   @db.VarChar(255)
+  importance             Int      @db.TinyInt
+  type_cyclone           String   @db.VarChar(100)
+  has_image_cyclone      Boolean  @default(false)
+  date_deb               DateTime @db.Date
+  date_fin               DateTime @db.Date
+  duree                  Int      @db.TinyInt
+  type                   String   @db.VarChar(255)
+  description            String   @db.LongText
+  short_desc             String   @db.Text
+  sources                String   @db.Text
+  id_compte              Int
+  valeur_max             Float    @db.Float
+  bs_link                Int
+  gen_cartes             Int      @default(0) @db.TinyInt
+  why                    String   @db.Text
+  tableau_croise         String   @db.Text
+  tableau_croise_cyclone String   @db.Text
+  hits                   Int      @default(0)
+  notes                  String   @db.Text
+  // @@index([nom, description, short_desc], map: "recherche")
+
+  @@index([gen_cartes], map: "gen_cartes")
+  @@index([hits], map: "hits")
+  @@index([importance, type], map: "importance")
+  @@index([nom], map: "nom")
+}
+
+// /**
+//  * $lnk = connexionSQL('V5_data_params', false);
+//  * $lnk->query(
+//  * SELECT libelle, id, genre, pays
+//  * FROM stations
+//  * WHERE (genre <> 'metar' OR pas_de_synop = '1')
+//  * AND pays IN ('FR', 'BE', 'CH', 'CA', 'DE', 'IT')
+//  */
+model v5_stations {
+  id           Int    @id @default(autoincrement()) @db.UnsignedInt
+  libelle      String @db.VarChar(255)
+  genre        String @db.VarChar(255)
+  pays         String @db.VarChar(255)
+  pas_de_synop String @default("0")
+}
+
+// /*
+// $lnk = connexionSQL('V5_data_params', false);
+//
+// SELECT id_numerique FROM metsyn WHERE id_textuel = {$lnk->quote($rep['id'])}
+//  id_station = {$lnk->quote($synop_id)} 
+//             <<<SQL
+// SELECT id_textuel 
+// FROM metsyn
+// WHERE id_numerique = {$lnk->quote($rep['id'])}
+// SQL
+//  id_station = {$lnk->quote($metar_id)} 
+//  */
+model metsyn {
+  id_textuel   String @id @db.VarChar(255)
+  id_numerique Int    @db.UnsignedInt
+  id_station   Int    @db.UnsignedInt
+}
+
+// #########################################################
+// #########################################################
+// #########################################################
+
+// From here  model is not real but just for the record
+//  because these are tables of databases we got per year :
+// 
+//  V5_data_1900
+//  V5_data_1901
+//  ...
+//
+
+//
+// /*
+// $l2 = connexionSQL("V5_data_{$YYYY}", false);
+// 
+// SELECT *
+// FROM synop_{$mois}_d{$numd}
+// WHERE {$more} AND dh_utc >= DATE_SUB(UTC_TIMESTAMP(), INTERVAL 3 HOUR)
+// ORDER BY dh_utc DESC
+// LIMIT 1
+// SQL
+//
+// SELECT * 
+// FROM metar_{$mois}_d{$numd}
+// WHERE id_station = {$l2->quote($rep['id'])}
+//     AND dh_utc >= DATE_SUB(UTC_TIMESTAMP(), INTERVAL 3 HOUR)
+// ORDER BY dh_utc DESC 
+// LIMIT 1
+// SQL
+//             <<<SQL
+// SELECT *
+// FROM synop_{$mois}_d{$numd}
+// WHERE id_station = {$l2->quote($rep['id'])}
+//     AND dh_utc >= DATE_SUB(UTC_TIMESTAMP(), INTERVAL 3 HOUR)
+// ORDER BY dh_utc DESC
+// LIMIT 1
+// SQL
+//                 <<<SQL
+// SELECT * 
+// FROM metar_{$mois}_d{$numd}
+// WHERE {$more} AND dh_utc >= DATE_SUB(UTC_TIMESTAMP(), INTERVAL 3 HOUR)
+// ORDER BY dh_utc DESC 
+// LIMIT 1
+// SQL
+//             <<<SQL
+// SELECT *
+// FROM {$rep['genre']}_{$mois}_d{$numd}
+// WHERE id_station = {$l2->quote($rep['id'])}
+//     AND dh_utc >= DATE_SUB(UTC_TIMESTAMP(), INTERVAL 3 HOUR) 
+// ORDER BY dh_utc DESC 
+// LIMIT 1
+// SQL
+//
+// 
+// temperature
+// humidite
+// point_de_rosee
+// pression
+// vent_direction
+// vent_moyen
+// vent_rafales
+// vent_rafales_10min
+// temps_omm
+
+//
+// This table is not real, 
+//  it's just a placeholder for the synop data, per station per day
+model synop_MM_dDD {
+  id_station         Int      @id @db.UnsignedInt
+  dh_utc             DateTime @db.DateTime
+  temperature        Float    @db.Float
+  humidite           Float    @db.Float // in percent
+  point_de_rosee     Float    @db.Float
+  pression           Float    @db.Float
+  vent_direction     Float    @db.Float // in degree
+  vent_moyen         Float    @db.Float
+  vent_rafales       Float    @db.Float
+  vent_rafales_10min Float    @db.Float
+  temps_omm          Float    @db.Float
+}
+
+// This table is not real, 
+//  it's just a placeholder for the metar data, per station per day
+model metar_MM_dDD {
+  id_station         Int      @id @db.UnsignedInt
+  dh_utc             DateTime @db.DateTime
+  temperature        Float    @db.Float
+  humidite           Float    @db.Float // in percent
+  point_de_rosee     Float    @db.Float
+  pression           Float    @db.Float
+  vent_direction     Float    @db.Float // in degree
+  vent_moyen         Float    @db.Float
+  vent_rafales       Float    @db.Float
+  vent_rafales_10min Float    @db.Float
+  temps_omm          Float    @db.Float
+}
