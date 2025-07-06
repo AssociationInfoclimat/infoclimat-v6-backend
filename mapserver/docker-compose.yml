@@ -1,0 +1,11 @@
+version: "3.3"
+services:
+  mapserver_example:
+    image: camptocamp/mapserver:7.6-gdal3.3
+    container_name: "mapserver_example"
+    volumes:
+      - ./example:/mapdata
+    ports:
+      - 8080:80
+    environment:
+      - "MS_MAPFILE=/mapdata/example1-1.map"

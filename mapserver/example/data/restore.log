@@ -1,0 +1,4084 @@
+postgis.sql is /usr/share/postgresql/contrib/lwpostgis.sql
+dbname is tutorial
+dumpfile is ugldb.dump
+Scanning /usr/share/postgresql/contrib/lwpostgis.sql
+SQLFUNC: histogram2d_in(cstring)
+SQLFUNC: histogram2d_out(histogram2d)
+SQLTYPE histogram2d
+SQLFUNC: spheroid_in(cstring)
+SQLFUNC: spheroid_out(spheroid)
+SQLTYPE spheroid
+SQLFUNC: geometry_in(cstring)
+SQLFUNC: geometry_out(geometry)
+SQLFUNC: geometry_analyze(internal)
+SQLFUNC: geometry_recv(internal)
+SQLFUNC: geometry_send(geometry)
+SQLTYPE geometry
+SQLFUNC: box3d_in(cstring)
+SQLFUNC: box3d_out(box3d)
+SQLTYPE box3d
+SQLFUNC: xmin(box3d)
+SQLFUNC: ymin(box3d)
+SQLFUNC: zmin(box3d)
+SQLFUNC: xmax(box3d)
+SQLFUNC: ymax(box3d)
+SQLFUNC: zmax(box3d)
+SQLFUNC: chip_in(cstring)
+SQLFUNC: chip_out(chip)
+SQLTYPE chip
+SQLFUNC: box2d_in(cstring)
+SQLFUNC: box2d_out(box2d)
+SQLTYPE box2d
+SQLFUNC: box2d_overleft(box2d, box2d)
+SQLFUNC: box2d_overright(box2d, box2d)
+SQLFUNC: box2d_left(box2d, box2d)
+SQLFUNC: box2d_right(box2d, box2d)
+SQLFUNC: box2d_contain(box2d, box2d)
+SQLFUNC: box2d_contained(box2d, box2d)
+SQLFUNC: box2d_overlap(box2d, box2d)
+SQLFUNC: box2d_same(box2d, box2d)
+SQLFUNC: box2d_intersects(box2d, box2d)
+SQLFUNC: geometry_lt(geometry, geometry)
+SQLFUNC: geometry_le(geometry, geometry)
+SQLFUNC: geometry_gt(geometry, geometry)
+SQLFUNC: geometry_ge(geometry, geometry)
+SQLFUNC: geometry_eq(geometry, geometry)
+SQLFUNC: geometry_cmp(geometry, geometry)
+SQLOP <,geometry,geometry
+SQLOP <=,geometry,geometry
+SQLOP =,geometry,geometry
+SQLOP >=,geometry,geometry
+SQLOP >,geometry,geometry
+SQLOPCLASS btree_geometry_ops
+SQLFUNC: postgis_gist_sel(internal, oid, internal, integer)
+SQLFUNC: postgis_gist_joinsel(internal, oid, internal, smallint)
+SQLFUNC: geometry_overleft(geometry, geometry)
+SQLFUNC: geometry_overright(geometry, geometry)
+SQLFUNC: geometry_overabove(geometry, geometry)
+SQLFUNC: geometry_overbelow(geometry, geometry)
+SQLFUNC: geometry_left(geometry, geometry)
+SQLFUNC: geometry_right(geometry, geometry)
+SQLFUNC: geometry_above(geometry, geometry)
+SQLFUNC: geometry_below(geometry, geometry)
+SQLFUNC: geometry_contain(geometry, geometry)
+SQLFUNC: geometry_contained(geometry, geometry)
+SQLFUNC: geometry_overlap(geometry, geometry)
+SQLFUNC: geometry_same(geometry, geometry)
+SQLOP <<,geometry,geometry
+SQLOP &<,geometry,geometry
+SQLOP <<|,geometry,geometry
+SQLOP &<|,geometry,geometry
+SQLOP &&,geometry,geometry
+SQLOP &>,geometry,geometry
+SQLOP >>,geometry,geometry
+SQLOP |&>,geometry,geometry
+SQLOP |>>,geometry,geometry
+SQLOP ~=,geometry,geometry
+SQLOP @,geometry,geometry
+SQLOP ~,geometry,geometry
+SQLFUNC: lwgeom_gist_consistent(internal, geometry, integer)
+SQLFUNC: lwgeom_gist_compress(internal)
+SQLFUNC: lwgeom_gist_penalty(internal, internal, internal)
+SQLFUNC: lwgeom_gist_picksplit(internal, internal)
+SQLFUNC: lwgeom_gist_union(bytea, internal)
+SQLFUNC: lwgeom_gist_same(box2d, box2d, internal)
+SQLFUNC: lwgeom_gist_decompress(internal)
+SQLOPCLASS gist_geometry_ops
+SQLFUNC: addbbox(geometry)
+SQLFUNC: dropbbox(geometry)
+SQLFUNC: getsrid(geometry)
+SQLFUNC: getbbox(geometry)
+SQLFUNC: translate(geometry, double precision, double precision, double precision)
+SQLFUNC: translate(geometry, double precision, double precision)
+SQLFUNC: srid(chip)
+SQLFUNC: height(chip)
+SQLFUNC: factor(chip)
+SQLFUNC: width(chip)
+SQLFUNC: datatype(chip)
+SQLFUNC: compression(chip)
+SQLFUNC: setsrid(chip, integer)
+SQLFUNC: setfactor(chip, real)
+SQLFUNC: mem_size(geometry)
+SQLFUNC: summary(geometry)
+SQLFUNC: npoints(geometry)
+SQLFUNC: nrings(geometry)
+SQLFUNC: numpoints(geometry)
+SQLFUNC: numgeometries(geometry)
+SQLFUNC: geometryn(geometry, integer)
+SQLFUNC: dimension(geometry)
+SQLFUNC: exteriorring(geometry)
+SQLFUNC: numinteriorrings(geometry)
+SQLFUNC: interiorringn(geometry, integer)
+SQLFUNC: geometrytype(geometry)
+SQLFUNC: pointn(geometry, integer)
+SQLFUNC: x(geometry)
+SQLFUNC: y(geometry)
+SQLFUNC: z(geometry)
+SQLFUNC: startpoint(geometry)
+SQLFUNC: endpoint(geometry)
+SQLFUNC: isclosed(geometry)
+SQLFUNC: isempty(geometry)
+SQLFUNC: srid(geometry)
+SQLFUNC: setsrid(geometry, integer)
+SQLFUNC: asbinary(geometry)
+SQLFUNC: asbinary(geometry, text)
+SQLFUNC: astext(geometry)
+SQLFUNC: geometryfromtext(text)
+SQLFUNC: geometryfromtext(text, integer)
+SQLFUNC: geomfromtext(text)
+SQLFUNC: geomfromtext(text, integer)
+SQLFUNC: pointfromtext(text)
+SQLFUNC: pointfromtext(text, integer)
+SQLFUNC: linefromtext(text)
+SQLFUNC: linefromtext(text, integer)
+SQLFUNC: linestringfromtext(text)
+SQLFUNC: linestringfromtext(text, integer)
+SQLFUNC: polyfromtext(text)
+SQLFUNC: polyfromtext(text, integer)
+SQLFUNC: polygonfromtext(text, integer)
+SQLFUNC: polygonfromtext(text)
+SQLFUNC: mlinefromtext(text, integer)
+SQLFUNC: mlinefromtext(text)
+SQLFUNC: multilinestringfromtext(text)
+SQLFUNC: multilinestringfromtext(text, integer)
+SQLFUNC: mpointfromtext(text, integer)
+SQLFUNC: mpointfromtext(text)
+SQLFUNC: multipointfromtext(text, integer)
+SQLFUNC: multipointfromtext(text)
+SQLFUNC: mpolyfromtext(text, integer)
+SQLFUNC: mpolyfromtext(text)
+SQLFUNC: multipolygonfromtext(text, integer)
+SQLFUNC: multipolygonfromtext(text)
+SQLFUNC: geomcollfromtext(text, integer)
+SQLFUNC: geomcollfromtext(text)
+SQLFUNC: geomfromwkb(bytea)
+SQLFUNC: geomfromwkb(bytea, integer)
+SQLFUNC: pointfromwkb(bytea, integer)
+SQLFUNC: pointfromwkb(bytea)
+SQLFUNC: linefromwkb(bytea, integer)
+SQLFUNC: linefromwkb(bytea)
+SQLFUNC: linestringfromwkb(bytea, integer)
+SQLFUNC: linestringfromwkb(bytea)
+SQLFUNC: polyfromwkb(bytea, integer)
+SQLFUNC: polyfromwkb(bytea)
+SQLFUNC: polygonfromwkb(bytea, integer)
+SQLFUNC: polygonfromwkb(bytea)
+SQLFUNC: mpointfromwkb(bytea, integer)
+SQLFUNC: mpointfromwkb(bytea)
+SQLFUNC: multipointfromwkb(bytea, integer)
+SQLFUNC: multipointfromwkb(bytea)
+SQLFUNC: multilinefromwkb(bytea, integer)
+SQLFUNC: multilinefromwkb(bytea)
+SQLFUNC: mlinefromwkb(bytea, integer)
+SQLFUNC: mlinefromwkb(bytea)
+SQLFUNC: mpolyfromwkb(bytea, integer)
+SQLFUNC: mpolyfromwkb(bytea)
+SQLFUNC: multipolyfromwkb(bytea, integer)
+SQLFUNC: multipolyfromwkb(bytea)
+SQLFUNC: geomcollfromwkb(bytea, integer)
+SQLFUNC: geomcollfromwkb(bytea)
+SQLFUNC: length3d(geometry)
+SQLFUNC: length2d(geometry)
+SQLFUNC: length(geometry)
+SQLFUNC: length3d_spheroid(geometry, spheroid)
+SQLFUNC: length_spheroid(geometry, spheroid)
+SQLFUNC: length2d_spheroid(geometry, spheroid)
+SQLFUNC: perimeter3d(geometry)
+SQLFUNC: perimeter2d(geometry)
+SQLFUNC: perimeter(geometry)
+SQLFUNC: area2d(geometry)
+SQLFUNC: area(geometry)
+SQLFUNC: distance_spheroid(geometry, geometry, spheroid)
+SQLFUNC: distance_sphere(geometry, geometry)
+SQLFUNC: distance(geometry, geometry)
+SQLFUNC: max_distance(geometry, geometry)
+SQLFUNC: point_inside_circle(geometry, double precision, double precision, double precision)
+SQLFUNC: force_2d(geometry)
+SQLFUNC: force_3dz(geometry)
+SQLFUNC: force_3d(geometry)
+SQLFUNC: force_3dm(geometry)
+SQLFUNC: force_4d(geometry)
+SQLFUNC: force_collection(geometry)
+SQLFUNC: multi(geometry)
+SQLFUNC: collector(geometry, geometry)
+SQLFUNC: collect(geometry, geometry)
+SQLAGG memcollect(geometry)
+SQLFUNC: geom_accum(geometry[], geometry)
+SQLAGG accum(geometry)
+SQLFUNC: collect_garray(geometry[])
+SQLAGG collect(geometry)
+SQLFUNC: expand(box3d, double precision)
+SQLFUNC: expand(box2d, double precision)
+SQLFUNC: expand(geometry, double precision)
+SQLFUNC: envelope(geometry)
+SQLFUNC: reverse(geometry)
+SQLFUNC: forcerhr(geometry)
+SQLFUNC: noop(geometry)
+SQLFUNC: zmflag(geometry)
+SQLFUNC: hasbbox(geometry)
+SQLFUNC: ndims(geometry)
+SQLFUNC: asewkt(geometry)
+SQLFUNC: asewkb(geometry)
+SQLFUNC: asewkb(geometry, text)
+SQLFUNC: geomfromewkb(bytea)
+SQLFUNC: geomfromewkt(text)
+SQLFUNC: cache_bbox()
+SQLFUNC: makepoint(double precision, double precision)
+SQLFUNC: makepoint(double precision, double precision, double precision)
+SQLFUNC: makepoint(double precision, double precision, double precision, double precision)
+SQLFUNC: makepointm(double precision, double precision, double precision)
+SQLFUNC: makebox2d(geometry, geometry)
+SQLFUNC: makebox3d(geometry, geometry)
+SQLFUNC: makeline_garray(geometry[])
+SQLFUNC: linefrommultipoint(geometry)
+SQLFUNC: makeline(geometry, geometry)
+SQLFUNC: addpoint(geometry, geometry)
+SQLFUNC: addpoint(geometry, geometry, integer)
+SQLAGG makeline(geometry)
+SQLFUNC: makepolygon(geometry, geometry[])
+SQLFUNC: makepolygon(geometry)
+SQLFUNC: polygonize_garray(geometry[])
+SQLAGG polygonize(geometry)
+SQLTYPE geometry_dump
+SQLFUNC: dump(geometry)
+SQLFUNC: combine_bbox(box2d, geometry)
+SQLAGG extent(geometry)
+SQLFUNC: combine_bbox(box3d, geometry)
+SQLAGG extent3d(geometry)
+SQLFUNC: create_histogram2d(box2d, integer)
+SQLFUNC: build_histogram2d(histogram2d, text, text)
+SQLFUNC: build_histogram2d(histogram2d, text, text, text)
+SQLFUNC: explode_histogram2d(histogram2d, text)
+SQLFUNC: estimate_histogram2d(histogram2d, box2d)
+SQLFUNC: estimated_extent(text, text, text)
+SQLFUNC: estimated_extent(text, text)
+SQLFUNC: find_extent(text, text, text)
+SQLFUNC: find_extent(text, text)
+SQLFUNC: rename_geometry_table_constraints()
+SQLFUNC: fix_geometry_columns()
+SQLFUNC: probe_geometry_columns()
+SQLFUNC: addgeometrycolumn(character varying, character varying, character varying, character varying, integer, character varying, integer)
+SQLFUNC: addgeometrycolumn(character varying, character varying, character varying, integer, character varying, integer)
+SQLFUNC: addgeometrycolumn(character varying, character varying, integer, character varying, integer)
+SQLFUNC: dropgeometrycolumn(character varying, character varying, character varying, character varying)
+SQLFUNC: dropgeometrycolumn(character varying, character varying, character varying)
+SQLFUNC: dropgeometrycolumn(character varying, character varying)
+SQLFUNC: dropgeometrytable(character varying, character varying, character varying)
+SQLFUNC: dropgeometrytable(character varying, character varying)
+SQLFUNC: dropgeometrytable(character varying)
+SQLFUNC: updategeometrysrid(character varying, character varying, character varying, character varying, integer)
+SQLFUNC: updategeometrysrid(character varying, character varying, character varying, integer)
+SQLFUNC: updategeometrysrid(character varying, character varying, integer)
+SQLFUNC: update_geometry_stats()
+SQLFUNC: update_geometry_stats(character varying, character varying)
+SQLFUNC: find_srid(character varying, character varying, character varying)
+SQLFUNC: get_proj4_from_srid(integer)
+SQLFUNC: transform_geometry(geometry, text, text, integer)
+SQLFUNC: transform(geometry, integer)
+SQLFUNC: postgis_version()
+SQLFUNC: postgis_proj_version()
+SQLFUNC: postgis_scripts_installed()
+SQLFUNC: postgis_lib_version()
+SQLFUNC: postgis_scripts_released()
+SQLFUNC: postgis_uses_stats()
+SQLFUNC: postgis_geos_version()
+SQLFUNC: postgis_scripts_build_date()
+SQLFUNC: postgis_lib_build_date()
+SQLFUNC: postgis_full_version()
+SQLFUNC: box2d(geometry)
+SQLFUNC: box3d(geometry)
+SQLFUNC: box(geometry)
+SQLFUNC: box2d(box3d)
+SQLFUNC: box3d(box2d)
+SQLFUNC: box(box3d)
+SQLFUNC: text(geometry)
+SQLFUNC: box3dtobox(box3d)
+SQLFUNC: geometry(box2d)
+SQLFUNC: geometry(box3d)
+SQLFUNC: geometry(text)
+SQLFUNC: geometry(chip)
+SQLFUNC: geometry(bytea)
+SQLFUNC: bytea(geometry)
+SQLFUNC: text(bool)
+SQLFNCAST box2d(geometry)
+SQLCAST geometry,box2d
+SQLFNCAST box3d(geometry)
+SQLCAST geometry,box3d
+SQLFNCAST box(geometry)
+SQLCAST geometry,box
+SQLFNCAST box2d(box3d)
+SQLCAST box3d,box2d
+SQLFNCAST box3d(box2d)
+SQLCAST box2d,box3d
+SQLFNCAST geometry(box2d)
+SQLCAST box2d,geometry
+SQLFNCAST box(box3d)
+SQLCAST box3d,box
+SQLFNCAST geometry(box3d)
+SQLCAST box3d,geometry
+SQLFNCAST geometry(text)
+SQLCAST text,geometry
+SQLFNCAST text(geometry)
+SQLCAST geometry,text
+SQLFNCAST geometry(chip)
+SQLCAST chip,geometry
+SQLFNCAST geometry(bytea)
+SQLCAST bytea,geometry
+SQLFNCAST bytea(geometry)
+SQLCAST geometry,bytea
+SQLFNCAST text(bool)
+SQLCAST bool,text
+SQLFUNC: simplify(geometry, double precision)
+SQLFUNC: snaptogrid(geometry, double precision, double precision, double precision, double precision)
+SQLFUNC: snaptogrid(geometry, double precision, double precision)
+SQLFUNC: snaptogrid(geometry, double precision)
+SQLFUNC: line_interpolate_point(geometry, double precision)
+SQLFUNC: segmentize(geometry, double precision)
+SQLFUNC: intersection(geometry, geometry)
+SQLFUNC: buffer(geometry, double precision)
+SQLFUNC: buffer(geometry, double precision, integer)
+SQLFUNC: convexhull(geometry)
+SQLFUNC: difference(geometry, geometry)
+SQLFUNC: boundary(geometry)
+SQLFUNC: symdifference(geometry, geometry)
+SQLFUNC: symmetricdifference(geometry, geometry)
+SQLFUNC: geomunion(geometry, geometry)
+SQLAGG memgeomunion(geometry)
+SQLFUNC: unite_garray(geometry[])
+SQLAGG geomunion(geometry)
+SQLFUNC: relate(geometry, geometry)
+SQLFUNC: relate(geometry, geometry, text)
+SQLFUNC: disjoint(geometry, geometry)
+SQLFUNC: touches(geometry, geometry)
+SQLFUNC: intersects(geometry, geometry)
+SQLFUNC: crosses(geometry, geometry)
+SQLFUNC: within(geometry, geometry)
+SQLFUNC: contains(geometry, geometry)
+SQLFUNC: overlaps(geometry, geometry)
+SQLFUNC: isvalid(geometry)
+SQLFUNC: geosnoop(geometry)
+SQLFUNC: centroid(geometry)
+SQLFUNC: isring(geometry)
+SQLFUNC: pointonsurface(geometry)
+SQLFUNC: issimple(geometry)
+SQLFUNC: equals(geometry, geometry)
+SQLFUNC: assvg(geometry, integer, integer)
+SQLFUNC: assvg(geometry, integer)
+SQLFUNC: assvg(geometry)
+SQLFUNC: asgml(geometry, integer, integer)
+SQLFUNC: asgml(geometry, integer)
+SQLFUNC: asgml(geometry)
+Scanning ugldb.dump list
+SKIPPING FUNC plpgsql_call_handler()
+KEEPING FUNCTION: [plpgsql_validator(oid)]
+SKIPPING PGIS FUNC box2d_in(cstring)
+SKIPPING PGIS FUNC box2d_out(box2d)
+SKIPPING PGIS TYPE box2d
+SKIPPING PGIS FUNC box3d_in(cstring)
+SKIPPING PGIS FUNC box3d_out(box3d)
+SKIPPING PGIS TYPE box3d
+SKIPPING PGIS FUNC chip_in(cstring)
+SKIPPING PGIS FUNC chip_out(chip)
+SKIPPING PGIS TYPE chip
+SKIPPING PGIS FUNC geometry_analyze(internal)
+SKIPPING PGIS FUNC geometry_in(cstring)
+SKIPPING PGIS FUNC geometry_out(geometry)
+SKIPPING PGIS FUNC geometry_recv(internal)
+SKIPPING PGIS FUNC geometry_send(geometry)
+SKIPPING PGIS TYPE geometry
+SKIPPING PGIS FUNC histogram2d_in(cstring)
+SKIPPING PGIS FUNC histogram2d_out(histogram2d)
+SKIPPING PGIS TYPE histogram2d
+SKIPPING PGIS FUNC spheroid_in(cstring)
+SKIPPING PGIS FUNC spheroid_out(spheroid)
+SKIPPING PGIS TYPE spheroid
+SKIPPING PGIS TYPE geometry_dump
+SKIPPING PGIS FUNC addbbox(geometry)
+SKIPPING PGIS FUNC addgeometrycolumn(character varying, character varying, character varying, character varying, integer, character varying, integer)
+SKIPPING PGIS FUNC addgeometrycolumn(character varying, character varying, character varying, integer, character varying, integer)
+SKIPPING PGIS FUNC addgeometrycolumn(character varying, character varying, integer, character varying, integer)
+SKIPPING PGIS FUNC addpoint(geometry, geometry)
+SKIPPING PGIS FUNC addpoint(geometry, geometry, integer)
+SKIPPING PGIS FUNC area(geometry)
+SKIPPING PGIS FUNC area2d(geometry)
+SKIPPING PGIS FUNC asbinary(geometry)
+SKIPPING PGIS FUNC asbinary(geometry, text)
+SKIPPING PGIS FUNC asewkb(geometry)
+SKIPPING PGIS FUNC asewkb(geometry, text)
+SKIPPING PGIS FUNC asewkt(geometry)
+SKIPPING PGIS FUNC asgml(geometry, integer, integer)
+SKIPPING PGIS FUNC asgml(geometry, integer)
+SKIPPING PGIS FUNC asgml(geometry)
+SKIPPING PGIS FUNC assvg(geometry, integer, integer)
+SKIPPING PGIS FUNC assvg(geometry, integer)
+SKIPPING PGIS FUNC assvg(geometry)
+SKIPPING PGIS FUNC astext(geometry)
+SKIPPING PGIS FUNC boundary(geometry)
+SKIPPING PGIS FUNC box(geometry)
+SKIPPING PGIS FUNC box(box3d)
+SKIPPING PGIS FUNC box2d(geometry)
+SKIPPING PGIS FUNC box2d(box3d)
+SKIPPING PGIS FUNC box2d_contain(box2d, box2d)
+SKIPPING PGIS FUNC box2d_contained(box2d, box2d)
+SKIPPING PGIS FUNC box2d_intersects(box2d, box2d)
+SKIPPING PGIS FUNC box2d_left(box2d, box2d)
+SKIPPING PGIS FUNC box2d_overlap(box2d, box2d)
+SKIPPING PGIS FUNC box2d_overleft(box2d, box2d)
+SKIPPING PGIS FUNC box2d_overright(box2d, box2d)
+SKIPPING PGIS FUNC box2d_right(box2d, box2d)
+SKIPPING PGIS FUNC box2d_same(box2d, box2d)
+SKIPPING PGIS FUNC box3d(geometry)
+SKIPPING PGIS FUNC box3d(box2d)
+SKIPPING PGIS FUNC box3dtobox(box3d)
+SKIPPING PGIS FUNC buffer(geometry, double precision)
+SKIPPING PGIS FUNC buffer(geometry, double precision, integer)
+SKIPPING PGIS FUNC build_histogram2d(histogram2d, text, text)
+SKIPPING PGIS FUNC build_histogram2d(histogram2d, text, text, text)
+SKIPPING PGIS FUNC bytea(geometry)
+SKIPPING PGIS FUNC cache_bbox()
+SKIPPING PGIS FUNC centroid(geometry)
+SKIPPING PGIS FUNC collect(geometry, geometry)
+SKIPPING PGIS FUNC collect_garray(geometry[])
+SKIPPING PGIS FUNC collector(geometry, geometry)
+SKIPPING PGIS FUNC combine_bbox(box2d, geometry)
+SKIPPING PGIS FUNC combine_bbox(box3d, geometry)
+SKIPPING PGIS FUNC compression(chip)
+SKIPPING PGIS FUNC contains(geometry, geometry)
+SKIPPING PGIS FUNC convexhull(geometry)
+SKIPPING PGIS FUNC create_histogram2d(box2d, integer)
+SKIPPING PGIS FUNC crosses(geometry, geometry)
+SKIPPING PGIS FUNC datatype(chip)
+SKIPPING PGIS FUNC difference(geometry, geometry)
+SKIPPING PGIS FUNC dimension(geometry)
+SKIPPING PGIS FUNC disjoint(geometry, geometry)
+SKIPPING PGIS FUNC distance(geometry, geometry)
+SKIPPING PGIS FUNC distance_sphere(geometry, geometry)
+SKIPPING PGIS FUNC distance_spheroid(geometry, geometry, spheroid)
+SKIPPING PGIS FUNC dropbbox(geometry)
+SKIPPING PGIS FUNC dropgeometrycolumn(character varying, character varying, character varying, character varying)
+SKIPPING PGIS FUNC dropgeometrycolumn(character varying, character varying, character varying)
+SKIPPING PGIS FUNC dropgeometrycolumn(character varying, character varying)
+SKIPPING PGIS FUNC dropgeometrytable(character varying, character varying, character varying)
+SKIPPING PGIS FUNC dropgeometrytable(character varying, character varying)
+SKIPPING PGIS FUNC dropgeometrytable(character varying)
+SKIPPING PGIS FUNC dump(geometry)
+SKIPPING PGIS FUNC endpoint(geometry)
+SKIPPING PGIS FUNC envelope(geometry)
+SKIPPING PGIS FUNC equals(geometry, geometry)
+SKIPPING PGIS FUNC estimate_histogram2d(histogram2d, box2d)
+SKIPPING PGIS FUNC estimated_extent(text, text, text)
+SKIPPING PGIS FUNC estimated_extent(text, text)
+SKIPPING PGIS FUNC expand(box3d, double precision)
+SKIPPING PGIS FUNC expand(box2d, double precision)
+SKIPPING PGIS FUNC expand(geometry, double precision)
+SKIPPING PGIS FUNC explode_histogram2d(histogram2d, text)
+SKIPPING PGIS FUNC exteriorring(geometry)
+SKIPPING PGIS FUNC factor(chip)
+SKIPPING PGIS FUNC find_extent(text, text, text)
+SKIPPING PGIS FUNC find_extent(text, text)
+SKIPPING PGIS FUNC find_srid(character varying, character varying, character varying)
+SKIPPING PGIS FUNC fix_geometry_columns()
+SKIPPING PGIS FUNC force_2d(geometry)
+SKIPPING PGIS FUNC force_3d(geometry)
+SKIPPING PGIS FUNC force_3dm(geometry)
+SKIPPING PGIS FUNC force_3dz(geometry)
+SKIPPING PGIS FUNC force_4d(geometry)
+SKIPPING PGIS FUNC force_collection(geometry)
+SKIPPING PGIS FUNC forcerhr(geometry)
+SKIPPING PGIS FUNC geom_accum(geometry[], geometry)
+SKIPPING OBSOLETED FUNC geomcollfromtext(text, integer)
+SKIPPING OBSOLETED FUNC geomcollfromtext(text)
+SKIPPING PGIS FUNC geomcollfromwkb(bytea, integer)
+SKIPPING PGIS FUNC geomcollfromwkb(bytea)
+SKIPPING PGIS FUNC geometry(box2d)
+SKIPPING PGIS FUNC geometry(box3d)
+SKIPPING PGIS FUNC geometry(text)
+SKIPPING PGIS FUNC geometry(chip)
+SKIPPING PGIS FUNC geometry(bytea)
+SKIPPING PGIS FUNC geometry_above(geometry, geometry)
+SKIPPING PGIS FUNC geometry_below(geometry, geometry)
+SKIPPING PGIS FUNC geometry_cmp(geometry, geometry)
+SKIPPING PGIS FUNC geometry_contain(geometry, geometry)
+SKIPPING PGIS FUNC geometry_contained(geometry, geometry)
+SKIPPING PGIS FUNC geometry_eq(geometry, geometry)
+SKIPPING PGIS FUNC geometry_ge(geometry, geometry)
+SKIPPING PGIS FUNC geometry_gt(geometry, geometry)
+SKIPPING PGIS FUNC geometry_le(geometry, geometry)
+SKIPPING PGIS FUNC geometry_left(geometry, geometry)
+SKIPPING PGIS FUNC geometry_lt(geometry, geometry)
+SKIPPING PGIS FUNC geometry_overabove(geometry, geometry)
+SKIPPING PGIS FUNC geometry_overbelow(geometry, geometry)
+SKIPPING PGIS FUNC geometry_overlap(geometry, geometry)
+SKIPPING PGIS FUNC geometry_overleft(geometry, geometry)
+SKIPPING PGIS FUNC geometry_overright(geometry, geometry)
+SKIPPING PGIS FUNC geometry_right(geometry, geometry)
+SKIPPING PGIS FUNC geometry_same(geometry, geometry)
+SKIPPING OBSOLETED FUNC geometryfromtext(text)
+SKIPPING OBSOLETED FUNC geometryfromtext(text, integer)
+SKIPPING PGIS FUNC geometryn(geometry, integer)
+SKIPPING PGIS FUNC geometrytype(geometry)
+SKIPPING PGIS FUNC geomfromewkb(bytea)
+SKIPPING PGIS FUNC geomfromewkt(text)
+SKIPPING OBSOLETED FUNC geomfromtext(text)
+SKIPPING OBSOLETED FUNC geomfromtext(text, integer)
+SKIPPING PGIS FUNC geomfromwkb(bytea)
+SKIPPING PGIS FUNC geomfromwkb(bytea, integer)
+SKIPPING PGIS FUNC geomunion(geometry, geometry)
+SKIPPING PGIS FUNC geosnoop(geometry)
+SKIPPING PGIS FUNC get_proj4_from_srid(integer)
+SKIPPING PGIS FUNC getbbox(geometry)
+SKIPPING PGIS FUNC getsrid(geometry)
+SKIPPING PGIS FUNC hasbbox(geometry)
+SKIPPING PGIS FUNC height(chip)
+SKIPPING PGIS FUNC interiorringn(geometry, integer)
+SKIPPING PGIS FUNC intersection(geometry, geometry)
+SKIPPING PGIS FUNC intersects(geometry, geometry)
+SKIPPING PGIS FUNC isclosed(geometry)
+SKIPPING PGIS FUNC isempty(geometry)
+SKIPPING PGIS FUNC isring(geometry)
+SKIPPING PGIS FUNC issimple(geometry)
+SKIPPING PGIS FUNC isvalid(geometry)
+SKIPPING PGIS FUNC length(geometry)
+SKIPPING PGIS FUNC length2d(geometry)
+SKIPPING PGIS FUNC length2d_spheroid(geometry, spheroid)
+SKIPPING PGIS FUNC length3d(geometry)
+SKIPPING PGIS FUNC length3d_spheroid(geometry, spheroid)
+SKIPPING PGIS FUNC length_spheroid(geometry, spheroid)
+SKIPPING PGIS FUNC line_interpolate_point(geometry, double precision)
+SKIPPING PGIS FUNC linefrommultipoint(geometry)
+SKIPPING OBSOLETED FUNC linefromtext(text)
+SKIPPING OBSOLETED FUNC linefromtext(text, integer)
+SKIPPING PGIS FUNC linefromwkb(bytea, integer)
+SKIPPING PGIS FUNC linefromwkb(bytea)
+SKIPPING OBSOLETED FUNC linestringfromtext(text)
+SKIPPING OBSOLETED FUNC linestringfromtext(text, integer)
+SKIPPING PGIS FUNC linestringfromwkb(bytea, integer)
+SKIPPING PGIS FUNC linestringfromwkb(bytea)
+SKIPPING PGIS FUNC lwgeom_gist_compress(internal)
+SKIPPING PGIS FUNC lwgeom_gist_consistent(internal, geometry, integer)
+SKIPPING PGIS FUNC lwgeom_gist_decompress(internal)
+SKIPPING PGIS FUNC lwgeom_gist_penalty(internal, internal, internal)
+SKIPPING PGIS FUNC lwgeom_gist_picksplit(internal, internal)
+SKIPPING PGIS FUNC lwgeom_gist_same(box2d, box2d, internal)
+SKIPPING PGIS FUNC lwgeom_gist_union(bytea, internal)
+SKIPPING PGIS FUNC makebox2d(geometry, geometry)
+SKIPPING PGIS FUNC makebox3d(geometry, geometry)
+SKIPPING PGIS FUNC makeline(geometry, geometry)
+SKIPPING PGIS FUNC makeline_garray(geometry[])
+SKIPPING PGIS FUNC makepoint(double precision, double precision)
+SKIPPING PGIS FUNC makepoint(double precision, double precision, double precision)
+SKIPPING PGIS FUNC makepoint(double precision, double precision, double precision, double precision)
+SKIPPING PGIS FUNC makepointm(double precision, double precision, double precision)
+SKIPPING PGIS FUNC makepolygon(geometry, geometry[])
+SKIPPING PGIS FUNC makepolygon(geometry)
+SKIPPING PGIS FUNC max_distance(geometry, geometry)
+SKIPPING PGIS FUNC mem_size(geometry)
+SKIPPING OBSOLETED FUNC mlinefromtext(text, integer)
+SKIPPING OBSOLETED FUNC mlinefromtext(text)
+SKIPPING PGIS FUNC mlinefromwkb(bytea, integer)
+SKIPPING PGIS FUNC mlinefromwkb(bytea)
+SKIPPING OBSOLETED FUNC mpointfromtext(text, integer)
+SKIPPING OBSOLETED FUNC mpointfromtext(text)
+SKIPPING PGIS FUNC mpointfromwkb(bytea, integer)
+SKIPPING PGIS FUNC mpointfromwkb(bytea)
+SKIPPING OBSOLETED FUNC mpolyfromtext(text, integer)
+SKIPPING OBSOLETED FUNC mpolyfromtext(text)
+SKIPPING PGIS FUNC mpolyfromwkb(bytea, integer)
+SKIPPING PGIS FUNC mpolyfromwkb(bytea)
+SKIPPING PGIS FUNC multi(geometry)
+SKIPPING PGIS FUNC multilinefromwkb(bytea, integer)
+SKIPPING PGIS FUNC multilinefromwkb(bytea)
+SKIPPING OBSOLETED FUNC multilinestringfromtext(text)
+SKIPPING OBSOLETED FUNC multilinestringfromtext(text, integer)
+SKIPPING OBSOLETED FUNC multipointfromtext(text, integer)
+SKIPPING OBSOLETED FUNC multipointfromtext(text)
+SKIPPING PGIS FUNC multipointfromwkb(bytea, integer)
+SKIPPING PGIS FUNC multipointfromwkb(bytea)
+SKIPPING PGIS FUNC multipolyfromwkb(bytea, integer)
+SKIPPING PGIS FUNC multipolyfromwkb(bytea)
+SKIPPING OBSOLETED FUNC multipolygonfromtext(text, integer)
+SKIPPING OBSOLETED FUNC multipolygonfromtext(text)
+SKIPPING PGIS FUNC ndims(geometry)
+SKIPPING PGIS FUNC noop(geometry)
+SKIPPING PGIS FUNC npoints(geometry)
+SKIPPING PGIS FUNC nrings(geometry)
+SKIPPING PGIS FUNC numgeometries(geometry)
+SKIPPING PGIS FUNC numinteriorrings(geometry)
+SKIPPING PGIS FUNC numpoints(geometry)
+SKIPPING PGIS FUNC overlaps(geometry, geometry)
+SKIPPING PGIS FUNC perimeter(geometry)
+SKIPPING PGIS FUNC perimeter2d(geometry)
+SKIPPING PGIS FUNC perimeter3d(geometry)
+SKIPPING PGIS FUNC point_inside_circle(geometry, double precision, double precision, double precision)
+SKIPPING OBSOLETED FUNC pointfromtext(text)
+SKIPPING OBSOLETED FUNC pointfromtext(text, integer)
+SKIPPING PGIS FUNC pointfromwkb(bytea, integer)
+SKIPPING PGIS FUNC pointfromwkb(bytea)
+SKIPPING PGIS FUNC pointn(geometry, integer)
+SKIPPING PGIS FUNC pointonsurface(geometry)
+SKIPPING OBSOLETED FUNC polyfromtext(text)
+SKIPPING OBSOLETED FUNC polyfromtext(text, integer)
+SKIPPING PGIS FUNC polyfromwkb(bytea, integer)
+SKIPPING PGIS FUNC polyfromwkb(bytea)
+SKIPPING OBSOLETED FUNC polygonfromtext(text, integer)
+SKIPPING OBSOLETED FUNC polygonfromtext(text)
+SKIPPING PGIS FUNC polygonfromwkb(bytea, integer)
+SKIPPING PGIS FUNC polygonfromwkb(bytea)
+SKIPPING PGIS FUNC polygonize_garray(geometry[])
+SKIPPING PGIS FUNC postgis_full_version()
+SKIPPING PGIS FUNC postgis_geos_version()
+SKIPPING PGIS FUNC postgis_gist_joinsel(internal, oid, internal, smallint)
+SKIPPING PGIS FUNC postgis_gist_sel(internal, oid, internal, integer)
+SKIPPING PGIS FUNC postgis_lib_build_date()
+SKIPPING PGIS FUNC postgis_lib_version()
+SKIPPING PGIS FUNC postgis_proj_version()
+SKIPPING PGIS FUNC postgis_scripts_build_date()
+SKIPPING PGIS FUNC postgis_scripts_installed()
+SKIPPING PGIS FUNC postgis_scripts_released()
+SKIPPING PGIS FUNC postgis_uses_stats()
+SKIPPING PGIS FUNC postgis_version()
+SKIPPING PGIS FUNC probe_geometry_columns()
+SKIPPING PGIS FUNC relate(geometry, geometry)
+SKIPPING PGIS FUNC relate(geometry, geometry, text)
+SKIPPING PGIS FUNC rename_geometry_table_constraints()
+SKIPPING PGIS FUNC reverse(geometry)
+SKIPPING PGIS FUNC segmentize(geometry, double precision)
+SKIPPING PGIS FUNC setfactor(chip, real)
+SKIPPING PGIS FUNC setsrid(chip, integer)
+SKIPPING PGIS FUNC setsrid(geometry, integer)
+SKIPPING PGIS FUNC simplify(geometry, double precision)
+SKIPPING PGIS FUNC snaptogrid(geometry, double precision, double precision, double precision, double precision)
+SKIPPING PGIS FUNC snaptogrid(geometry, double precision, double precision)
+SKIPPING PGIS FUNC snaptogrid(geometry, double precision)
+SKIPPING PGIS FUNC srid(chip)
+SKIPPING PGIS FUNC srid(geometry)
+SKIPPING PGIS FUNC startpoint(geometry)
+SKIPPING PGIS FUNC summary(geometry)
+SKIPPING PGIS FUNC symdifference(geometry, geometry)
+SKIPPING PGIS FUNC symmetricdifference(geometry, geometry)
+SKIPPING PGIS FUNC text(geometry)
+KEEPING FUNCTION: [text(boolean)]
+SKIPPING PGIS FUNC touches(geometry, geometry)
+SKIPPING PGIS FUNC transform(geometry, integer)
+SKIPPING PGIS FUNC transform_geometry(geometry, text, text, integer)
+SKIPPING PGIS FUNC translate(geometry, double precision, double precision, double precision)
+SKIPPING PGIS FUNC translate(geometry, double precision, double precision)
+SKIPPING PGIS FUNC unite_garray(geometry[])
+SKIPPING PGIS FUNC update_geometry_stats()
+SKIPPING PGIS FUNC update_geometry_stats(character varying, character varying)
+SKIPPING PGIS FUNC updategeometrysrid(character varying, character varying, character varying, character varying, integer)
+SKIPPING PGIS FUNC updategeometrysrid(character varying, character varying, character varying, integer)
+SKIPPING PGIS FUNC updategeometrysrid(character varying, character varying, integer)
+SKIPPING PGIS FUNC width(chip)
+SKIPPING PGIS FUNC within(geometry, geometry)
+SKIPPING PGIS FUNC x(geometry)
+SKIPPING PGIS FUNC xmax(box3d)
+SKIPPING PGIS FUNC xmin(box3d)
+SKIPPING PGIS FUNC y(geometry)
+SKIPPING PGIS FUNC ymax(box3d)
+SKIPPING PGIS FUNC ymin(box3d)
+SKIPPING PGIS FUNC z(geometry)
+SKIPPING PGIS FUNC zmax(box3d)
+SKIPPING PGIS FUNC zmflag(geometry)
+SKIPPING PGIS FUNC zmin(box3d)
+SKIPPING PGIS AGG accum(geometry)
+SKIPPING PGIS AGG collect(geometry)
+SKIPPING PGIS AGG extent(geometry)
+SKIPPING PGIS AGG extent3d(geometry)
+SKIPPING PGIS AGG geomunion(geometry)
+SKIPPING PGIS AGG makeline(geometry)
+SKIPPING PGIS AGG memcollect(geometry)
+SKIPPING PGIS AGG memgeomunion(geometry)
+SKIPPING PGIS AGG polygonize(geometry)
+SKIPPING PGIS OPCLASS btree_geometry_ops
+SKIPPING PGIS OPCLASS gist_geometry_ops
+KEEPING CAST boolean,text
+SKIPPING PGIS CAST box2d,box3d
+SKIPPING PGIS CAST box2d,geometry
+SKIPPING PGIS CAST box3d,box
+SKIPPING PGIS CAST box3d,box2d
+SKIPPING PGIS CAST box3d,geometry
+SKIPPING PGIS CAST bytea,geometry
+SKIPPING PGIS CAST chip,geometry
+SKIPPING PGIS CAST geometry,box
+SKIPPING PGIS CAST geometry,box2d
+SKIPPING PGIS CAST geometry,box3d
+SKIPPING PGIS CAST geometry,bytea
+SKIPPING PGIS CAST geometry,text
+SKIPPING PGIS CAST text,geometry
+Producing ascii dump ugldb.dump.ascii
+SKIPPING PGIS OP &&,geometry,geometry
+SKIPPING PGIS OP &<,geometry,geometry
+SKIPPING PGIS OP &<|,geometry,geometry
+SKIPPING PGIS OP &>,geometry,geometry
+SKIPPING PGIS OP <,geometry,geometry
+SKIPPING PGIS OP <<,geometry,geometry
+SKIPPING PGIS OP <<|,geometry,geometry
+SKIPPING PGIS OP <=,geometry,geometry
+SKIPPING PGIS OP =,geometry,geometry
+SKIPPING PGIS OP >,geometry,geometry
+SKIPPING PGIS OP >=,geometry,geometry
+SKIPPING PGIS OP >>,geometry,geometry
+SKIPPING PGIS OP @,geometry,geometry
+SKIPPING PGIS OP |&>,geometry,geometry
+SKIPPING PGIS OP |>>,geometry,geometry
+SKIPPING PGIS OP ~,geometry,geometry
+SKIPPING PGIS OP ~=,geometry,geometry
+Creating db (tutorial)
+Adding plpgsql
+-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-- 
+-- $Id: lwpostgis.sql.in,v 1.121.2.2 2005/05/10 12:52:08 strk Exp $
+--
+-- PostGIS - Spatial Types for PostgreSQL
+-- http://postgis.refractions.net
+-- Copyright 2001-2003 Refractions Research Inc.
+--
+-- This is free software; you can redistribute and/or modify it under
+-- the terms of the GNU General Public Licence. See the COPYING file.
+--  
+-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+BEGIN;
+BEGIN
+-------------------------------------------------------------------
+--  HISTOGRAM2D TYPE (lwhistogram2d)
+-------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION histogram2d_in(cstring)
+	RETURNS histogram2d
+	AS '$libdir/liblwgeom.so.1.0', 'lwhistogram2d_in'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION histogram2d_out(histogram2d)
+	RETURNS cstring
+	AS '$libdir/liblwgeom.so.1.0', 'lwhistogram2d_out'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE TYPE histogram2d (
+	alignment = double,
+	internallength = variable,
+	input = histogram2d_in,
+	output = histogram2d_out,
+	storage = main
+);
+CREATE TYPE
+-------------------------------------------------------------------
+--  SPHEROID TYPE
+-------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION spheroid_in(cstring)
+	RETURNS spheroid
+	AS '$libdir/liblwgeom.so.1.0','ellipsoid_in'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION spheroid_out(spheroid)
+	RETURNS cstring
+	AS '$libdir/liblwgeom.so.1.0','ellipsoid_out'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE TYPE spheroid (
+	alignment = double,
+	internallength = 65,
+	input = spheroid_in,
+	output = spheroid_out
+);
+CREATE TYPE
+-------------------------------------------------------------------
+--  GEOMETRY TYPE (lwgeom)
+-------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION geometry_in(cstring)
+        RETURNS geometry
+        AS '$libdir/liblwgeom.so.1.0','LWGEOM_in'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_out(geometry)
+        RETURNS cstring
+        AS '$libdir/liblwgeom.so.1.0','LWGEOM_out'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_analyze(internal)
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_analyze'
+	LANGUAGE 'C' VOLATILE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_recv(internal)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_recv'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_send(geometry)
+	RETURNS bytea
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_send'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE TYPE geometry (
+        internallength = variable,
+        input = geometry_in,
+        output = geometry_out,
+	send = geometry_send,
+	receive = geometry_recv,
+	delimiter = ':',
+	analyze = geometry_analyze,
+        storage = main
+);
+CREATE TYPE
+        
+-------------------------------------------------------------------
+--  BOX3D TYPE
+-------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION box3d_in(cstring)
+	RETURNS box3d
+	AS '$libdir/liblwgeom.so.1.0', 'BOX3D_in'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box3d_out(box3d)
+	RETURNS cstring
+	AS '$libdir/liblwgeom.so.1.0', 'BOX3D_out'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE TYPE box3d (
+	alignment = double,
+	internallength = 48,
+	input = box3d_in,
+	output = box3d_out
+);
+CREATE TYPE
+CREATE OR REPLACE FUNCTION xmin(box3d)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0','BOX3D_xmin'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION ymin(box3d)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0','BOX3D_ymin'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION zmin(box3d)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0','BOX3D_zmin'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION xmax(box3d)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0','BOX3D_xmax'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION ymax(box3d)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0','BOX3D_ymax'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION zmax(box3d)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0','BOX3D_zmax'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+-------------------------------------------------------------------
+--  CHIP TYPE
+-------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION chip_in(cstring)
+	RETURNS chip
+	AS '$libdir/liblwgeom.so.1.0','CHIP_in'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION chip_out(chip)
+	RETURNS cstring
+	AS '$libdir/liblwgeom.so.1.0','CHIP_out'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE TYPE chip (
+	alignment = double,
+	internallength = variable,
+	input = chip_in,
+	output = chip_out,
+	storage = extended
+);
+CREATE TYPE
+-----------------------------------------------------------------------
+-- BOX2D
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION box2d_in(cstring)
+        RETURNS box2d
+        AS '$libdir/liblwgeom.so.1.0','BOX2DFLOAT4_in'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box2d_out(box2d)
+        RETURNS cstring
+        AS '$libdir/liblwgeom.so.1.0','BOX2DFLOAT4_out'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE TYPE box2d (
+        internallength = 16,
+        input = box2d_in,
+        output = box2d_out,
+        storage = plain
+);
+CREATE TYPE
+---- BOX2D  support functions
+CREATE OR REPLACE FUNCTION box2d_overleft(box2d, box2d) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'BOX2D_overleft'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box2d_overright(box2d, box2d) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'BOX2D_overright' 
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box2d_left(box2d, box2d) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'BOX2D_left' 
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box2d_right(box2d, box2d) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'BOX2D_right' 
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box2d_contain(box2d, box2d) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'BOX2D_contain'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box2d_contained(box2d, box2d) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'BOX2D_contained'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box2d_overlap(box2d, box2d) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'BOX2D_overlap'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box2d_same(box2d, box2d) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'BOX2D_same'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box2d_intersects(box2d, box2d) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'BOX2D_intersects'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+-- lwgeom  operator support functions
+-------------------------------------------------------------------
+-- BTREE indexes
+-------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION geometry_lt(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'lwgeom_lt'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_le(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'lwgeom_le'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_gt(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'lwgeom_gt'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_ge(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'lwgeom_ge'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_eq(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'lwgeom_eq'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_cmp(geometry, geometry) 
+	RETURNS integer
+	AS '$libdir/liblwgeom.so.1.0', 'lwgeom_cmp'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+--
+-- Sorting operators for Btree
+--
+CREATE OPERATOR < (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_lt,
+   COMMUTATOR = '>', NEGATOR = '>=',
+   RESTRICT = contsel, JOIN = contjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR <= (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_le,
+   COMMUTATOR = '>=', NEGATOR = '>',
+   RESTRICT = contsel, JOIN = contjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR = (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_eq,
+   COMMUTATOR = '=', -- we might implement a faster negator here
+   RESTRICT = contsel, JOIN = contjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR >= (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_ge,
+   COMMUTATOR = '<=', NEGATOR = '<',
+   RESTRICT = contsel, JOIN = contjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR > (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_gt,
+   COMMUTATOR = '<', NEGATOR = '<=',
+   RESTRICT = contsel, JOIN = contjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR CLASS btree_geometry_ops
+	DEFAULT FOR TYPE geometry USING btree AS
+	OPERATOR	1	< ,
+	OPERATOR	2	<= ,
+	OPERATOR	3	= ,
+	OPERATOR	4	>= ,
+	OPERATOR	5	> ,
+	FUNCTION	1	geometry_cmp (geometry, geometry);
+CREATE OPERATOR CLASS
+-------------------------------------------------------------------
+-- GiST indexes
+-------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION postgis_gist_sel (internal, oid, internal, int4)
+	RETURNS float8
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_gist_sel'
+	LANGUAGE 'C';
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION postgis_gist_joinsel(internal, oid, internal, smallint)
+	RETURNS float8
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_gist_joinsel'
+	LANGUAGE 'C';
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_overleft(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_overleft'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_overright(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_overright'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_overabove(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_overabove'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_overbelow(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_overbelow'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_left(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_left'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_right(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_right'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_above(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_above'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_below(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_below'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_contain(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_contain'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_contained(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_contained'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_overlap(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_overlap'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry_same(geometry, geometry) 
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_same'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+-- GEOMETRY operators
+CREATE OPERATOR << (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_left,
+   COMMUTATOR = '>>',
+   RESTRICT = positionsel, JOIN = positionjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR &< (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_overleft,
+   COMMUTATOR = '&>',
+   RESTRICT = positionsel, JOIN = positionjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR <<| (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_below,
+   COMMUTATOR = '|>>',
+   RESTRICT = positionsel, JOIN = positionjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR &<| (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_overbelow,
+   COMMUTATOR = '|&>',
+   RESTRICT = positionsel, JOIN = positionjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR && (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_overlap,
+   COMMUTATOR = '&&',
+   RESTRICT = postgis_gist_sel, JOIN = postgis_gist_joinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR &> (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_overright,
+   COMMUTATOR = '&<',
+   RESTRICT = positionsel, JOIN = positionjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR >> (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_right,
+   COMMUTATOR = '<<',
+   RESTRICT = positionsel, JOIN = positionjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR |&> (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_overabove,
+   COMMUTATOR = '&<|',
+   RESTRICT = positionsel, JOIN = positionjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR |>> (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_above,
+   COMMUTATOR = '<<|',
+   RESTRICT = positionsel, JOIN = positionjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR ~= (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_same,
+   COMMUTATOR = '~=', 
+   RESTRICT = eqsel, JOIN = eqjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR @ (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_contained,
+   COMMUTATOR = '~',
+   RESTRICT = contsel, JOIN = contjoinsel
+);
+CREATE OPERATOR
+CREATE OPERATOR ~ (
+   LEFTARG = geometry, RIGHTARG = geometry, PROCEDURE = geometry_contain,
+   COMMUTATOR = '@',
+   RESTRICT = contsel, JOIN = contjoinsel
+);
+CREATE OPERATOR
+-- gist support functions
+CREATE OR REPLACE FUNCTION LWGEOM_gist_consistent(internal,geometry,int4) 
+	RETURNS bool 
+	AS '$libdir/liblwgeom.so.1.0' ,'LWGEOM_gist_consistent'
+	LANGUAGE 'C';
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LWGEOM_gist_compress(internal) 
+	RETURNS internal 
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_gist_compress'
+	LANGUAGE 'C';
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LWGEOM_gist_penalty(internal,internal,internal) 
+	RETURNS internal 
+	AS '$libdir/liblwgeom.so.1.0' ,'LWGEOM_gist_penalty'
+	LANGUAGE 'C';
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LWGEOM_gist_picksplit(internal, internal) 
+	RETURNS internal 
+	AS '$libdir/liblwgeom.so.1.0' ,'LWGEOM_gist_picksplit'
+	LANGUAGE 'C';
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LWGEOM_gist_union(bytea, internal) 
+	RETURNS internal 
+	AS '$libdir/liblwgeom.so.1.0' ,'LWGEOM_gist_union'
+	LANGUAGE 'C';
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LWGEOM_gist_same(box2d, box2d, internal) 
+	RETURNS internal 
+	AS '$libdir/liblwgeom.so.1.0' ,'LWGEOM_gist_same'
+	LANGUAGE 'C';
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LWGEOM_gist_decompress(internal) 
+	RETURNS internal
+	AS '$libdir/liblwgeom.so.1.0' ,'LWGEOM_gist_decompress'
+	LANGUAGE 'C';
+CREATE FUNCTION
+-------------------------------------------
+-- GIST opclass index binding entries.
+-------------------------------------------
+--
+-- Create opclass index bindings for PG>=73
+--
+CREATE OPERATOR CLASS gist_geometry_ops
+        DEFAULT FOR TYPE geometry USING gist AS
+        OPERATOR        1        << 	RECHECK,
+        OPERATOR        2        &<	RECHECK,
+        OPERATOR        3        &&	RECHECK,
+        OPERATOR        4        &>	RECHECK,
+        OPERATOR        5        >>	RECHECK,
+        OPERATOR        6        ~=	RECHECK,
+        OPERATOR        7        ~	RECHECK,
+        OPERATOR        8        @	RECHECK,
+	OPERATOR	9	 &<|	RECHECK,
+	OPERATOR	10	 <<|	RECHECK,
+	OPERATOR	11	 |>>	RECHECK,
+	OPERATOR	12	 |&>	RECHECK,
+	FUNCTION        1        LWGEOM_gist_consistent (internal, geometry, int4),
+        FUNCTION        2        LWGEOM_gist_union (bytea, internal),
+        FUNCTION        3        LWGEOM_gist_compress (internal),
+        FUNCTION        4        LWGEOM_gist_decompress (internal),
+        FUNCTION        5        LWGEOM_gist_penalty (internal, internal, internal),
+        FUNCTION        6        LWGEOM_gist_picksplit (internal, internal),
+        FUNCTION        7        LWGEOM_gist_same (box2d, box2d, internal);
+CREATE OPERATOR CLASS
+UPDATE pg_opclass 
+	SET opckeytype = (SELECT oid FROM pg_type 
+                          WHERE typname = 'box2d' 
+                          AND typnamespace = (SELECT oid FROM pg_namespace 
+                                              WHERE nspname=current_schema())) 
+	WHERE opcname = 'gist_geometry_ops' 
+        AND opcnamespace = (SELECT oid from pg_namespace 
+                            WHERE nspname=current_schema());
+UPDATE 1
+	
+-- TODO: add btree binding...
+	
+-- other lwgeom functions
+CREATE OR REPLACE FUNCTION addBBOX(geometry) 
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_addBBOX'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION dropBBOX(geometry) 
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_dropBBOX'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+	
+CREATE OR REPLACE FUNCTION getSRID(geometry) 
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_getSRID'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION getBBOX(geometry)
+        RETURNS box2d
+        AS '$libdir/liblwgeom.so.1.0','LWGEOM_to_BOX2DFLOAT4'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION translate(geometry,float8,float8,float8)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_translate'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict) ;
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION translate(geometry,float8,float8)
+	RETURNS geometry
+	AS ' SELECT translate($1, $2, $3, 0) '
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+--- CHIP functions
+CREATE OR REPLACE FUNCTION srid(chip)
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0','CHIP_getSRID'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION height(chip)
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0','CHIP_getHeight'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION factor(chip)
+	RETURNS FLOAT4
+	AS '$libdir/liblwgeom.so.1.0','CHIP_getFactor'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION width(chip)
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0','CHIP_getWidth'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION datatype(chip)
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0','CHIP_getDatatype'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION compression(chip)
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0','CHIP_getCompression'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION setSRID(chip,int4)
+	RETURNS chip
+	AS '$libdir/liblwgeom.so.1.0','CHIP_setSRID'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION setFactor(chip,float4)
+	RETURNS chip
+	AS '$libdir/liblwgeom.so.1.0','CHIP_setFactor'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+------------------------------------------------------------------------
+-- DEBUG
+------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION mem_size(geometry)
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_mem_size'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION summary(geometry)
+	RETURNS text
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_summary'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION npoints(geometry)
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_npoints'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION nrings(geometry)
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_nrings'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+------------------------------------------------------------------------
+-- OGC defined
+------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION NumPoints(geometry)
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_numpoints_linestring'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION NumGeometries(geometry)
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_numgeometries_collection'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeometryN(geometry,integer)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_geometryn_collection'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION Dimension(geometry)
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_dimension'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION ExterioRring(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_exteriorring_polygon'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION NumInteriorRings(geometry)
+	RETURNS integer
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_numinteriorrings_polygon'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION InteriorRingN(geometry,integer)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_interiorringn_polygon'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeometryType(geometry)
+	RETURNS text
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_getTYPE'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PointN(geometry,integer)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_pointn_linestring'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION X(geometry)
+	RETURNS float8
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_x_point'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION Y(geometry)
+	RETURNS float8
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_y_point'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION Z(geometry)
+	RETURNS float8
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_z_point'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION StartPoint(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_startpoint_linestring'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION EndPoint(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_endpoint_linestring'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION IsClosed(geometry)
+	RETURNS boolean
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_isclosed_linestring'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION IsEmpty(geometry)
+	RETURNS boolean
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_isempty'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION SRID(geometry) 
+	RETURNS int4
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_getSRID'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+	
+CREATE OR REPLACE FUNCTION SetSRID(geometry,int4) 
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_setSRID'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);	
+CREATE FUNCTION
+	
+CREATE OR REPLACE FUNCTION AsBinary(geometry)
+	RETURNS bytea
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_asBinary'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION AsBinary(geometry,text)
+	RETURNS bytea
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_asBinary'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION AsText(geometry)
+	RETURNS TEXT
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_asText'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeometryFromText(text)
+        RETURNS geometry
+        AS '$libdir/liblwgeom.so.1.0','LWGEOM_from_text'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeometryFromText(text, int4)
+        RETURNS geometry
+        AS '$libdir/liblwgeom.so.1.0','LWGEOM_from_text'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeomFromText(text)
+	RETURNS geometry AS 'SELECT geometryfromtext($1)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeomFromText(text, int4)
+	RETURNS geometry AS 'SELECT geometryfromtext($1, $2)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PointFromText(text)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromText($1)) = ''POINT''
+	THEN GeomFromText($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PointFromText(text, int4)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromText($1, $2)) = ''POINT''
+	THEN GeomFromText($1,$2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LineFromText(text)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromText($1)) = ''LINESTRING''
+	THEN GeomFromText($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LineFromText(text, int4)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromText($1, $2)) = ''LINESTRING''
+	THEN GeomFromText($1,$2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LineStringFromText(text)
+	RETURNS geometry
+	AS 'SELECT LineFromText($1)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LineStringFromText(text, int4)
+	RETURNS geometry
+	AS 'SELECT LineFromText($1, $2)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PolyFromText(text)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromText($1)) = ''POLYGON''
+	THEN GeomFromText($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PolyFromText(text, int4)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromText($1, $2)) = ''POLYGON''
+	THEN GeomFromText($1,$2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PolygonFromText(text, int4)
+	RETURNS geometry
+	AS 'SELECT PolyFromText($1, $2)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PolygonFromText(text)
+	RETURNS geometry
+	AS 'SELECT PolyFromText($1)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MLineFromText(text, int4)
+	RETURNS geometry
+	AS '
+	SELECT CASE
+	WHEN geometrytype(GeomFromText($1, $2)) = ''MULTILINESTRING''
+	THEN GeomFromText($1,$2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MLineFromText(text)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromText($1)) = ''MULTILINESTRING''
+	THEN GeomFromText($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MultiLineStringFromText(text)
+	RETURNS geometry
+	AS 'SELECT MLineFromText($1)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MultiLineStringFromText(text, int4)
+	RETURNS geometry
+	AS 'SELECT MLineFromText($1, $2)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MPointFromText(text, int4)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromText($1,$2)) = ''MULTIPOINT''
+	THEN GeomFromText($1,$2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MPointFromText(text)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromText($1)) = ''MULTIPOINT''
+	THEN GeomFromText($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MultiPointFromText(text, int4)
+	RETURNS geometry
+	AS 'SELECT MPointFromText($1, $2)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MultiPointFromText(text)
+	RETURNS geometry
+	AS 'SELECT MPointFromText($1)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MPolyFromText(text, int4)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromText($1, $2)) = ''MULTIPOLYGON''
+	THEN GeomFromText($1,$2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MPolyFromText(text)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromText($1)) = ''MULTIPOLYGON''
+	THEN GeomFromText($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MultiPolygonFromText(text, int4)
+	RETURNS geometry
+	AS 'SELECT MPolyFromText($1, $2)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MultiPolygonFromText(text)
+	RETURNS geometry
+	AS 'SELECT MPolyFromText($1)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeomCollFromText(text, int4)
+	RETURNS geometry
+	AS '
+	SELECT CASE
+	WHEN geometrytype(GeomFromText($1, $2)) = ''GEOMETRYCOLLECTION''
+	THEN GeomFromText($1,$2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeomCollFromText(text)
+	RETURNS geometry
+	AS '
+	SELECT CASE
+	WHEN geometrytype(GeomFromText($1)) = ''GEOMETRYCOLLECTION''
+	THEN GeomFromText($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeomFromWKB(bytea)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_from_WKB'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeomFromWKB(bytea, int)
+	RETURNS geometry
+	AS 'SELECT setSRID(GeomFromWKB($1), $2)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PointFromWKB(bytea, int)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1, $2)) = ''POINT''
+	THEN GeomFromWKB($1, $2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PointFromWKB(bytea)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = ''POINT''
+	THEN GeomFromWKB($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LineFromWKB(bytea, int)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1, $2)) = ''LINESTRING''
+	THEN GeomFromWKB($1, $2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LineFromWKB(bytea)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = ''LINESTRING''
+	THEN GeomFromWKB($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LinestringFromWKB(bytea, int)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1, $2)) = ''LINESTRING''
+	THEN GeomFromWKB($1, $2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LinestringFromWKB(bytea)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = ''LINESTRING''
+	THEN GeomFromWKB($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PolyFromWKB(bytea, int)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1, $2)) = ''POLYGON''
+	THEN GeomFromWKB($1, $2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PolyFromWKB(bytea)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = ''POLYGON''
+	THEN GeomFromWKB($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PolygonFromWKB(bytea, int)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1,$2)) = ''POLYGON''
+	THEN GeomFromWKB($1, $2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PolygonFromWKB(bytea)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = ''POLYGON''
+	THEN GeomFromWKB($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MPointFromWKB(bytea, int)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1,$2)) = ''MULTIPOINT''
+	THEN GeomFromWKB($1, $2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MPointFromWKB(bytea)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = ''MULTIPOINT''
+	THEN GeomFromWKB($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MultiPointFromWKB(bytea, int)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1,$2)) = ''MULTIPOINT''
+	THEN GeomFromWKB($1, $2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MultiPointFromWKB(bytea)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = ''MULTIPOINT''
+	THEN GeomFromWKB($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MultiLineFromWKB(bytea, int)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1, $2)) = ''MULTILINESTRING''
+	THEN GeomFromWKB($1, $2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MultiLineFromWKB(bytea)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = ''MULTILINESTRING''
+	THEN GeomFromWKB($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MLineFromWKB(bytea, int)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1, $2)) = ''MULTILINESTRING''
+	THEN GeomFromWKB($1, $2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MLineFromWKB(bytea)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = ''MULTILINESTRING''
+	THEN GeomFromWKB($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MPolyFromWKB(bytea, int)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1, $2)) = ''MULTIPOLYGON''
+	THEN GeomFromWKB($1, $2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MPolyFromWKB(bytea)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = ''MULTIPOLYGON''
+	THEN GeomFromWKB($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MultiPolyFromWKB(bytea, int)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1, $2)) = ''MULTIPOLYGON''
+	THEN GeomFromWKB($1, $2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MultiPolyFromWKB(bytea)
+	RETURNS geometry
+	AS '
+	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = ''MULTIPOLYGON''
+	THEN GeomFromWKB($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeomCollFromWKB(bytea, int)
+	RETURNS geometry
+	AS '
+	SELECT CASE
+	WHEN geometrytype(GeomFromWKB($1, $2)) = ''GEOMETRYCOLLECTION''
+	THEN GeomFromWKB($1, $2)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeomCollFromWKB(bytea)
+	RETURNS geometry
+	AS '
+	SELECT CASE
+	WHEN geometrytype(GeomFromWKB($1)) = ''GEOMETRYCOLLECTION''
+	THEN GeomFromWKB($1)
+	ELSE NULL END
+	'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+------------------------------------------------------------------------
+-- Misures
+------------------------------------------------------------------------
+-- this is a fake (for back-compatibility)
+-- uses 3d if 3d is available, 2d otherwise
+CREATE OR REPLACE FUNCTION length3d(geometry)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_length_linestring'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION length2d(geometry)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_length2d_linestring'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION length(geometry)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_length_linestring'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-- this is a fake (for back-compatibility)
+-- uses 3d if 3d is available, 2d otherwise
+CREATE OR REPLACE FUNCTION length3d_spheroid(geometry, spheroid)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_length_ellipsoid_linestring'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION length_spheroid(geometry, spheroid)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_length_ellipsoid_linestring'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION length2d_spheroid(geometry, spheroid)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_length2d_ellipsoid_linestring'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-- this is a fake (for back-compatibility)
+-- uses 3d if 3d is available, 2d otherwise
+CREATE OR REPLACE FUNCTION perimeter3d(geometry)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_perimeter_poly'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION perimeter2d(geometry)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_perimeter2d_poly'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION perimeter(geometry)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_perimeter_poly'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-- this is an alias for 'area(geometry)'
+-- there is nothing such an 'area3d'...
+CREATE OR REPLACE FUNCTION area2d(geometry)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_area_polygon'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION area(geometry)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_area_polygon'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION distance_spheroid(geometry,geometry,spheroid)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_distance_ellipsoid_point'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION distance_sphere(geometry,geometry)
+	RETURNS FLOAT8
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_distance_sphere'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-- Minimum distance. 2d only.
+CREATE OR REPLACE FUNCTION distance(geometry,geometry)
+	RETURNS float8
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_mindistance2d'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+-- Maximum distance between linestrings. 2d only. Very bogus.
+CREATE OR REPLACE FUNCTION max_distance(geometry,geometry)
+	RETURNS float8
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_maxdistance2d_linestring'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION point_inside_circle(geometry,float8,float8,float8)
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_inside_circle_point'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+------------------------------------------------------------------------
+-- MISC
+------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION force_2d(geometry) 
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_force_2d'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION force_3dz(geometry) 
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_force_3dz'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-- an alias for force_3dz
+CREATE OR REPLACE FUNCTION force_3d(geometry) 
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_force_3dz'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION force_3dm(geometry) 
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_force_3dm'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION force_4d(geometry) 
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_force_4d'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION force_collection(geometry) 
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_force_collection'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION multi(geometry) 
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_force_multi'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION collector(geometry, geometry) 
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_collect'
+	LANGUAGE 'C' IMMUTABLE;
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION collect(geometry, geometry) 
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_collect'
+	LANGUAGE 'C' IMMUTABLE;
+CREATE FUNCTION
+CREATE AGGREGATE memcollect(
+	sfunc = collect,
+	basetype = geometry,
+	stype = geometry
+	);
+CREATE AGGREGATE
+CREATE OR REPLACE FUNCTION geom_accum (geometry[],geometry)
+	RETURNS geometry[]
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_accum'
+	LANGUAGE 'C' IMMUTABLE;
+CREATE FUNCTION
+CREATE AGGREGATE accum (
+	sfunc = geom_accum,
+	basetype = geometry,
+	stype = geometry[]
+	);
+CREATE AGGREGATE
+CREATE OR REPLACE FUNCTION collect_garray (geometry[])
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_collect_garray'
+	LANGUAGE 'C' IMMUTABLE STRICT;
+CREATE FUNCTION
+CREATE AGGREGATE collect (
+	sfunc = geom_accum,
+	basetype = geometry,
+	stype = geometry[],
+	finalfunc = collect_garray
+	);
+CREATE AGGREGATE
+CREATE OR REPLACE FUNCTION expand(box3d,float8)
+	RETURNS box3d
+	AS '$libdir/liblwgeom.so.1.0', 'BOX3D_expand'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION expand(box2d,float8)
+	RETURNS box2d
+	AS '$libdir/liblwgeom.so.1.0', 'BOX2DFLOAT4_expand'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION expand(geometry,float8)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_expand'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION envelope(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_envelope'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION reverse(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_reverse'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION ForceRHR(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_forceRHR_poly'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION noop(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_noop'
+	LANGUAGE 'C' VOLATILE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION zmflag(geometry)
+	RETURNS smallint
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_zmflag'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION hasBBOX(geometry)
+	RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_hasBBOX'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION ndims(geometry)
+	RETURNS smallint
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_ndims'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION AsEWKT(geometry)
+	RETURNS TEXT
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_asEWKT'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION AsEWKB(geometry)
+	RETURNS BYTEA
+	AS '$libdir/liblwgeom.so.1.0','WKBFromLWGEOM'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION AsEWKB(geometry,text)
+	RETURNS bytea
+	AS '$libdir/liblwgeom.so.1.0','WKBFromLWGEOM'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeomFromEWKB(bytea)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','LWGEOMFromWKB'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeomFromEWKT(text)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','parse_WKT_lwgeom'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION cache_bbox()
+	RETURNS trigger
+	AS '$libdir/liblwgeom.so.1.0'
+	LANGUAGE 'C';
+CREATE FUNCTION
+------------------------------------------------------------------------
+-- CONSTRUCTORS
+------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION makePoint(float8, float8)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_makepoint'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION makePoint(float8, float8, float8)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_makepoint'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION makePoint(float8, float8, float8, float8)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_makepoint'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION makePointM(float8, float8, float8)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_makepoint3dm'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION makeBox2d(geometry, geometry)
+	RETURNS box2d
+	AS '$libdir/liblwgeom.so.1.0', 'BOX2DFLOAT4_construct'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION makeBox3d(geometry, geometry)
+	RETURNS box3d
+	AS '$libdir/liblwgeom.so.1.0', 'BOX3D_construct'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION makeline_garray (geometry[])
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_makeline_garray'
+	LANGUAGE 'C' IMMUTABLE STRICT;
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION LineFromMultiPoint(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_line_from_mpoint'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MakeLine(geometry, geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_makeline'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION AddPoint(geometry, geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_addpoint'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION AddPoint(geometry, geometry, integer)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_addpoint'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE AGGREGATE makeline (
+	sfunc = geom_accum,
+	basetype = geometry,
+	stype = geometry[],
+	finalfunc = makeline_garray
+	);
+CREATE AGGREGATE
+CREATE OR REPLACE FUNCTION MakePolygon(geometry, geometry[])
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_makepoly'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION MakePolygon(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_makepoly'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION polygonize_garray (geometry[])
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'GEOS_polygonize_garray'
+	LANGUAGE 'C' IMMUTABLE STRICT;
+CREATE FUNCTION
+CREATE AGGREGATE polygonize (
+	sfunc = geom_accum,
+	basetype = geometry,
+	stype = geometry[],
+	finalfunc = polygonize_garray
+	);
+CREATE AGGREGATE
+CREATE TYPE geometry_dump AS (path integer[], geom geometry);
+CREATE TYPE
+CREATE OR REPLACE FUNCTION dump(geometry)
+	RETURNS SETOF geometry_dump
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_dump'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+------------------------------------------------------------------------
+--
+-- Aggregate functions
+--
+CREATE OR REPLACE FUNCTION combine_bbox(box2d,geometry)
+	RETURNS box2d
+	AS '$libdir/liblwgeom.so.1.0', 'BOX2DFLOAT4_combine'
+	LANGUAGE 'C' IMMUTABLE;
+CREATE FUNCTION
+CREATE AGGREGATE extent(
+	sfunc = combine_bbox,
+	basetype = geometry,
+	stype = box2d
+	);
+CREATE AGGREGATE
+CREATE OR REPLACE FUNCTION combine_bbox(box3d,geometry)
+	RETURNS box3d
+	AS '$libdir/liblwgeom.so.1.0', 'BOX3D_combine'
+	LANGUAGE 'C' IMMUTABLE;
+CREATE FUNCTION
+CREATE AGGREGATE extent3d(
+	sfunc = combine_bbox,
+	basetype = geometry,
+	stype = box3d
+	);
+CREATE AGGREGATE
+-----------------------------------------------------------------------
+-- CREATE_HISTOGRAM2D( <box2d>, <size> )
+-----------------------------------------------------------------------
+--
+-- Returns a histgram with 0s in all the boxes.
+--
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION create_histogram2d(box2d,int)
+	RETURNS histogram2d
+	AS '$libdir/liblwgeom.so.1.0','create_lwhistogram2d'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- BUILD_HISTOGRAM2D( <histogram2d>, <tablename>, <columnname> )
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION build_histogram2d (histogram2d,text,text)
+	RETURNS histogram2d
+	AS '$libdir/liblwgeom.so.1.0','build_lwhistogram2d'
+	LANGUAGE 'C' STABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- BUILD_HISTOGRAM2D(<histogram2d>,<schema>,<tablename>,<columnname>)
+-----------------------------------------------------------------------
+-- This is a wrapper to the omonimous schema unaware function,
+-- thanks to Carl Anderson for the idea.
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION build_histogram2d (histogram2d,text,text,text)
+RETURNS histogram2d
+AS '
+BEGIN
+	EXECUTE ''SET local search_path = ''||$2||'',public'';
+	RETURN public.build_histogram2d($1,$3,$4);
+END
+'
+LANGUAGE 'plpgsql' STABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- EXPLODE_HISTOGRAM2D( <histogram2d>, <tablename> )
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION explode_histogram2d (histogram2d,text)
+	RETURNS histogram2d
+	AS '$libdir/liblwgeom.so.1.0','explode_lwhistogram2d'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- ESTIMATE_HISTOGRAM2D( <histogram2d>, <box> )
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION estimate_histogram2d(histogram2d,box2d)
+	RETURNS float8
+	AS '$libdir/liblwgeom.so.1.0','estimate_lwhistogram2d'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- ESTIMATED_EXTENT( <schema name>, <table name>, <column name> )
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION estimated_extent(text,text,text) RETURNS box2d AS
+	'$libdir/liblwgeom.so.1.0', 'LWGEOM_estimated_extent'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- ESTIMATED_EXTENT( <table name>, <column name> )
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION estimated_extent(text,text) RETURNS box2d AS
+	'$libdir/liblwgeom.so.1.0', 'LWGEOM_estimated_extent'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- FIND_EXTENT( <schema name>, <table name>, <column name> )
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION find_extent(text,text,text) RETURNS box2d AS
+'
+DECLARE
+	schemaname alias for $1;
+	tablename alias for $2;
+	columnname alias for $3;
+	myrec RECORD;
+
+BEGIN
+	FOR myrec IN EXECUTE ''SELECT extent("''||columnname||''") FROM "''||schemaname||''"."''||tablename||''"'' LOOP
+		return myrec.extent;
+	END LOOP; 
+END;
+'
+LANGUAGE 'plpgsql' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- FIND_EXTENT( <table name>, <column name> )
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION find_extent(text,text) RETURNS box2d AS
+'
+DECLARE
+	tablename alias for $1;
+	columnname alias for $2;
+	myrec RECORD;
+
+BEGIN
+	FOR myrec IN EXECUTE ''SELECT extent("''||columnname||''") FROM "''||tablename||''"'' LOOP
+		return myrec.extent;
+	END LOOP; 
+END;
+'
+LANGUAGE 'plpgsql' IMMUTABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-------------------------------------------------------------------
+-- SPATIAL_REF_SYS
+-------------------------------------------------------------------
+CREATE TABLE spatial_ref_sys (
+	 srid integer not null primary key,
+	 auth_name varchar(256), 
+	 auth_srid integer, 
+	 srtext varchar(2048),
+	 proj4text varchar(2048) 
+);
+CREATE TABLE
+-------------------------------------------------------------------
+-- GEOMETRY_COLUMNS
+-------------------------------------------------------------------
+CREATE TABLE geometry_columns (
+	f_table_catalog varchar(256) not null,
+	f_table_schema varchar(256) not null,
+	f_table_name varchar(256) not null,
+	f_geometry_column varchar(256) not null,
+	coord_dimension integer not null,
+	srid integer not null,
+	type varchar(30) not null,
+	CONSTRAINT geometry_columns_pk primary key ( 
+		f_table_catalog, 
+		f_table_schema, 
+		f_table_name, 
+		f_geometry_column )
+) WITH OIDS;
+CREATE TABLE
+-----------------------------------------------------------------------
+-- RENAME_GEOMETRY_TABLE_CONSTRAINTS()
+-----------------------------------------------------------------------
+-- This function has been obsoleted for the difficulty in
+-- finding attribute on which the constraint is applied.
+-- AddGeometryColumn will name the constraints in a meaningful
+-- way, but nobody can rely on it since old postgis versions did
+-- not do that.
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION rename_geometry_table_constraints() RETURNS text
+AS 
+'
+SELECT ''rename_geometry_table_constraint() is obsoleted''::text
+'
+LANGUAGE 'SQL' IMMUTABLE;
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- FIX_GEOMETRY_COLUMNS() 
+-----------------------------------------------------------------------
+-- This function will:
+--
+--	o try to fix the schema of records with an invalid one
+--		(for PG>=73)
+--
+--	o link records to system tables through attrelid and varattnum
+--		(for PG<75)
+--
+--	o delete all records for which no linking was possible
+--		(for PG<75)
+--	
+-- 
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION fix_geometry_columns() RETURNS text
+AS 
+'
+DECLARE
+	mislinked record;
+	result text;
+	linked integer;
+	deleted integer;
+
+	foundschema integer;
+
+BEGIN
+
+
+	-- Since 7.3 schema support has been added.
+	-- Previous postgis versions used to put the database name in
+	-- the schema column. This needs to be fixed, so we try to 
+	-- set the correct schema for each geometry_colums record
+	-- looking at table, column, type and srid.
+	UPDATE geometry_columns SET f_table_schema = n.nspname
+		FROM pg_namespace n, pg_class c, pg_attribute a,
+			pg_constraint sridcheck, pg_constraint typecheck
+                WHERE ( f_table_schema is NULL
+		OR f_table_schema = ''''
+                OR f_table_schema NOT IN (
+                        SELECT nspname::varchar
+                        FROM pg_namespace nn, pg_class cc, pg_attribute aa
+                        WHERE cc.relnamespace = nn.oid
+                        AND cc.relname = f_table_name::name
+                        AND aa.attrelid = cc.oid
+                        AND aa.attname = f_geometry_column::name))
+                AND f_table_name::name = c.relname
+                AND c.oid = a.attrelid
+                AND c.relnamespace = n.oid
+                AND f_geometry_column::name = a.attname
+
+                AND sridcheck.conrelid = c.oid
+		AND sridcheck.consrc LIKE ''(srid(% = %)''
+                AND sridcheck.consrc ~ textcat('' = '', srid::text)
+
+                AND typecheck.conrelid = c.oid
+		AND typecheck.consrc LIKE
+	''((geometrytype(%) = ''''%''''::text) OR (% IS NULL))''
+                AND typecheck.consrc ~ textcat('' = '''''', type::text)
+
+                AND NOT EXISTS (
+                        SELECT oid FROM geometry_columns gc
+                        WHERE c.relname::varchar = gc.f_table_name
+                        AND n.nspname::varchar = gc.f_table_schema
+                        AND a.attname::varchar = gc.f_geometry_column
+                );
+
+	GET DIAGNOSTICS foundschema = ROW_COUNT;
+
+
+
+	-- no linkage to system table needed
+	return ''fixed:''||foundschema::text;
+
+
+	-- fix linking to system tables
+	SELECT 0 INTO linked;
+	FOR mislinked in
+		SELECT gc.oid as gcrec,
+			a.attrelid as attrelid, a.attnum as attnum
+                FROM geometry_columns gc, pg_class c,
+
+		pg_namespace n, pg_attribute a
+
+
+
+                WHERE ( gc.attrelid IS NULL OR gc.attrelid != a.attrelid 
+			OR gc.varattnum IS NULL OR gc.varattnum != a.attnum)
+
+                AND n.nspname = gc.f_table_schema::name
+                AND c.relnamespace = n.oid
+
+                AND c.relname = gc.f_table_name::name
+                AND a.attname = f_geometry_column::name
+                AND a.attrelid = c.oid
+	LOOP
+		UPDATE geometry_columns SET
+			attrelid = mislinked.attrelid,
+			varattnum = mislinked.attnum,
+			stats = NULL
+			WHERE geometry_columns.oid = mislinked.gcrec;
+		SELECT linked+1 INTO linked;
+	END LOOP; 
+
+	-- remove stale records
+	DELETE FROM geometry_columns WHERE attrelid IS NULL;
+
+	GET DIAGNOSTICS deleted = ROW_COUNT;
+
+	result = 
+
+		''fixed:'' || foundschema::text ||
+
+		'' linked:'' || linked::text || 
+		'' deleted:'' || deleted::text;
+
+	return result;
+
+END;
+'
+LANGUAGE 'plpgsql' VOLATILE;
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- PROBE_GEOMETRY_COLUMNS() 
+-----------------------------------------------------------------------
+-- Fill the geometry_columns table with values probed from the system
+-- catalogues. 3d flag can not be probed, it defaults to 2
+--
+-- Note that bogus records already in geometry_columns are not
+-- overridden (a check for schema.table.column is performed), so
+-- to have a fresh probe backup your geometry_column, delete from
+-- it and probe.
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION probe_geometry_columns() RETURNS text AS
+'
+DECLARE
+	inserted integer;
+	oldcount integer;
+	probed integer;
+	stale integer;
+BEGIN
+
+	SELECT count(*) INTO oldcount FROM geometry_columns;
+
+	SELECT count(*) INTO probed
+		FROM pg_class c, pg_attribute a, pg_type t, 
+
+			pg_namespace n,
+			pg_constraint sridcheck, pg_constraint typecheck
+
+
+
+
+		WHERE t.typname = ''geometry''
+		AND a.atttypid = t.oid
+		AND a.attrelid = c.oid
+
+		AND c.relnamespace = n.oid
+		AND sridcheck.connamespace = n.oid
+		AND typecheck.connamespace = n.oid
+
+
+
+		AND sridcheck.conrelid = c.oid
+		AND sridcheck.consrc LIKE ''(srid(''||a.attname||'') = %)''
+		AND typecheck.conrelid = c.oid
+		AND typecheck.consrc LIKE
+	''((geometrytype(''||a.attname||'') = ''''%''''::text) OR (% IS NULL))''
+
+
+
+
+
+
+
+		;
+
+	INSERT INTO geometry_columns SELECT
+		''''::varchar as f_table_catalogue,
+
+		n.nspname::varchar as f_table_schema,
+
+
+
+		c.relname::varchar as f_table_name,
+		a.attname::varchar as f_geometry_column,
+		2 as coord_dimension,
+
+		trim(both  '' =)'' from substr(sridcheck.consrc,
+			strpos(sridcheck.consrc, ''='')))::integer as srid,
+		trim(both '' =)'''''' from substr(typecheck.consrc, 
+			strpos(typecheck.consrc, ''=''),
+			strpos(typecheck.consrc, ''::'')-
+			strpos(typecheck.consrc, ''='')
+			))::varchar as type
+
+
+
+
+
+
+		FROM pg_class c, pg_attribute a, pg_type t, 
+
+			pg_namespace n,
+			pg_constraint sridcheck, pg_constraint typecheck
+
+
+
+		WHERE t.typname = ''geometry''
+		AND a.atttypid = t.oid
+		AND a.attrelid = c.oid
+
+		AND c.relnamespace = n.oid
+		AND sridcheck.connamespace = n.oid
+		AND typecheck.connamespace = n.oid
+		AND sridcheck.conrelid = c.oid
+		AND sridcheck.consrc LIKE ''(srid(''||a.attname||'') = %)''
+		AND typecheck.conrelid = c.oid
+		AND typecheck.consrc LIKE
+	''((geometrytype(''||a.attname||'') = ''''%''''::text) OR (% IS NULL))''
+
+
+
+
+
+
+
+
+                AND NOT EXISTS (
+                        SELECT oid FROM geometry_columns gc
+                        WHERE c.relname::varchar = gc.f_table_name
+
+                        AND n.nspname::varchar = gc.f_table_schema
+
+                        AND a.attname::varchar = gc.f_geometry_column
+                );
+
+	GET DIAGNOSTICS inserted = ROW_COUNT;
+
+	IF oldcount > probed THEN
+		stale = oldcount-probed;
+	ELSE
+		stale = 0;
+	END IF;
+
+        RETURN ''probed:''||probed||
+		'' inserted:''||inserted||
+		'' conflicts:''||probed-inserted||
+		'' stale:''||stale;
+END
+
+'
+LANGUAGE 'plpgsql' VOLATILE;
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- ADDGEOMETRYCOLUMN
+--   <catalogue>, <schema>, <table>, <column>, <srid>, <type>, <dim>
+-----------------------------------------------------------------------
+--
+-- Type can be one of geometry, GEOMETRYCOLLECTION, POINT, MULTIPOINT, POLYGON,
+-- MULTIPOLYGON, LINESTRING, or MULTILINESTRING.
+--
+-- Types (except geometry) are checked for consistency using a CHECK constraint
+-- uses SQL ALTER TABLE command to add the geometry column to the table.
+-- Addes a row to geometry_columns.
+-- Addes a constraint on the table that all the geometries MUST have the same 
+-- SRID. Checks the coord_dimension to make sure its between 0 and 3.
+-- Should also check the precision grid (future expansion).
+-- Calls fix_geometry_columns() at the end.
+--
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION AddGeometryColumn(varchar,varchar,varchar,varchar,integer,varchar,integer)
+	RETURNS text
+	AS 
+'
+DECLARE
+	catalog_name alias for $1;
+	schema_name alias for $2;
+	table_name alias for $3;
+	column_name alias for $4;
+	new_srid alias for $5;
+	new_type alias for $6;
+	new_dim alias for $7;
+
+	rec RECORD;
+	schema_ok bool;
+	real_schema name;
+
+	fixgeomres text;
+
+BEGIN
+
+	IF ( not ( (new_type =''GEOMETRY'') or
+		   (new_type =''GEOMETRYCOLLECTION'') or
+		   (new_type =''POINT'') or 
+		   (new_type =''MULTIPOINT'') or
+		   (new_type =''POLYGON'') or
+		   (new_type =''MULTIPOLYGON'') or
+		   (new_type =''LINESTRING'') or
+		   (new_type =''MULTILINESTRING'') or
+		   (new_type =''GEOMETRYCOLLECTIONM'') or
+		   (new_type =''POINTM'') or 
+		   (new_type =''MULTIPOINTM'') or
+		   (new_type =''POLYGONM'') or
+		   (new_type =''MULTIPOLYGONM'') or
+		   (new_type =''LINESTRINGM'') or
+		   (new_type =''MULTILINESTRINGM'')) )
+	THEN
+		RAISE EXCEPTION ''Invalid type name - valid ones are: 
+			GEOMETRY, GEOMETRYCOLLECTION, POINT, 
+			MULTIPOINT, POLYGON, MULTIPOLYGON, 
+			LINESTRING, MULTILINESTRING,
+			GEOMETRYCOLLECTIONM, POINTM, 
+			MULTIPOINTM, POLYGONM, MULTIPOLYGONM, 
+			LINESTRINGM, or MULTILINESTRINGM '';
+		return ''fail'';
+	END IF;
+
+	IF ( (new_dim >4) or (new_dim <0) ) THEN
+		RAISE EXCEPTION ''invalid dimension'';
+		return ''fail'';
+	END IF;
+
+	IF ( (new_type LIKE ''%M'') and (new_dim!=3) ) THEN
+
+		RAISE EXCEPTION ''TypeM needs 3 dimensions'';
+		return ''fail'';
+	END IF;
+
+
+	IF ( schema_name != '''' ) THEN
+		schema_ok = ''f'';
+		FOR rec IN SELECT nspname FROM pg_namespace WHERE text(nspname) = schema_name LOOP
+			schema_ok := ''t'';
+		END LOOP;
+
+		if ( schema_ok <> ''t'' ) THEN
+			RAISE NOTICE ''Invalid schema name - using current_schema()'';
+			SELECT current_schema() into real_schema;
+		ELSE
+			real_schema = schema_name;
+		END IF;
+
+	ELSE
+		SELECT current_schema() into real_schema;
+	END IF;
+
+
+
+	-- Add geometry column
+
+	EXECUTE ''ALTER TABLE '' ||
+
+		quote_ident(real_schema) || ''.'' || quote_ident(table_name)
+
+
+
+		|| '' ADD COLUMN '' || quote_ident(column_name) || 
+		'' geometry '';
+
+
+	-- Delete stale record in geometry_column (if any)
+
+	EXECUTE ''DELETE FROM geometry_columns WHERE
+		f_table_catalog = '' || quote_literal('''') || 
+		'' AND f_table_schema = '' ||
+
+		quote_literal(real_schema) || 
+
+
+
+		'' AND f_table_name = '' || quote_literal(table_name) ||
+		'' AND f_geometry_column = '' || quote_literal(column_name);
+
+
+	-- Add record in geometry_column 
+
+	EXECUTE ''INSERT INTO geometry_columns VALUES ('' ||
+		quote_literal('''') || '','' ||
+
+		quote_literal(real_schema) || '','' ||
+
+
+
+		quote_literal(table_name) || '','' ||
+		quote_literal(column_name) || '','' ||
+		new_dim || '','' || new_srid || '','' ||
+		quote_literal(new_type) || '')'';
+
+	-- Add table checks
+
+	EXECUTE ''ALTER TABLE '' || 
+
+		quote_ident(real_schema) || ''.'' || quote_ident(table_name)
+
+
+
+		|| '' ADD CONSTRAINT '' 
+		|| quote_ident(''enforce_srid_'' || column_name)
+		|| '' CHECK (SRID('' || quote_ident(column_name) ||
+		'') = '' || new_srid || '')'' ;
+
+	EXECUTE ''ALTER TABLE '' || 
+
+		quote_ident(real_schema) || ''.'' || quote_ident(table_name)
+
+
+
+		|| '' ADD CONSTRAINT ''
+		|| quote_ident(''enforce_dims_'' || column_name)
+		|| '' CHECK (ndims('' || quote_ident(column_name) ||
+		'') = '' || new_dim || '')'' ;
+
+	IF (not(new_type = ''GEOMETRY'')) THEN
+		EXECUTE ''ALTER TABLE '' || 
+
+		quote_ident(real_schema) || ''.'' || quote_ident(table_name)
+
+
+
+		|| '' ADD CONSTRAINT ''
+		|| quote_ident(''enforce_geotype_'' || column_name)
+		|| '' CHECK (geometrytype('' ||
+		quote_ident(column_name) || '')='' ||
+		quote_literal(new_type) || '' OR ('' ||
+		quote_ident(column_name) || '') is null)'';
+	END IF;
+
+	SELECT fix_geometry_columns() INTO fixgeomres;
+
+	return 
+
+		real_schema || ''.'' || 
+
+		table_name || ''.'' || column_name ||
+		'' SRID:'' || new_srid ||
+		'' TYPE:'' || new_type || 
+		'' DIMS:'' || new_dim || ''\n '' ||
+		''geometry_column '' || fixgeomres;
+END;
+'
+LANGUAGE 'plpgsql' VOLATILE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+----------------------------------------------------------------------------
+-- ADDGEOMETRYCOLUMN ( <schema>, <table>, <column>, <srid>, <type>, <dim> )
+----------------------------------------------------------------------------
+--
+-- This is a wrapper to the real AddGeometryColumn, for use
+-- when catalogue is undefined
+--
+----------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION AddGeometryColumn(varchar,varchar,varchar,integer,varchar,integer) RETURNS text AS '
+DECLARE
+	ret  text;
+BEGIN
+	SELECT AddGeometryColumn('''',$1,$2,$3,$4,$5,$6) into ret;
+	RETURN ret;
+END;
+'
+LANGUAGE 'plpgsql' STABLE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+----------------------------------------------------------------------------
+-- ADDGEOMETRYCOLUMN ( <table>, <column>, <srid>, <type>, <dim> )
+----------------------------------------------------------------------------
+--
+-- This is a wrapper to the real AddGeometryColumn, for use
+-- when catalogue and schema are undefined
+--
+----------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION AddGeometryColumn(varchar,varchar,integer,varchar,integer) RETURNS text AS '
+DECLARE
+	ret  text;
+BEGIN
+	SELECT AddGeometryColumn('''','''',$1,$2,$3,$4,$5) into ret;
+	RETURN ret;
+END;
+'
+LANGUAGE 'plpgsql' VOLATILE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- DROPGEOMETRYCOLUMN
+--   <catalogue>, <schema>, <table>, <column>
+-----------------------------------------------------------------------
+--
+-- Removes geometry column reference from geometry_columns table.
+-- Drops the column with pgsql >= 73.
+-- Make some silly enforcements on it for pgsql < 73
+--
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION DropGeometryColumn(varchar, varchar,varchar,varchar)
+	RETURNS text
+	AS 
+'
+DECLARE
+	catalog_name alias for $1; 
+	schema_name alias for $2;
+	table_name alias for $3;
+	column_name alias for $4;
+	myrec RECORD;
+	okay boolean;
+	real_schema name;
+
+BEGIN
+
+
+
+	-- Find, check or fix schema_name
+	IF ( schema_name != '''' ) THEN
+		okay = ''f'';
+
+		FOR myrec IN SELECT nspname FROM pg_namespace WHERE text(nspname) = schema_name LOOP
+			okay := ''t'';
+		END LOOP;
+
+		IF ( okay <> ''t'' ) THEN
+			RAISE NOTICE ''Invalid schema name - using current_schema()'';
+			SELECT current_schema() into real_schema;
+		ELSE
+			real_schema = schema_name;
+		END IF;
+	ELSE
+		SELECT current_schema() into real_schema;
+	END IF;
+
+
+
+
+ 	-- Find out if the column is in the geometry_columns table
+	okay = ''f'';
+	FOR myrec IN SELECT * from geometry_columns where f_table_schema = text(real_schema) and f_table_name = table_name and f_geometry_column = column_name LOOP
+		okay := ''t'';
+	END LOOP; 
+	IF (okay <> ''t'') THEN 
+		RAISE EXCEPTION ''column not found in geometry_columns table'';
+		RETURN ''f'';
+	END IF;
+
+	-- Remove ref from geometry_columns table
+	EXECUTE ''delete from geometry_columns where f_table_schema = '' ||
+		quote_literal(real_schema) || '' and f_table_name = '' ||
+		quote_literal(table_name)  || '' and f_geometry_column = '' ||
+		quote_literal(column_name);
+	
+	-- Remove table column
+	EXECUTE ''ALTER TABLE '' || quote_ident(real_schema) || ''.'' ||
+		quote_ident(table_name) || '' DROP COLUMN '' ||
+		quote_ident(column_name);
+
+
+
+	RETURN real_schema || ''.'' || table_name || ''.'' || column_name ||'' effectively removed.'';
+	
+END;
+'
+LANGUAGE 'plpgsql' VOLATILE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- DROPGEOMETRYCOLUMN
+--   <schema>, <table>, <column>
+-----------------------------------------------------------------------
+--
+-- This is a wrapper to the real DropGeometryColumn, for use
+-- when catalogue is undefined
+--
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION DropGeometryColumn(varchar,varchar,varchar)
+	RETURNS text
+	AS 
+'
+DECLARE
+	ret text;
+BEGIN
+	SELECT DropGeometryColumn('''',$1,$2,$3) into ret;
+	RETURN ret;
+END;
+'
+LANGUAGE 'plpgsql' VOLATILE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- DROPGEOMETRYCOLUMN
+--   <table>, <column>
+-----------------------------------------------------------------------
+--
+-- This is a wrapper to the real DropGeometryColumn, for use
+-- when catalogue and schema is undefined. 
+--
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION DropGeometryColumn(varchar,varchar)
+	RETURNS text
+	AS 
+'
+DECLARE
+	ret text;
+BEGIN
+	SELECT DropGeometryColumn('''','''',$1,$2) into ret;
+	RETURN ret;
+END;
+'
+LANGUAGE 'plpgsql' VOLATILE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- DROPGEOMETRYTABLE
+--   <catalogue>, <schema>, <table>
+-----------------------------------------------------------------------
+--
+-- Drop a table and all its references in geometry_columns
+--
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION DropGeometryTable(varchar, varchar,varchar)
+	RETURNS text
+	AS 
+'
+DECLARE
+	catalog_name alias for $1; 
+	schema_name alias for $2;
+	table_name alias for $3;
+	real_schema name;
+
+BEGIN
+
+
+	IF ( schema_name = '''' ) THEN
+		SELECT current_schema() into real_schema;
+	ELSE
+		real_schema = schema_name;
+	END IF;
+
+
+	-- Remove refs from geometry_columns table
+	EXECUTE ''DELETE FROM geometry_columns WHERE '' ||
+
+		''f_table_schema = '' || quote_literal(real_schema) ||
+		'' AND '' ||
+
+		'' f_table_name = '' || quote_literal(table_name);
+	
+	-- Remove table 
+	EXECUTE ''DROP TABLE ''
+
+		|| quote_ident(real_schema) || ''.'' ||
+
+		quote_ident(table_name);
+
+	RETURN
+
+		real_schema || ''.'' ||
+
+		table_name ||'' dropped.'';
+	
+END;
+'
+LANGUAGE 'plpgsql' VOLATILE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- DROPGEOMETRYTABLE
+--   <schema>, <table>
+-----------------------------------------------------------------------
+--
+-- Drop a table and all its references in geometry_columns
+--
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION DropGeometryTable(varchar,varchar) RETURNS text AS 
+'SELECT DropGeometryTable('''',$1,$2)'
+LANGUAGE 'sql' WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- DROPGEOMETRYTABLE
+--   <table>
+-----------------------------------------------------------------------
+--
+-- Drop a table and all its references in geometry_columns
+-- For PG>=73 use current_schema()
+--
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION DropGeometryTable(varchar) RETURNS text AS 
+'SELECT DropGeometryTable('''','''',$1)'
+LANGUAGE 'sql' VOLATILE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- UPDATEGEOMETRYSRID
+--   <catalogue>, <schema>, <table>, <column>, <srid>
+-----------------------------------------------------------------------
+--
+-- Change SRID of all features in a spatially-enabled table
+--
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION UpdateGeometrySRID(varchar,varchar,varchar,varchar,integer)
+	RETURNS text
+	AS 
+'
+DECLARE
+	catalog_name alias for $1; 
+	schema_name alias for $2;
+	table_name alias for $3;
+	column_name alias for $4;
+	new_srid alias for $5;
+	myrec RECORD;
+	okay boolean;
+	cname varchar;
+	real_schema name;
+
+BEGIN
+
+
+
+	-- Find, check or fix schema_name
+	IF ( schema_name != '''' ) THEN
+		okay = ''f'';
+
+		FOR myrec IN SELECT nspname FROM pg_namespace WHERE text(nspname) = schema_name LOOP
+			okay := ''t'';
+		END LOOP;
+
+		IF ( okay <> ''t'' ) THEN
+			RAISE EXCEPTION ''Invalid schema name'';
+		ELSE
+			real_schema = schema_name;
+		END IF;
+	ELSE
+		SELECT INTO real_schema current_schema()::text;
+	END IF;
+
+
+ 	-- Find out if the column is in the geometry_columns table
+	okay = ''f'';
+	FOR myrec IN SELECT * from geometry_columns where f_table_schema = text(real_schema) and f_table_name = table_name and f_geometry_column = column_name LOOP
+		okay := ''t'';
+	END LOOP; 
+	IF (okay <> ''t'') THEN 
+		RAISE EXCEPTION ''column not found in geometry_columns table'';
+		RETURN ''f'';
+	END IF;
+
+	-- Update ref from geometry_columns table
+	EXECUTE ''UPDATE geometry_columns SET SRID = '' || new_srid || 
+		'' where f_table_schema = '' ||
+		quote_literal(real_schema) || '' and f_table_name = '' ||
+		quote_literal(table_name)  || '' and f_geometry_column = '' ||
+		quote_literal(column_name);
+	
+	-- Make up constraint name
+	cname = ''enforce_srid_''  || column_name;
+
+	-- Drop enforce_srid constraint
+
+
+
+	EXECUTE ''ALTER TABLE '' || quote_ident(real_schema) ||
+		''.'' || quote_ident(table_name) ||
+
+		'' DROP constraint '' || quote_ident(cname);
+
+	-- Update geometries SRID
+
+
+
+	EXECUTE ''UPDATE '' || quote_ident(real_schema) ||
+		''.'' || quote_ident(table_name) ||
+
+		'' SET '' || quote_ident(column_name) ||
+		'' = setSRID('' || quote_ident(column_name) ||
+		'', '' || new_srid || '')'';
+
+	-- Reset enforce_srid constraint
+
+
+
+	EXECUTE ''ALTER TABLE '' || quote_ident(real_schema) ||
+		''.'' || quote_ident(table_name) ||
+
+		'' ADD constraint '' || quote_ident(cname) ||
+		'' CHECK (srid('' || quote_ident(column_name) ||
+		'') = '' || new_srid || '')'';
+
+	RETURN real_schema || ''.'' || table_name || ''.'' || column_name ||'' SRID changed to '' || new_srid;
+	
+END;
+'
+LANGUAGE 'plpgsql' VOLATILE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- UPDATEGEOMETRYSRID
+--   <schema>, <table>, <column>, <srid>
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION UpdateGeometrySRID(varchar,varchar,varchar,integer)
+	RETURNS text
+	AS '
+DECLARE
+	ret  text;
+BEGIN
+	SELECT UpdateGeometrySRID('''',$1,$2,$3,$4) into ret;
+	RETURN ret;
+END;
+'
+LANGUAGE 'plpgsql' VOLATILE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- UPDATEGEOMETRYSRID
+--   <table>, <column>, <srid>
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION UpdateGeometrySRID(varchar,varchar,integer)
+	RETURNS text
+	AS '
+DECLARE
+	ret  text;
+BEGIN
+	SELECT UpdateGeometrySRID('''','''',$1,$2,$3) into ret;
+	RETURN ret;
+END;
+'
+LANGUAGE 'plpgsql' VOLATILE STRICT; -- WITH (isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- UPDATE_GEOMETRY_STATS()
+-----------------------------------------------------------------------
+--
+-- Only meaningful for PG<75.
+-- Gather statisticts about geometry columns for use
+-- with cost estimator.
+--
+-- It is defined also for PG>=75 for back-compatibility
+--
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION update_geometry_stats() RETURNS text
+AS ' SELECT ''update_geometry_stats() has been obsoleted. Statistics are automatically built running the ANALYZE command''::text' LANGUAGE 'sql';
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- UPDATE_GEOMETRY_STATS( <table>, <column> )
+-----------------------------------------------------------------------
+--
+-- Only meaningful for PG<75.
+-- Gather statisticts about a geometry column for use
+-- with cost estimator.
+--
+-- It is defined also for PG>=75 for back-compatibility
+--
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION update_geometry_stats(varchar,varchar) RETURNS text
+AS 'SELECT update_geometry_stats();' LANGUAGE 'sql' ;
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- FIND_SRID( <schema>, <table>, <geom col> )
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION find_srid(varchar,varchar,varchar) RETURNS int4 AS
+'DECLARE
+   schem text;
+   tabl text;
+   sr int4;
+BEGIN
+   IF $1 IS NULL THEN
+      RAISE EXCEPTION ''find_srid() - schema is NULL!'';
+   END IF;
+   IF $2 IS NULL THEN
+      RAISE EXCEPTION ''find_srid() - table name is NULL!'';
+   END IF;
+   IF $3 IS NULL THEN
+      RAISE EXCEPTION ''find_srid() - column name is NULL!'';
+   END IF;
+   schem = $1;
+   tabl = $2;
+-- if the table contains a . and the schema is empty
+-- split the table into a schema and a table
+-- otherwise drop through to default behavior
+   IF ( schem = '''' and tabl LIKE ''%.%'' ) THEN
+     schem = substr(tabl,1,strpos(tabl,''.'')-1);
+     tabl = substr(tabl,length(schem)+2);
+   ELSE
+     schem = schem || ''%'';
+   END IF;
+
+   select SRID into sr from geometry_columns where f_table_schema like schem and f_table_name = tabl and f_geometry_column = $3;
+   IF NOT FOUND THEN
+       RAISE EXCEPTION ''find_srid() - couldnt find the corresponding SRID - is the geometry registered in the GEOMETRY_COLUMNS table?  Is there an uppercase/lowercase missmatch?'';
+   END IF;
+  return sr;
+END;
+'
+LANGUAGE 'plpgsql' IMMUTABLE STRICT; -- WITH (iscachable); 
+CREATE FUNCTION
+---------------------------------------------------------------
+-- PROJ support
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION get_proj4_from_srid(integer) RETURNS text AS
+'
+BEGIN
+	RETURN proj4text::text FROM spatial_ref_sys WHERE srid= $1;
+END;
+'
+LANGUAGE 'plpgsql' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION transform_geometry(geometry,text,text,int)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','transform_geom'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION transform(geometry,integer) RETURNS geometry AS
+'
+DECLARE
+	iproj text;
+	oproj text;
+	isrid integer;
+	osrid alias for $2;
+	ret geometry;
+BEGIN
+
+	SELECT INTO isrid SRID($1);
+
+	IF osrid = isrid THEN
+		RETURN $1;
+	END IF;
+
+	IF osrid = -1 THEN
+		RAISE EXCEPTION ''-1 is an invalid target SRID'';
+	END IF;
+
+	IF isrid = -1 THEN
+		RAISE EXCEPTION ''Input geometry has unknown (-1) SRID'';
+	END IF;
+
+	SELECT INTO iproj get_proj4_from_srid(isrid);
+	IF iproj IS NULL THEN
+		RAISE EXCEPTION ''Cannot find input SRID (%) in spatial_ref_sys'', isrid;
+	END IF;
+
+	SELECT INTO oproj get_proj4_from_srid(osrid);
+	IF oproj IS NULL THEN
+		RAISE EXCEPTION ''Cannot find target SRID (%) in spatial_ref_sys'', osrid;
+	END IF;
+
+	RETURN transform_geometry($1, iproj, oproj, osrid);
+
+END;
+'
+LANGUAGE 'plpgsql' IMMUTABLE STRICT; -- WITH (iscachable,isstrict);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- POSTGIS_VERSION()
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION postgis_version() RETURNS text
+        AS 'SELECT \'1.0 USE_GEOS=1 USE_PROJ=1 USE_STATS=1\'::text AS version'
+        LANGUAGE 'sql' IMMUTABLE;
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION postgis_proj_version() RETURNS text
+	AS '$libdir/liblwgeom.so.1.0'
+	LANGUAGE 'C' IMMUTABLE;
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION postgis_scripts_installed() RETURNS text
+        AS 'SELECT \'0.3.0\'::text AS version'
+        LANGUAGE 'sql' IMMUTABLE;
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION postgis_lib_version() RETURNS text
+	AS '$libdir/liblwgeom.so.1.0'
+	LANGUAGE 'C' IMMUTABLE; -- a new lib will require a new session
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION postgis_scripts_released() RETURNS text
+	AS '$libdir/liblwgeom.so.1.0'
+	LANGUAGE 'C' IMMUTABLE;
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION postgis_uses_stats() RETURNS bool
+	AS '$libdir/liblwgeom.so.1.0'
+	LANGUAGE 'C' IMMUTABLE;
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION postgis_geos_version() RETURNS text
+	AS '$libdir/liblwgeom.so.1.0'
+	LANGUAGE 'C' IMMUTABLE;
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION postgis_scripts_build_date() RETURNS text
+        AS 'SELECT \'2005-07-06 01:45:11\'::text AS version'
+        LANGUAGE 'sql' IMMUTABLE;
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION postgis_lib_build_date() RETURNS text
+	AS '$libdir/liblwgeom.so.1.0'
+	LANGUAGE 'C' IMMUTABLE;
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION postgis_full_version() RETURNS text
+AS '
+DECLARE
+	libver text;
+	projver text;
+	geosver text;
+	usestats bool;
+	dbproc text;
+	relproc text;
+	fullver text;
+BEGIN
+	SELECT postgis_lib_version() INTO libver;
+	SELECT postgis_proj_version() INTO projver;
+	SELECT postgis_geos_version() INTO geosver;
+	SELECT postgis_uses_stats() INTO usestats;
+	SELECT postgis_scripts_installed() INTO dbproc;
+	SELECT postgis_scripts_released() INTO relproc;
+
+	fullver = \'POSTGIS="\' || libver || \'"\';
+
+	IF  geosver IS NOT NULL THEN
+		fullver = fullver || \' GEOS="\' || geosver || \'"\';
+	END IF;
+
+	IF  projver IS NOT NULL THEN
+		fullver = fullver || \' PROJ="\' || projver || \'"\';
+	END IF;
+
+	IF usestats THEN
+		fullver = fullver || \' USE_STATS\';
+	END IF;
+
+	fullver = fullver || \' DBPROC="\' || dbproc || \'"\';
+	fullver = fullver || \' RELPROC="\' || relproc || \'"\';
+
+	IF dbproc != relproc THEN
+		fullver = fullver || \' (needs proc upgrade)\';
+	END IF;
+
+	RETURN fullver;
+END
+'
+LANGUAGE 'plpgsql' IMMUTABLE;
+CREATE FUNCTION
+---------------------------------------------------------------
+-- CASTS
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION box2d(geometry)
+        RETURNS box2d
+        AS '$libdir/liblwgeom.so.1.0','LWGEOM_to_BOX2DFLOAT4'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box3d(geometry)
+        RETURNS box3d
+        AS '$libdir/liblwgeom.so.1.0','LWGEOM_to_BOX3D'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box(geometry)
+        RETURNS box
+        AS '$libdir/liblwgeom.so.1.0','LWGEOM_to_BOX'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box2d(box3d)
+        RETURNS box2d
+        AS '$libdir/liblwgeom.so.1.0','BOX3D_to_BOX2DFLOAT4'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box3d(box2d)
+        RETURNS box3d
+        AS '$libdir/liblwgeom.so.1.0','BOX2DFLOAT4_to_BOX3D'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION box(box3d)
+        RETURNS box
+        AS '$libdir/liblwgeom.so.1.0','BOX3D_to_BOX'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION text(geometry)
+        RETURNS text
+        AS '$libdir/liblwgeom.so.1.0','LWGEOM_to_text'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+-- this is kept for backward-compatibility
+CREATE OR REPLACE FUNCTION box3dtobox(box3d)
+        RETURNS box
+        AS 'SELECT box($1)'
+	LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry(box2d)
+        RETURNS geometry
+        AS '$libdir/liblwgeom.so.1.0','BOX2DFLOAT4_to_LWGEOM'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry(box3d)
+        RETURNS geometry
+        AS '$libdir/liblwgeom.so.1.0','BOX3D_to_LWGEOM'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry(text)
+        RETURNS geometry
+        AS '$libdir/liblwgeom.so.1.0','parse_WKT_lwgeom'
+        LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry(chip)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','CHIP_to_LWGEOM'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION geometry(bytea)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_from_bytea'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION bytea(geometry)
+	RETURNS bytea
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_to_bytea'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION text(bool)
+	RETURNS text
+	AS '$libdir/liblwgeom.so.1.0','BOOL_to_text'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+-- 7.3+ explicit casting definitions
+CREATE CAST (geometry AS box2d) WITH FUNCTION box2d(geometry) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (geometry AS box3d) WITH FUNCTION box3d(geometry) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (geometry AS box) WITH FUNCTION box(geometry) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (box3d AS box2d) WITH FUNCTION box2d(box3d) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (box2d AS box3d) WITH FUNCTION box3d(box2d) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (box2d AS geometry) WITH FUNCTION geometry(box2d) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (box3d AS box) WITH FUNCTION box(box3d) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (box3d AS geometry) WITH FUNCTION geometry(box3d) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (text AS geometry) WITH FUNCTION geometry(text) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (geometry AS text) WITH FUNCTION text(geometry) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (chip AS geometry) WITH FUNCTION geometry(chip) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (bytea AS geometry) WITH FUNCTION geometry(bytea) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (geometry AS bytea) WITH FUNCTION bytea(geometry) AS IMPLICIT;
+CREATE CAST
+CREATE CAST (bool AS text) WITH FUNCTION text(bool) AS IMPLICIT;
+CREATE CAST
+---------------------------------------------------------------
+-- Algorithms
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION simplify(geometry, float8)
+   RETURNS geometry
+   AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_simplify2d'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION SnapToGrid(geometry, float8, float8, float8, float8)
+   RETURNS geometry
+   AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_snaptogrid'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION SnapToGrid(geometry, float8, float8)
+   RETURNS geometry
+   AS 'SELECT SnapToGrid($1, 0, 0, $2, $3)'
+   LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION SnapToGrid(geometry, float8)
+   RETURNS geometry
+   AS 'SELECT SnapToGrid($1, 0, 0, $2, $2)'
+   LANGUAGE 'SQL' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION line_interpolate_point(geometry, float8)
+   RETURNS geometry
+   AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_line_interpolate_point'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION segmentize(geometry, float8)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0', 'LWGEOM_segmentize2d'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+---------------------------------------------------------------
+-- GEOS
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION intersection(geometry,geometry)
+   RETURNS geometry
+   AS '$libdir/liblwgeom.so.1.0','intersection'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION buffer(geometry,float8)
+   RETURNS geometry
+   AS '$libdir/liblwgeom.so.1.0','buffer'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION buffer(geometry,float8,integer)
+   RETURNS geometry
+   AS '$libdir/liblwgeom.so.1.0','buffer'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+   
+CREATE OR REPLACE FUNCTION convexhull(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','convexhull'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+  
+  
+CREATE OR REPLACE FUNCTION difference(geometry,geometry)
+	RETURNS geometry
+        AS '$libdir/liblwgeom.so.1.0','difference'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+   
+CREATE OR REPLACE FUNCTION boundary(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','boundary'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION symdifference(geometry,geometry)
+        RETURNS geometry
+        AS '$libdir/liblwgeom.so.1.0','symdifference'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION symmetricdifference(geometry,geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','symdifference'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GeomUnion(geometry,geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0','geomunion'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE AGGREGATE MemGeomUnion (
+	basetype = geometry,
+	sfunc = geomunion,
+	stype = geometry
+	);
+CREATE AGGREGATE
+CREATE OR REPLACE FUNCTION unite_garray (geometry[])
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable); 
+CREATE FUNCTION
+CREATE AGGREGATE GeomUnion (
+	sfunc = geom_accum,
+	basetype = geometry,
+	stype = geometry[],
+	finalfunc = unite_garray
+	);
+CREATE AGGREGATE
+CREATE OR REPLACE FUNCTION relate(geometry,geometry)
+   RETURNS text
+   AS '$libdir/liblwgeom.so.1.0','relate_full'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION relate(geometry,geometry,text)
+   RETURNS boolean
+   AS '$libdir/liblwgeom.so.1.0','relate_pattern'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION disjoint(geometry,geometry)
+   RETURNS boolean
+   AS '$libdir/liblwgeom.so.1.0'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION touches(geometry,geometry)
+   RETURNS boolean
+   AS '$libdir/liblwgeom.so.1.0'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION intersects(geometry,geometry)
+   RETURNS boolean
+   AS '$libdir/liblwgeom.so.1.0'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION crosses(geometry,geometry)
+   RETURNS boolean
+   AS '$libdir/liblwgeom.so.1.0'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION within(geometry,geometry)
+   RETURNS boolean
+   AS '$libdir/liblwgeom.so.1.0'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION contains(geometry,geometry)
+   RETURNS boolean
+   AS '$libdir/liblwgeom.so.1.0'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION overlaps(geometry,geometry)
+   RETURNS boolean
+   AS '$libdir/liblwgeom.so.1.0'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION IsValid(geometry)
+   RETURNS boolean
+   AS '$libdir/liblwgeom.so.1.0', 'isvalid'
+   LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION GEOSnoop(geometry)
+   RETURNS geometry
+   AS '$libdir/liblwgeom.so.1.0', 'GEOSnoop'
+   LANGUAGE 'C' VOLATILE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+-- This is also available w/out GEOS 
+CREATE OR REPLACE FUNCTION Centroid(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION IsRing(geometry)
+	RETURNS boolean
+	AS '$libdir/liblwgeom.so.1.0'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION PointOnSurface(geometry)
+	RETURNS geometry
+	AS '$libdir/liblwgeom.so.1.0'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+	
+CREATE OR REPLACE FUNCTION IsSimple(geometry)
+	RETURNS boolean
+	AS '$libdir/liblwgeom.so.1.0', 'issimple'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION Equals(geometry,geometry)
+	RETURNS boolean
+	AS '$libdir/liblwgeom.so.1.0','geomequals'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- SVG OUTPUT
+-----------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION AsSVG(geometry,int4,int4)
+	RETURNS TEXT
+	AS '$libdir/liblwgeom.so.1.0','assvg_geometry'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION AsSVG(geometry,int4)
+	RETURNS TEXT
+	AS '$libdir/liblwgeom.so.1.0','assvg_geometry'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+CREATE OR REPLACE FUNCTION AsSVG(geometry)
+	RETURNS TEXT
+	AS '$libdir/liblwgeom.so.1.0','assvg_geometry'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+-----------------------------------------------------------------------
+-- GML OUTPUT
+-----------------------------------------------------------------------
+-- AsGML(geom, precision, version)
+CREATE OR REPLACE FUNCTION AsGML(geometry, int4, int4)
+	RETURNS TEXT
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_asGML'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+-- AsGML(geom, precision) / version=2
+CREATE OR REPLACE FUNCTION AsGML(geometry, int4)
+	RETURNS TEXT
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_asGML'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+-- AsGML(geom) / precision=15 version=2
+CREATE OR REPLACE FUNCTION AsGML(geometry)
+	RETURNS TEXT
+	AS '$libdir/liblwgeom.so.1.0','LWGEOM_asGML'
+	LANGUAGE 'C' IMMUTABLE STRICT; -- WITH (isstrict,iscachable);
+CREATE FUNCTION
+---------------------------------------------------------------
+-- END
+---------------------------------------------------------------
+COMMIT;
+COMMIT
+DROP TABLE geometry_columns;DROP TABLE spatial_ref_sys;
+DROP TABLE
+DROP TABLE
+SET client_encoding = 'SQL_ASCII';
+SET
+SET check_function_bodies = false;
+SET
+SET client_min_messages = warning;
+SET
+COMMENT ON SCHEMA public IS 'Standard public schema';
+COMMENT
+SET search_path = public, pg_catalog, public;
+SET
+CREATE FUNCTION plpgsql_validator(oid) RETURNS void
+    AS '$libdir/plpgsql', 'plpgsql_validator'
+    LANGUAGE c;
+ALTER FUNCTION public.plpgsql_validator(oid) OWNER TO pnaciona;
+ALTER FUNCTION
+CREATE TRUSTED PROCEDURAL LANGUAGE plpgsql HANDLER plpgsql_call_handler VALIDATOR plpgsql_validator;
+CREATE FUNCTION text(boolean) RETURNS text
+    AS '$libdir/liblwgeom.so.1.0', 'BOOL_to_text'
+    LANGUAGE c IMMUTABLE STRICT;
+ALTER FUNCTION public.text(boolean) OWNER TO pnaciona;
+ALTER FUNCTION
+ALTER OPERATOR public.&& (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.&< (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.&<| (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.&> (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.< (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.<< (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.<<| (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.<= (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.= (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.> (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.>= (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.>> (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.@ (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.|&> (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.|>> (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.~ (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+ALTER OPERATOR public.~= (geometry, geometry) OWNER TO pnaciona;
+ALTER OPERATOR
+SET search_path = pg_catalog, public;
+SET
+CREATE CAST (boolean AS text) WITH FUNCTION public.text(boolean) AS IMPLICIT;
+SET search_path = public, pg_catalog, public;
+SET
+SET default_tablespace = '';
+SET
+SET default_with_oids = true;
+SET
+CREATE TABLE co2000_ugl (
+    gid serial NOT NULL,
+    area double precision,
+    perimeter double precision,
+    co2000p020 bigint,
+    state character varying,
+    county character varying,
+    fips character varying,
+    state_fips character varying,
+    the_geom geometry,
+    CONSTRAINT enforce_dims_the_geom CHECK ((ndims(the_geom) = 2)),
+    CONSTRAINT enforce_geotype_the_geom CHECK (((geometrytype(the_geom) = 'MULTIPOLYGON'::text) OR (the_geom IS NULL))),
+    CONSTRAINT enforce_srid_the_geom CHECK ((srid(the_geom) = 4326))
+);
+CREATE TABLE
+ALTER TABLE public.co2000_ugl OWNER TO pnaciona;
+ALTER TABLE
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('co2000_ugl', 'gid'), 451, true);
+ setval 
+--------
+    451
+(1 row)
+
+CREATE TABLE fedlan_ugl (
+    gid serial NOT NULL,
+    area double precision,
+    perimeter double precision,
+    fedlanp020 bigint,
+    feature1 character varying,
+    feature2 character varying,
+    feature3 character varying,
+    agbur character varying,
+    url character varying,
+    name1 character varying,
+    name2 character varying,
+    name3 character varying,
+    state character varying,
+    state_fips character varying,
+    the_geom geometry,
+    CONSTRAINT enforce_dims_the_geom CHECK ((ndims(the_geom) = 2)),
+    CONSTRAINT enforce_geotype_the_geom CHECK (((geometrytype(the_geom) = 'MULTIPOLYGON'::text) OR (the_geom IS NULL))),
+    CONSTRAINT enforce_srid_the_geom CHECK ((srid(the_geom) = 4326))
+);
+CREATE TABLE
+ALTER TABLE public.fedlan_ugl OWNER TO pnaciona;
+ALTER TABLE
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('fedlan_ugl', 'gid'), 300, true);
+ setval 
+--------
+    300
+(1 row)
+
+CREATE TABLE geometry_columns (
+    f_table_catalog character varying(256) NOT NULL,
+    f_table_schema character varying(256) NOT NULL,
+    f_table_name character varying(256) NOT NULL,
+    f_geometry_column character varying(256) NOT NULL,
+    coord_dimension integer NOT NULL,
+    srid integer NOT NULL,
+    "type" character varying(30) NOT NULL
+);
+CREATE TABLE
+ALTER TABLE public.geometry_columns OWNER TO pnaciona;
+ALTER TABLE
+CREATE TABLE hydrop_ugl (
+    gid serial NOT NULL,
+    area double precision,
+    perimeter double precision,
+    hydrogm020 bigint,
+    feature character varying,
+    name character varying,
+    state character varying,
+    state_fips character varying,
+    the_geom geometry,
+    CONSTRAINT enforce_dims_the_geom CHECK ((ndims(the_geom) = 2)),
+    CONSTRAINT enforce_geotype_the_geom CHECK (((geometrytype(the_geom) = 'MULTIPOLYGON'::text) OR (the_geom IS NULL))),
+    CONSTRAINT enforce_srid_the_geom CHECK ((srid(the_geom) = 4326))
+);
+CREATE TABLE
+ALTER TABLE public.hydrop_ugl OWNER TO pnaciona;
+ALTER TABLE
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('hydrop_ugl', 'gid'), 2143, true);
+ setval 
+--------
+   2143
+(1 row)
+
+CREATE TABLE roads_ugl (
+    gid serial NOT NULL,
+    name character varying,
+    source character varying,
+    sign1 character varying,
+    sign2 character varying,
+    sign3 character varying,
+    miles double precision,
+    km double precision,
+    toll integer,
+    lanes integer,
+    median integer,
+    "class" character varying,
+    class1 integer,
+    sign character varying,
+    the_geom geometry,
+    CONSTRAINT enforce_dims_the_geom CHECK ((ndims(the_geom) = 2)),
+    CONSTRAINT enforce_geotype_the_geom CHECK (((geometrytype(the_geom) = 'MULTILINESTRING'::text) OR (the_geom IS NULL))),
+    CONSTRAINT enforce_srid_the_geom CHECK ((srid(the_geom) = 4326))
+);
+CREATE TABLE
+ALTER TABLE public.roads_ugl OWNER TO pnaciona;
+ALTER TABLE
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('roads_ugl', 'gid'), 3661, true);
+ setval 
+--------
+   3661
+(1 row)
+
+CREATE TABLE spatial_ref_sys (
+    srid integer NOT NULL,
+    auth_name character varying(256),
+    auth_srid integer,
+    srtext character varying(2048),
+    proj4text character varying(2048)
+);
+CREATE TABLE
+ALTER TABLE public.spatial_ref_sys OWNER TO pnaciona;
+ALTER TABLE
+CREATE TABLE states_ugl (
+    gid serial NOT NULL,
+    area double precision,
+    perimeter double precision,
+    statesp020 bigint,
+    state character varying,
+    state_fips character varying,
+    "class" character varying,
+    the_geom geometry,
+    CONSTRAINT enforce_dims_the_geom CHECK ((ndims(the_geom) = 2)),
+    CONSTRAINT enforce_geotype_the_geom CHECK (((geometrytype(the_geom) = 'MULTIPOLYGON'::text) OR (the_geom IS NULL))),
+    CONSTRAINT enforce_srid_the_geom CHECK ((srid(the_geom) = 4326))
+);
+CREATE TABLE
+ALTER TABLE public.states_ugl OWNER TO pnaciona;
+ALTER TABLE
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('states_ugl', 'gid'), 204, true);
+ setval 
+--------
+    204
+(1 row)
+
+CREATE TABLE urban_ugl (
+    gid serial NOT NULL,
+    area double precision,
+    perimeter double precision,
+    urbanap020 bigint,
+    name character varying,
+    state character varying,
+    state_fips character varying,
+    the_geom geometry,
+    CONSTRAINT enforce_dims_the_geom CHECK ((ndims(the_geom) = 2)),
+    CONSTRAINT enforce_geotype_the_geom CHECK (((geometrytype(the_geom) = 'MULTIPOLYGON'::text) OR (the_geom IS NULL))),
+    CONSTRAINT enforce_srid_the_geom CHECK ((srid(the_geom) = 4326))
+);
+CREATE TABLE
+ALTER TABLE public.urban_ugl OWNER TO pnaciona;
+ALTER TABLE
+SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('urban_ugl', 'gid'), 509, true);
+ setval 
+--------
+    509
+(1 row)
+
+COPY co2000_ugl (gid, area, perimeter, co2000p020, state, county, fips, state_fips, the_geom) FROM stdin;
+COPY fedlan_ugl (gid, area, perimeter, fedlanp020, feature1, feature2, feature3, agbur, url, name1, name2, name3, state, state_fips, the_geom) FROM stdin;
+COPY geometry_columns (f_table_catalog, f_table_schema, f_table_name, f_geometry_column, coord_dimension, srid, "type") FROM stdin;
+COPY hydrop_ugl (gid, area, perimeter, hydrogm020, feature, name, state, state_fips, the_geom) FROM stdin;
+COPY roads_ugl (gid, name, source, sign1, sign2, sign3, miles, km, toll, lanes, median, "class", class1, sign, the_geom) FROM stdin;
+COPY spatial_ref_sys (srid, auth_name, auth_srid, srtext, proj4text) FROM stdin;
+COPY states_ugl (gid, area, perimeter, statesp020, state, state_fips, "class", the_geom) FROM stdin;
+COPY urban_ugl (gid, area, perimeter, urbanap020, name, state, state_fips, the_geom) FROM stdin;
+ALTER TABLE ONLY co2000_ugl
+    ADD CONSTRAINT co2000_ugl_pkey PRIMARY KEY (gid);
+ALTER TABLE
+ALTER INDEX public.co2000_ugl_pkey OWNER TO pnaciona;
+ALTER INDEX
+ALTER TABLE ONLY fedlan_ugl
+    ADD CONSTRAINT fedlan_ugl_pkey PRIMARY KEY (gid);
+ALTER TABLE
+ALTER INDEX public.fedlan_ugl_pkey OWNER TO pnaciona;
+ALTER INDEX
+ALTER TABLE ONLY geometry_columns
+    ADD CONSTRAINT geometry_columns_pk PRIMARY KEY (f_table_catalog, f_table_schema, f_table_name, f_geometry_column);
+ALTER TABLE
+ALTER INDEX public.geometry_columns_pk OWNER TO pnaciona;
+ALTER INDEX
+ALTER TABLE ONLY hydrop_ugl
+    ADD CONSTRAINT hydrop_ugl_pkey PRIMARY KEY (gid);
+ALTER TABLE
+ALTER INDEX public.hydrop_ugl_pkey OWNER TO pnaciona;
+ALTER INDEX
+ALTER TABLE ONLY roads_ugl
+    ADD CONSTRAINT roads_ugl_pkey PRIMARY KEY (gid);
+ALTER TABLE
+ALTER INDEX public.roads_ugl_pkey OWNER TO pnaciona;
+ALTER INDEX
+ALTER TABLE ONLY spatial_ref_sys
+    ADD CONSTRAINT spatial_ref_sys_pkey PRIMARY KEY (srid);
+ALTER TABLE
+ALTER INDEX public.spatial_ref_sys_pkey OWNER TO pnaciona;
+ALTER INDEX
+ALTER TABLE ONLY states_ugl
+    ADD CONSTRAINT states_ugl_pkey PRIMARY KEY (gid);
+ALTER TABLE
+ALTER INDEX public.states_ugl_pkey OWNER TO pnaciona;
+ALTER INDEX
+ALTER TABLE ONLY urban_ugl
+    ADD CONSTRAINT urban_ugl_pkey PRIMARY KEY (gid);
+ALTER TABLE
+ALTER INDEX public.urban_ugl_pkey OWNER TO pnaciona;
+ALTER INDEX
+CREATE INDEX co2000_ugl_the_geom_gist ON co2000_ugl USING gist (the_geom);
+CREATE INDEX
+ALTER INDEX public.co2000_ugl_the_geom_gist OWNER TO pnaciona;
+ALTER INDEX
+CREATE INDEX fedlan_ugl_the_geom_gist ON fedlan_ugl USING gist (the_geom);
+CREATE INDEX
+ALTER INDEX public.fedlan_ugl_the_geom_gist OWNER TO pnaciona;
+ALTER INDEX
+CREATE INDEX hydrop_ugl_the_geom_gist ON hydrop_ugl USING gist (the_geom);
+CREATE INDEX
+ALTER INDEX public.hydrop_ugl_the_geom_gist OWNER TO pnaciona;
+ALTER INDEX
+CREATE INDEX roads_ugl_the_geom_gist ON roads_ugl USING gist (the_geom);
+CREATE INDEX
+ALTER INDEX public.roads_ugl_the_geom_gist OWNER TO pnaciona;
+ALTER INDEX
+CREATE INDEX states_ugl_the_geom_gist ON states_ugl USING gist (the_geom);
+CREATE INDEX
+ALTER INDEX public.states_ugl_the_geom_gist OWNER TO pnaciona;
+ALTER INDEX
+CREATE INDEX urban_ugl_the_geom_gist ON urban_ugl USING gist (the_geom);
+CREATE INDEX
+ALTER INDEX public.urban_ugl_the_geom_gist OWNER TO pnaciona;
+ALTER INDEX
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE
+REVOKE ALL ON SCHEMA public FROM postgres;
+REVOKE
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT
+GRANT ALL ON SCHEMA public TO PUBLIC;
+GRANT
+Sourcing /usr/share/postgresql/contrib/lwpostgis.sql
+Dropping geometry_columns and spatial_ref_sys
+Restoring ascii dump ugldb.dump.ascii
