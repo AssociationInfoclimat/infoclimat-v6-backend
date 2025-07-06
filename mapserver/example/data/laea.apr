@@ -1,0 +1,502 @@
+/3.2
+(ODB.1
+	FirstRootClassName:	"Project"
+	Roots:	2
+	Version:	32
+)
+
+(Project.2
+	Name:	"laea.apr"
+	CreationDate:	"Monday, May 09, 2005 2:50:43 PM"
+	GUIName:	"Project"
+	Win:	3
+	CSMgr:	4
+	DocExts:	5
+	VisGUIWidth:	70
+	Doc:	6
+	ActiveDoc:	6
+	Buttons:	59
+	Buttons:	60
+	Buttons:	61
+	Scripts:	62
+	Prefs:	63
+	WorkDir:	890
+	WinX:	40
+	WinY:	44
+	WinW:	613
+	WinH:	459
+	SerialNumber:	"797601107193"
+	SelColor:	891
+	GUINames:	892
+	GUINames:	893
+	GUINames:	894
+	GUINames:	895
+	GUINames:	896
+	GUINames:	897
+	GUINames:	898
+	TocWidthScale:	1.00000000000000
+)
+
+(DocWin.3
+	Owner:	2
+	Open:	1
+	X:	5
+	Y:	5
+	W:	238
+	H:	324
+)
+
+(CSMgr.4
+)
+
+(DocAct.5
+	Doc:	2
+)
+
+(View.6
+	Name:	"View1"
+	CreationDate:	"Monday, May 09, 2005 2:50:54 PM"
+	GUIName:	"View"
+	Win:	7
+	CSMgr:	8
+	DocExts:	10
+	DocExts:	11
+	Graphics:	12
+	Theme:	19
+	Projection:	56
+	AOI:	58
+	LastScale:	10585261.78189054500000
+	Dpy:	13
+	TOCWidth:	150
+	CoordPrecision:	2
+)
+
+(DocWin.7
+	Owner:	6
+	Open:	1
+	X:	-4
+	Y:	-4
+	W:	615
+	H:	347
+)
+
+(CSMgr.8
+	Client:	9
+)
+
+(CSClient.9
+	Client:	10
+	ReqName:	"ClientNfy"
+)
+
+(PanMgr.10
+	Doc:	6
+)
+
+(DocAct.11
+	Doc:	6
+)
+
+(GList.12
+	Dpy:	13
+	FormatNumb:	18
+)
+
+(MapDpy.13
+	Left:	183937.98477596714000
+	Bottom:	-320301.75453204499000
+	Top:	524559.96532805706000
+	Right:	1444248.23630281350000
+	ReportUnits:	7
+	Units:	7
+	Scale:	14
+	FrameTop:	3.21875000000000
+	FrameRight:	4.68750000000000
+	PageDpy:	15
+	FitToPage:	1
+	MouseLoc:	17
+)
+
+(Numb.14
+	N:	0.00000371932228
+)
+
+(PageDpy.15
+	Top:	3.21875000000000
+	Right:	4.68750000000000
+	ReportUnits:	1
+	Units:	1
+	Scale:	16
+	ZoomRight:	4.68750000000000
+	ZoomTop:	3.21875000000000
+	GridSpacingX:	0.25000000000000
+	GridSpacingY:	0.25000000000000
+)
+
+(Numb.16
+	N:	96.00000000000000
+)
+
+(PointD.17
+	x:	1329419.96894147880000
+	y:	512430.10950619041000
+)
+
+(Numb.18
+)
+
+(FTheme.19
+	Name:	"States_ugl.shp"
+	Source:	20
+	Flags:	0x07
+	Legend:	34
+	Threshold:	47
+	View:	6
+	GSet:	48
+	LegEditScript:	"View.EditLegend"
+	TxPos:	49
+	LabelField:	28
+	AttrRules:	50
+	AttrRules:	51
+	AttrRules:	52
+	AttrRules:	53
+	AttrRules:	54
+	AttrRules:	55
+	SnapTolCursor:	1
+)
+
+(ShpSrc.20
+	Name:	21
+	FTab:	23
+)
+
+(SrcName.21
+	FileName:	22
+	Name:	"states_ugl.shp"
+	SubName:	"Polygon"
+	OwnerClass:	"ShpSrc"
+)
+
+(FN.22
+	Path:	"c:/ms4w/apps/tutorial/data/states_ugl.shp"
+)
+
+(FTab.23
+	Name:	"states_ugl.dbf"
+	BTab:	24
+	Fields:	32
+	Fields:	25
+	Fields:	26
+	Fields:	27
+	Fields:	28
+	Fields:	29
+	Fields:	30
+	SelBits:	33
+	FSrc:	20
+)
+
+(dBASE.24
+	Name:	"states_ugl.dbf"
+	Fields:	25
+	Fields:	26
+	Fields:	27
+	Fields:	28
+	Fields:	29
+	Fields:	30
+	FileName:	31
+)
+
+(Field.25
+	Name:	"Area"
+	Btab:	24
+	Alias:	"Area"
+	Visible:	1
+	Type:	9
+	Order:	-1
+)
+
+(Field.26
+	Name:	"Perimeter"
+	Btab:	24
+	Alias:	"Perimeter"
+	Visible:	1
+	Type:	9
+	Order:	-1
+)
+
+(Field.27
+	Name:	"Statesp020"
+	Btab:	24
+	Alias:	"Statesp020"
+	Visible:	1
+	Type:	9
+	Order:	-1
+)
+
+(Field.28
+	Name:	"State"
+	Btab:	24
+	Alias:	"State"
+	Visible:	1
+	Type:	4
+	Order:	-1
+)
+
+(Field.29
+	Name:	"State_fips"
+	Btab:	24
+	Alias:	"State_fips"
+	Visible:	1
+	Type:	4
+	Order:	-1
+)
+
+(Field.30
+	Name:	"Class"
+	Btab:	24
+	Alias:	"Class"
+	Visible:	1
+	Type:	4
+	Order:	-1
+)
+
+(FN.31
+	Path:	"c:/ms4w/apps/tutorial/data/states_ugl.dbf"
+)
+
+(Field.32
+	Name:	"Shape"
+	Alias:	"Shape"
+	Visible:	1
+	Type:	19
+	Order:	-1
+)
+
+(Bitmap.33
+	NumBits:	204
+
+)
+
+(Legend.34
+	SymType:	0x02
+	LegType:	0x01
+	ClassType:	0x03
+	Symbols:	35
+	Class:	40
+	StdDevs:	1.00000000000000
+	NullSym:	41
+	NullValues:	45
+	StatValues:	46
+	Precision:	-3
+)
+
+(SymList.35
+	Child:	36
+)
+
+(BShSym.36
+	Color:	37
+	Outline:	1
+	OutlineColor:	38
+	OutlineWidth:	0.10000000000000
+	BgColor:	39
+)
+
+(TClr.37
+	Red:	0xb93c
+	Green:	0x5965
+	Blue:	0xae0c
+)
+
+(TClr.38
+)
+
+(TClr.39
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(LClass.40
+	IsText:	1
+	Precision:	-3
+)
+
+(BShSym.41
+	Color:	42
+	Outline:	1
+	OutlineColor:	43
+	OutlineWidth:	0.10000000000000
+	BgColor:	44
+)
+
+(TClr.42
+	Name:	"Transparent"
+)
+
+(TClr.43
+	Name:	"Transparent"
+)
+
+(TClr.44
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(NameDict.45
+)
+
+(NameDict.46
+)
+
+(Thresh.47
+)
+
+(GSet.48
+)
+
+(TxPosPly.49
+	HAlign:	3
+	VAlign:	3
+)
+
+(AttrSingle.50
+	FTab:	23
+	Field:	25
+	UnionRule:	5
+	SplitRule:	3
+)
+
+(AttrSingle.51
+	FTab:	23
+	Field:	26
+	UnionRule:	6
+	SplitRule:	4
+)
+
+(AttrSingle.52
+	FTab:	23
+	Field:	27
+	UnionRule:	1
+	SplitRule:	1
+)
+
+(AttrSingle.53
+	FTab:	23
+	Field:	28
+	UnionRule:	1
+	SplitRule:	1
+)
+
+(AttrSingle.54
+	FTab:	23
+	Field:	29
+	UnionRule:	1
+	SplitRule:	1
+)
+
+(AttrSingle.55
+	FTab:	23
+	Field:	30
+	UnionRule:	1
+	SplitRule:	1
+)
+
+(Eqarazi.56
+	InternalName:	"Lambert Equal-Area Azimuthal"
+	Description:	"Custom Lambert Equal-Area Azimuthal"
+	Ellipsoid:	57
+	Lambda0:	-1.74532925199379
+	Phi1:	0.78539816339721
+)
+
+(Elpsoid.57
+	Radius:	6370997.00000000000000
+	Type:	10
+	Units:	0x07
+)
+
+(RectD.58
+	Left:	169712.79637695072000
+	Top:	814570.00000794302000
+	Right:	1713870.38878823700000
+	Bottom:	-525701.91484985710000
+)
+
+(LButn.59
+	HelpTopic:	"New_button"
+	Update:	"Doc.NewUpdate"
+	Label:	"&New"
+	Click:	"View.New"
+)
+
+(LButn.60
+	Disabled:	1
+	HelpTopic:	"Open_button"
+	Update:	"Doc.OpenUpdate"
+	Label:	"&Open"
+	Click:	"Doc.Open"
+)
+
+(LButn.61
+	Disabled:	1
+	HelpTopic:	"Print_button"
+	Update:	"Doc.ActionUpdate"
+	Label:	"P&rint"
+	Click:	"Doc.Action"
+)
+
+(NameDict.62
+)
+
+(NameDict.63
+	Obj:	64
+	Obj:	65
+)
+
+(AVDict.64
+	InternalName:	"Table of Contents Defaults Dialog"
+)
+
+(AVDict.65
+	InternalName:	"_Thor_"
+)
+
+(FN.890
+	Path:	"$HOME"
+)
+
+(TClr.891
+	Red:	0xffff
+	Green:	0xffff
+)
+
+(AVStr.892
+	S:	"View"
+)
+
+(AVStr.893
+	S:	"Table"
+)
+
+(AVStr.894
+	S:	"Chart"
+)
+
+(AVStr.895
+	S:	"Layout"
+)
+
+(AVStr.896
+	S:	"Script"
+)
+
+(AVStr.897
+	S:	"Project"
+)
+
+(AVStr.898
+	S:	"Appl"
+)
+

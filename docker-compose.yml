@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  timescale:
+    image: timescale/timescaledb-ha:pg16
+    user: root # might change depending the OS you use
+    container_name: "timescale_db"
+    volumes:
+      - ./data/timescale:/home/postgres/pgdata/data
+    environment:
+      - POSTGRES_PASSWORD=password
+      - PGDATA=/home/postgres/pgdata/data
+    ports:
+      - 5432:5432
+  mysql:
+    image: mysql:5.7
+    container_name: "mysql5_db"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - 3306:3306

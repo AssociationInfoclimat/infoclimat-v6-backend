@@ -1,0 +1,887 @@
+Identification_Information:
+  Citation:
+    Citation_Information:
+      Originator: U.S. Geological Survey
+      Publication_Date: 200010
+      Title: Federal Land Features of the United States (polygon)
+      Publication_Information:
+        Publication_Place: Reston, Virginia
+        Publisher: U.S. Geological Survey
+      Online_Linkage: <http://nationalatlas.gov/atlasftp.html>
+
+  Description:
+    Abstract:
+      This data set consists of federally owned land polygon features of 
+      the United States.  The data set was created by extracting federal 
+      land polygon features from the individual 1:2,000,000-scale State 
+      boundary Digital Line Graph (DLG) files produced by the U.S. Geological 
+      Survey.  These files were then appended into a single coverage.  This is a 
+      revised version of the June 1998 data set.  There may be private
+      inholdings within the boundaries of Federal Lands in this data set.
+    Purpose:
+      These data are intended for geographic display and analysis at the 
+      national level, and for large regional areas.  The data should be 
+      displayed and analyzed at scales appropriate for 1:2,000,000-scale data. 
+      No responsibility is assumed by the U.S. Geological Survey in the use of 
+      these data.    
+  Time_Period_of_Content:
+    Time_Period_Information:
+      Range_of_Dates/Times:
+        Beginning_Date: 1972
+        Ending_Date: 2000
+    Currentness_Reference: Ground condition
+  Status:
+    Progress: Complete
+    Maintenance_and_Update_Frequency: Irregular
+  Spatial_Domain:
+    Bounding_Coordinates:
+      West_Bounding_Coordinate: 172
+      East_Bounding_Coordinate: -66
+      North_Bounding_Coordinate: 72
+      South_Bounding_Coordinate: 18
+  Keywords:
+    Theme:
+      Theme_Keyword_Thesaurus: None
+      Theme_Keyword: Federal lands
+      Theme_Keyword: Polygon
+      Theme_Keyword: Agricultural Research Service
+      Theme_Keyword: Air Force
+      Theme_Keyword: Army Corps of Engineers
+      Theme_Keyword: Army
+      Theme_Keyword: Bureau of Prisons
+      Theme_Keyword: Bureau of Reclamation
+      Theme_Keyword: Central Intelligence Agency
+      Theme_Keyword: Department of Defense
+      Theme_Keyword: Department of Energy
+      Theme_Keyword: Department of Transportation
+      Theme_Keyword: Forest Reserve
+      Theme_Keyword: General Services Administration
+      Theme_Keyword: Indian Reservations
+      Theme_Keyword: Marine Corps
+      Theme_Keyword: Metropolitan Washington Airports Authority
+      Theme_Keyword: National Aeronautics and Space Administration
+      Theme_Keyword: National Battlefield
+      Theme_Keyword: National Battlefield Park
+      Theme_Keyword: National Capital Park
+      Theme_Keyword: National Conservation Area
+      Theme_Keyword: National Fish Hatchery
+      Theme_Keyword: National Forest
+      Theme_Keyword: National Grassland
+      Theme_Keyword: National Historic Park
+      Theme_Keyword: National Historic Site
+      Theme_Keyword: National Lakeshore
+      Theme_Keyword: National Mall
+      Theme_Keyword: National Memorial
+      Theme_Keyword: National Military Park
+      Theme_Keyword: National Monument
+      Theme_Keyword: National Park
+      Theme_Keyword: National Parkway
+      Theme_Keyword: National Preserve
+      Theme_Keyword: National Recreation Area
+      Theme_Keyword: National Reserve
+      Theme_Keyword: National River
+      Theme_Keyword: National Scenic Area
+      Theme_Keyword: National Seashore
+      Theme_Keyword: National Wild and Scenic River
+      Theme_Keyword: National Wildlife Refuge
+      Theme_Keyword: Navy
+      Theme_Keyword: Open Water
+      Theme_Keyword: Public Domain Land
+      Theme_Keyword: Purchase Unit Block
+      Theme_Keyword: U.S. Coast Guard
+      Theme_Keyword: United States Department of Agriculture
+      Theme_Keyword: Waterfowl Production Area
+      Theme_Keyword: Wilderness
+      Theme_Keyword: Wilderness Study Area
+      Theme_Keyword: Wildlife Management Area
+      Theme_Keyword: Bureau of Indian Affairs
+      Theme_Keyword: Bureau of Land Management
+      Theme_Keyword: Department of Justice
+      Theme_Keyword: Forest Service
+      Theme_Keyword: Fish and Wildlife Service
+      Theme_Keyword: National Park Service
+      Theme_Keyword: Tennessee Valley Authority
+      Theme_Keyword: BIA
+      Theme_Keyword: BLM
+      Theme_Keyword: BOR
+      Theme_Keyword: CIA
+      Theme_Keyword: DOD
+      Theme_Keyword: DOE
+      Theme_Keyword: DOJ
+      Theme_Keyword: DOT
+      Theme_Keyword: FS
+      Theme_Keyword: FWS
+      Theme_Keyword: GSA
+      Theme_Keyword: MWAA
+      Theme_Keyword: NASA
+      Theme_Keyword: NPS
+      Theme_Keyword: TVA
+      Theme_Keyword: USDA
+    Place:
+      Place_Keyword_Thesaurus: None
+      Place_Keyword: USA 
+    Place:
+      Place_Keyword_Thesaurus:
+        U.S. Department of Commerce, 1995, Countries, Dependencies, Areas of 
+        Special Sovereignty, and Their Principal Administrative Divisions 
+        (Federal Information Processing Standard 10-4): Washington, DC, 
+        National Institute of Standards and Technology.
+      Place_Keyword: Alabama 
+      Place_Keyword: Alaska 
+      Place_Keyword: Arizona 
+      Place_Keyword: Arkansas 
+      Place_Keyword: California 
+      Place_Keyword: Colorado 
+      Place_Keyword: Connecticut 
+      Place_Keyword: Delaware 
+      Place_Keyword: District of Columbia 
+      Place_Keyword: Florida 
+      Place_Keyword: Georgia 
+      Place_Keyword: Hawaii 
+      Place_Keyword: Idaho 
+      Place_Keyword: Illinois 
+      Place_Keyword: Indiana 
+      Place_Keyword: Iowa 
+      Place_Keyword: Kansas 
+      Place_Keyword: Kentucky 
+      Place_Keyword: Louisiana 
+      Place_Keyword: Maine 
+      Place_Keyword: Maryland 
+      Place_Keyword: Massachusetts 
+      Place_Keyword: Michigan 
+      Place_Keyword: Minnesota 
+      Place_Keyword: Mississippi 
+      Place_Keyword: Missouri 
+      Place_Keyword: Montana 
+      Place_Keyword: Nebraska 
+      Place_Keyword: Nevada 
+      Place_Keyword: New Hampshire 
+      Place_Keyword: New Jersey 
+      Place_Keyword: New Mexico 
+      Place_Keyword: New York 
+      Place_Keyword: North Carolina 
+      Place_Keyword: North Dakota 
+      Place_Keyword: Ohio 
+      Place_Keyword: Oklahoma 
+      Place_Keyword: Oregon 
+      Place_Keyword: Pennsylvania 
+      Place_Keyword: Rhode Island 
+      Place_Keyword: South Carolina 
+      Place_Keyword: South Dakota 
+      Place_Keyword: Tennessee 
+      Place_Keyword: Texas 
+      Place_Keyword: Utah 
+      Place_Keyword: Vermont 
+      Place_Keyword: Virginia 
+      Place_Keyword: Washington 
+      Place_Keyword: West Virginia 
+      Place_Keyword: Wisconsin 
+      Place_Keyword: Wyoming 
+      Place_Keyword: Puerto Rico 
+      Place_Keyword: Virgin Islands 
+      Place_Keyword: U.S. Virgin Islands
+  Access_Constraints: None
+  Use_Constraints:
+    None.  Acknowledgment of the National Atlas of the United States of 
+    America and (or) the U.S. Geological Survey would be appreciated in products 
+    derived from these data.
+  Point_of_Contact:
+    Contact_Information:
+      Contact_Person_Primary:
+        Contact_Person: Steve Kambly
+        Contact_Organization: U.S. Geological Survey
+      Contact_Address:
+        Address_Type: mailing and physical address
+        Address: 561 National Center
+        City: Reston
+        State_or_Province: VA
+        Postal_Code: 20192
+      Contact_Voice_Telephone: 703-648-5094
+      Contact_Electronic_Mail_Address: atlasmail@usgs.gov
+
+Data_Quality_Information:
+  Logical_Consistency_Report:
+    Using ESRI's Arc/INFO GIS software, the data set was checked for label 
+    errors, dangling nodes, and intersections.  Polygon topology was built for 
+    the data set using the "BUILD" command.
+  Attribute_Accuracy:
+    Attribute_Accuracy_Report:
+      The accuracy of the Digital Line Graphs was tested by one or more of the 
+      following methods: 1) manual comparison of the source with hard copy 
+      plots, 2) symbolized display of the digital line graph on an interactive 
+      computer graphic system, 3) selected attributes that could not be visually 
+      verified on plots or on screen were interactively queried and verified on 
+      screen.  The DLG files were directly converted to Arc/INFO coverages, so 
+      attributes have not been checked in the Arc/INFO format.
+  Completeness_Report:
+    This data set includes federal land polygon features for all 50 of the 
+    United States, the District of Columbia, Puerto Rico, and the U.S. Virgin 
+    Islands.  The minimum map resolution is 640 acres or one square mile. 
+    Generally, features under this size are not shown.
+  Positional_Accuracy:
+    Horizontal_Positional_Accuracy:
+      Horizontal_Positional_Accuracy_Report:
+        In DLG format, files underwent comparison to a graphic source or image 
+        source to assess digital positional accuracy.  During conversion to 
+        Arc/INFO coverage format and the process to append the States together, 
+        node snapping and fuzzy tolerances may have caused minimal positional 
+        shifts.
+  Lineage:
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1995
+          Title: 1:2,000,000-scale Digital Line Graph Data - Boundaries
+          Publication_Information:
+            Publication_Place: Reston, VA
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 2000000
+      Type_of_Source_Media: CD-ROM
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Range_of_Dates/Times:
+            Beginning_Date: 1970
+            Ending_Date: 1995
+        Source_Currentness_Reference: Ground condition
+      Source_Citation_Abbreviation: 2MILBD
+      Source_Contribution: Spatial and attribute information
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 1997
+          Title: Federal Land Features of the U.S. (polygon)
+          Publication_Information:
+            Publication_Place: Reston, VA
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 2000000
+      Type_of_Source_Media: Internal file
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Range_of_Dates/Times:
+            Beginning_Date: 1970
+            Ending_Date: 1997
+        Source_Currentness_Reference: Ground condition
+      Source_Citation_Abbreviation: ATLAS-FEDLNP97
+      Source_Contribution: Spatial and attribute information
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: U.S. Geological Survey
+          Publication_Date: 199806
+          Title: Federal Land Features of the U.S. (polygon)
+          Publication_Information:
+            Publication_Place: Reston, VA
+            Publisher: U.S. Geological Survey
+      Source_Scale_Denominator: 2000000
+      Type_of_Source_Media: Online 
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Range_of_Dates/Times:
+            Beginning_Date: 1970
+            Ending_Date: 1998
+        Source_Currentness_Reference: Ground condition
+      Source_Citation_Abbreviation: ATLAS-FEDLNP98
+      Source_Contribution: Spatial and attribute information
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: National Park Service, Water Resources Division
+          Publication_Date: 1999
+          Title: National Park System Boundary Dataset
+          Publication_Information:
+            Publication_Place: Fort Collins, CO 
+            Publisher: National Park Service, Water Resources Division
+          Online_Linkage: <http://www.nps.gov/gis/available_data.html>
+      Type_of_Source_Media: Online
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Range_of_Dates/Times:
+            Beginning_Date: 1943
+            Ending_Date: 1998
+        Source_Currentness_Reference: Ground condition
+      Source_Citation_Abbreviation: NPS-BND99
+      Source_Contribution: Spatial and attribute information
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: 
+            Arizona State Land Department, Arizona Land Resources 
+            Information System
+          Publication_Date: 1990
+          Title: Arizona Wilderness Areas
+          Publication_Information:
+            Publication_Place: Phoenix, Arizona 
+            Publisher:
+              Arizona State Land Department, Arizona Land Resources
+              Information System
+          Online_Linkage: <http://www.land.state.az.us/alris/index.html>
+      Source_Scale_Denominator: 100000 
+      Type_of_Source_Media: Online
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 1990
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: AZ-WLD90
+      Source_Contribution: Spatial and attribute information
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: 
+            Bureau of Land Management, Colorado State Office, 
+            Geosciences Team, Dave Taylor (ed.)
+          Publication_Date: 20000503
+          Title:
+             BLM Wilderness Areas for the State of Colorado, 
+             24K (Polygon) (Line) 
+          Publication_Information:
+            Publication_Place: Lakewood, Colorado 
+            Publisher: BLM, Colorado State Office
+          Online_Linkage: <http://www.co.blm.gov:80/metadata/cothemes.htm>
+      Source_Scale_Denominator: 24000 
+      Type_of_Source_Media: Online
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 20000503
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: CO-WLD00
+      Source_Contribution: Spatial and attribute information
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: 
+            Bureau of Land Management, Colorado State Office, 
+            Geosciences Team, Dave Taylor (ed.)
+          Publication_Date: 20000503
+          Title:
+             BLM Wilderness Study Areas for the State of Colorado, 
+             24K (Polygon) (Line) 
+          Publication_Information:
+            Publication_Place: Lakewood, Colorado 
+            Publisher: BLM, Colorado State Office
+          Online_Linkage: <http://www.co.blm.gov:80/metadata/cothemes.htm>
+      Source_Scale_Denominator: 24000 
+      Type_of_Source_Media: Online
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 20000503
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: CO-WSA00
+      Source_Contribution: Spatial and attribute information
+    Source_Information:
+      Source_Citation:
+        Citation_Information:
+          Originator: Earth Data Analysis Center
+          Publication_Date: 19970101 
+          Title: Wilderness Areas of New Mexico
+          Publication_Information:
+            Publication_Place: Albuquerque, New Mexico 
+            Publisher: Earth Data Analysis Center
+          Online_Linkage: <http://rgis.unm.edu/>
+      Source_Scale_Denominator: 100000
+      Type_of_Source_Media: Online
+      Source_Time_Period_of_Content:
+        Time_Period_Information:
+          Single_Date/Time:
+            Calendar_Date: 19970101 
+        Source_Currentness_Reference: Publication date
+      Source_Citation_Abbreviation: NM-WLD97
+      Source_Contribution: Spatial and attribute information
+    Process_Step:
+      Process_Description:
+        The 2MILBD files were originally digitized by the National Mapping 
+        Division based on the sectional maps contained in 'The National Atlas of 
+        the United States of America' published by the USGS in 1970.  The
+        sectional maps were updated during 1978-1981 and digitized in the early 
+        1980's.  The data were updated in 1995 using 1:1,000,000-scale and 
+        1:2,000,000-scale BLM state base maps.  These data were published on CD-
+        ROM in 1995 as State tiles in DLG optional format.  Using Arc/INFO 
+        software, the updated DLG optional format files were converted to 
+        Arc/INFO coverages using the DLGARC command.  The numeric DLG attribute 
+        codes were translated to their text equivalents.  For example, the DLG 
+        code '097 0363' was translated to 'National Park NPS'.  Only land and 
+        attribute information were extracted for inclusion.  Proper names were 
+        added to specific Federal lands.  The States were then paneled together 
+        with the APPEND command.  "Slivers" created during the paneling process
+        were identified and deleted using the ELIMINATE command.  The attribute 
+        AGBUR, which contains the name of the owning or administering agency or 
+        bureau, was added for plotting purposes.  The data were converted to 
+        shapefile format for use in National Atlas applications and for 
+        distribution to the public.
+      Source_Used_Citation_Abbreviation: 2MILBD 
+      Process_Date: 1997 
+      Source_Produced_Citation_Abbreviation: ATLAS-FEDLNP97
+    Process_Step:
+      Process_Description:
+        In 1998, topological errors introduced when the State files were paneled 
+        were corrected.  Grand Staircase-Escalante National Monument was added.
+        Coding of Lake Tahoe was corrected, and Fort Frederica, GA was deleted 
+        because it was smaller than the minimum area of 640 acres.
+      Source_Used_Citation_Abbreviation: ATLAS-FEDLNP97
+      Process_Date: 199803
+    Process_Step:
+      Process_Description:
+        The URL for Glacier National Park was corrected.
+      Source_Used_Citation_Abbreviation: ATLAS-FEDLNP97
+      Process_Date: 199805
+      Source_Produced_Citation_Abbreviation: ATLAS-FEDLNP98
+    Process_Step:
+      Process_Description:
+        Several new federal lands were established since 1998.  Those that meet 
+        the minimum mapping criterion of 640 acres (1 square mile) were added.  
+        They are: 
+        >1) Headwaters Forest Reserve, California (Bureau of Land Management)
+        >2) Tall Grass Prairie National Preserve, Kansas (National Park Service) 
+        >3) Opal Creek Wilderness, Oregon (Forest Service) 
+        >4) Dugger Mountain Wilderness, Alabama (Forest Service) 
+        >5) Otay Mountain Wilderness, California (Bureau of Land Management)
+        >6) Gunnison Gorge Wilderness, Colorado (Bureau of Land Management)
+        >7) Black Canyon of the Gunnison National Park, Colorado (National
+        >   Park Service)-formerly Black Canyon of the Gunnison National
+        >   Monument
+        >8) Agua Fria National Monument, California (Bureau of Land Management) 
+        >9) California Coastal National Monument, California (Bureau of Land
+        >   Management)
+        >10) Sequoia National Monument, California (Forest Service)
+        >11) Canyons of the Ancients National Monument, Colorado (Bureau of Land
+        >    Management)
+        >12) Grand Canyon-Parashant National Monument, Arizona (Bureau of Land
+        >    Management)  
+        >13) Ironwood Forest National Monument, Arizona (Bureau of Land
+        >    Management)
+        >14) Cascade-Siskiyou National Monument, Oregon (Bureau of Land 
+        >    Management)
+        >15) Gunnison Gorge National Conservation Area, Colorado (Bureau of Land 
+        >    Management) 
+        >16) Silvio O. Conte National Wildlife Refuge, Vermont (Fish and
+        >    Wildlife Service)
+
+        Data sets were obtained from the State, regional, or field offices of
+        the federal agencies which own or administer the newly created lands.  
+        The data were re-projected, generalized, and integrated into the 
+        existing federal lands data set.  Hanford Reach National Monument, 
+        Washington (Fish and Wildlife Service) and the expansion of Pinnacles 
+        National Monument (National Park Service) are not included in this 
+        release.  The California Coastal National Monument consists of thousands 
+        of Bureau of Land Management-administered islands, rocks, exposed reefs, 
+        and pinnacles above high mean tide, within twelve nautical miles of the 
+        shoreline, between Oregon and Mexico.  The National Monument is shown in 
+        the Federal Lands data set as a polygon which encloses this area. 
+
+        All National Park Service lands in the existing Federal Lands data set
+        were reviewed using a national boundary coverage, NPS-BND99.  Some
+        adjustments were made to resolve discrepancies between National Park 
+        Service data and existing National Atlas boundary data.
+
+        An inventory of all wilderness areas was conducted in cooperation with 
+        the Aldo Leopold Wilderness Research Institute.  Wildernesses that were 
+        missing and that were larger than the minimum map resolution of 640 
+        acres were acquired from the State, regional, or field offices of the 
+        land-owning agencies.  The data sets were re-projected, generalized, and 
+        integrated into the existing Federal Lands data set.  Newly established 
+        wilderness areas were also acquired and integrated into the data set.  
+        Eighty-six wilderness areas were added as a result of this effort.  
+
+        The accuracy of wilderness names was reviewed in cooperation with the 
+        Aldo Leopold Wilderness Research Institute.  Name changes were made to 
+        resolve misspellings or incorrectly named features.
+  
+        Wilderness area boundaries in Arizona, California, New Mexico, and 
+        Colorado were reviewed and, in some cases, re-aligned.  Arizona 
+        wilderness areas and wilderness study areas managed by the Bureau of 
+        Land Management (BLM), the Fish and Wildlife Service, the Forest 
+        Service, and National Park Service were reviewed with AZ-WLD90.  
+        California wilderness areas managed by the BLM were reviewed using 
+        Information the Sacramento office.  Colorado wildernesses and wilderness 
+        study areas were reviewed with CO-WLD00 and CO-WSA00, respectively.  New 
+        Mexico wilderness areas were reviewed with NM-WLD97, which includes 
+        wilderness areas managed by the BLM, Fish and Wildlife Service, the 
+        Forest Service, and the National Park Service.
+
+        An inventory of National Wildlife Refuges was conducted to ensure 
+        completeness of refuge data.  Fifteen new refuges were added using data 
+        sets from regional or field offices of the Fish and Wildlife Service.  
+        Five additional refuges that meet the minimum mapping resolution of 640 
+        acres could not be included because data were not available. 
+
+        Military installations were reviewed with respect to base closure data 
+        provided by the Department of Defense Environmental Cleanup Office on 
+        their website (<http://www.dtic.mil/envirodod/>).  Installations that
+        have closed or are scheduled to close have a notation after the
+        installation name; for example: Loring Air Force Base (Closed);  Kelly
+        Air Force Base (Scheduled to close).
+
+        Several Army Corps of Engineer lakes were reviewed with 1:100,000 scale 
+        topographic maps.  Approximately 70 shorelines were adjusted.
+
+        In 1998, the National Atlas of the United States published a 1:7,500,00 
+        scale map of Federal and Indian Lands.  Corrections made in the 
+        preparation of this map were incorporated into the Federal Lands polygon 
+        data set.  Approximately 60 corrections were made.  They included name 
+        changes, spelling corrections, and addition and deletion of lands.
+ 
+        Several lands were deleted that were incorrectly attributed as 
+        Wilderness Study Areas.  They are: Book Cliffs Instant Study Area, Utah;
+        Devils Garden Natural Area, California; Blue Range Primitive Area,
+        Arizona; and Joshua Tree National Landmark, Utah.
+
+        The two Veterans Administration Hospitals that had been included in the 
+        data were deleted.  Although they had met the minimum mapping 
+        resolution of 640 acres, they were not the largest Veterans
+        Administration in terms of capacity (number of beds).  A determination
+        will be made whether or not to include Veterans Administration 
+        hospitals prior to the next release of the data.
+
+        Digital Line Graph data that had not been complete at the time of the 
+        first release were incorporated into the data set. 
+
+        The attributes were reorganized to better represent multi-coded 
+        features.  In general, polygons which represent two or more feature 
+        classes, where one feature class is contained in another (e.g. a 
+        wilderness area inside a forest), have the smaller or 'contained' 
+        feature as Feature1 and the larger feature as Feature2.  Similarly, the 
+        feature referenced as Feature3 will contain the land in Feature2.
+
+        Approximately 500 new URL addresses were added to link Federal Land 
+        features to agency websites.
+      Source_Used_Citation_Abbreviation: ATLAS-FEDLNP98
+      Source_Used_Citation_Abbreviation: NPS-BND99
+      Source_Used_Citation_Abbreviation: AZ-WLD90
+      Source_Used_Citation_Abbreviation: CO-WLD00
+      Source_Used_Citation_Abbreviation: CO-WSA00
+      Source_Used_Citation_Abbreviation: NM-WLD97
+      Process_Date: 2000
+Spatial_Data_Organization_Information:
+  Direct_Spatial_Reference_Method: Vector
+  Point_and_Vector_Object_Information:
+    SDTS_Terms_Description:
+      SDTS_Point_and_Vector_Object_Type: GT-polygon composed of chains
+      Point_and_Vector_Object_Count: 50413
+    SDTS_Terms_Description:
+      SDTS_Point_and_Vector_Object_Type: Complete chain
+      Point_and_Vector_Object_Count: 91436
+Spatial_Reference_Information:
+  Horizontal_Coordinate_System_Definition:
+    Geographic:
+      Latitude_Resolution: 0.000278
+      Longitude_Resolution: 0.000278
+      Geographic_Coordinate_Units: Decimal degrees
+    Geodetic_Model:
+      Horizontal_Datum_Name: North American Datum of 1983
+      Ellipsoid_Name: GRS1980
+      Semi-major_Axis: 6378137
+      Denominator_of_Flattening_Ratio: 298.257222
+Entity_and_Attribute_Information:
+  Detailed_Description:
+    Entity_Type:
+      Entity_Type_Label: Federal Lands (described by Fedlanp020.dbf)
+      Entity_Type_Definition: 
+        Lands of 640 acres or more owned by the Federal government of the United 
+        States.
+      Entity_Type_Definition_Source: U.S. Geological Survey
+    Attribute: 
+      Attribute_Label: Shape 
+      Attribute_Definition: The representation of the entity in the data. 
+      Attribute_Definition_Source: U.S. Geological Survey 
+      Attribute_Domain_Values: 
+        Enumerated_Domain: 
+          Enumerated_Domain_Value: Polygon 
+          Enumerated_Domain_Value_Definition: 2-dimensional element 
+          Enumerated_Domain_Value_Definition_Source: ESRI GIS software 
+    Attribute:
+      Attribute_Label: Area
+      Attribute_Definition: The size of the shape in square coverage units.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 0.162093784E-05
+          Range_Domain_Maximum: 21.165
+    Attribute:
+      Attribute_Label: Perimeter
+      Attribute_Definition: The perimeter of shape in coverage units.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 0.008
+          Range_Domain_Maximum: 392.223
+    Attribute:
+      Attribute_Label: Fedlanp020
+      Attribute_Definition: Internal feature number.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Range_Domain:
+          Range_Domain_Minimum: 2
+          Range_Domain_Maximum: 50413
+    Attribute:
+      Attribute_Label: Feature1
+      Attribute_Definition:
+        The primary or only type of Federal land and the owning agency. 
+        Where a polygon represents multiple Federal land types, this  
+        attribute describes the smaller or 'contained' land.  In polygons  
+        that do not represent a Federal land type, the attribute value
+        is 'Null'. 
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Codeset_Domain:
+          Codeset_Name: 
+            Valid Codes for 1:2,000,000-Scale Series Digital Line Graphs
+          Codeset_Source: U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: Forest Reserve 
+          Enumerated_Domain_Value_Definition: 
+            An area established for the protection of forest resources.
+          Enumerated_Domain_Value_Definition_Source: U.S. Geological Survey
+    Attribute:
+      Attribute_Label: Feature2
+      Attribute_Definition: 
+        The secondary type of Federal land and the owning agency.  Where a 
+        polygon represents multiple Federal land types, this attribute, in 
+        general, describes a land that surrounds or 'contains' the land 
+        referenced in Feature1.  Feature2 may also be coded as 'Open Water' if 
+        a part of the Federal property referenced in Feature1 includes water.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Codeset_Domain:
+          Codeset_Name: 
+            Valid Codes for 1:2,000,000-Scale Series Digital Line Graphs
+          Codeset_Source: U.S. Geological Survey
+    Attribute:
+      Attribute_Label: Feature3
+      Attribute_Definition:
+        The tertiary type of Federal land and the owning agency.  Where a 
+        polygon represents multiple Federal land types, this attribute, in 
+        general, describes a land that surrounds or 'contains' the land
+        referenced in Feature2.  Feature3 may also be coded as 'Open Water' if 
+        a part of the Federal property referenced in Feature1 includes water.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Codeset_Domain: 
+          Codeset_Name: 
+            Valid Codes for 1:2,000,000-Scale Series Digital Line Graphs
+          Codeset_Source: U.S. Geological Survey
+    Attribute:
+      Attribute_Label: Agbur
+      Attribute_Definition: A code for the owning or administering agency.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Enumerated_Domain:
+          Enumerated_Domain_Value: BIA
+          Enumerated_Domain_Value_Definition: 
+            Federal land owned or administered by the Bureau of Indian Affairs.
+          Enumerated_Domain_Value_Definition_Source: 
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: BLM
+          Enumerated_Domain_Value_Definition: 
+            Federal land owned or administered by the Bureau of Land Management.
+          Enumerated_Domain_Value_Definition_Source: 
+            U.S. Geological Survey
+        Enumerated_Domain:	
+          Enumerated_Domain_Value: BOR
+          Enumerated_Domain_Value_Definition: 
+            Federal land owned or administered by the Bureau of Reclamation.
+          Enumerated_Domain_Value_Definition_Source:
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: DOD
+          Enumerated_Domain_Value_Definition:
+            Federal land owned or administered by the Department of Defense.
+          Enumerated_Domain_Value_Definition_Source: 
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: FS
+          Enumerated_Domain_Value_Definition: 
+            Federal land owned or administered by the Forest Service.
+          Enumerated_Domain_Value_Definition_Source: 
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: FWS
+          Enumerated_Domain_Value_Definition: 
+            Federal land owned or administered by the Fish and Wildlife Service.
+          Enumerated_Domain_Value_Definition_Source: 
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: NPS
+          Enumerated_Domain_Value_Definition: 
+            Federal land owned or administered by the National Park Service.
+          Enumerated_Domain_Value_Definition_Source: 
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: TVA
+          Enumerated_Domain_Value_Definition: 
+            Federal land owned or administered by the Tennessee Valley 
+            Authority.
+          Enumerated_Domain_Value_Definition_Source: 
+            U.S. Geological Survey
+        Enumerated_Domain:
+          Enumerated_Domain_Value: OTHER
+          Enumerated_Domain_Value_Definition: 
+            Federal land owned or administered by one of the following:
+            >1) Agricultural Research Service 
+            >2) Bureau of Prisons 
+            >3) Central Intelligence Agency
+            >4) Department of Energy
+            >5) Department of Transportation
+            >6) General Services Administration
+            >7) Metropolitan Washington Airports Authority
+            >8) National Aeronautics and Space Administration
+            >9) U.S. Coast Guard
+            >10) U.S. Department of Agriculture
+          Enumerated_Domain_Value_Definition_Source: 
+            U.S. Geological Survey
+    Attribute:
+      Attribute_Label: Url
+      Attribute_Definition: 
+        The URL, or Uniform Resource Locator, is the address of a page on the
+        World Wide Web.  The address, which provides the basis for establishing
+        an electronic link from a client to the physical location of the page 
+        on an Internet server, consists of a server name, file path, and the
+        page's file name.  A URL in this data set is usually the address of a
+        Federal agency website.  For example,
+        <http://www.r7.fws.gov/nwr/akmnwr/akmnwr.html> is the address of a page
+        that describes the Alaska Maritime National Wildlife Refuge.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          There is no predefined set of valid Uniform Resource Locators.
+    Attribute:
+      Attribute_Label: Name1
+      Attribute_Definition: The name associated with Feature1.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          There is no predefined set of valid names.
+    Attribute:
+      Attribute_Label: Name2
+      Attribute_Definition: The name associated with Feature2.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          There is no predefined set of valid names.
+    Attribute:
+      Attribute_Label: Name3
+      Attribute_Definition: The name associated with Feature3.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Unrepresentable_Domain:
+          There is no predefined set of valid names.
+    Attribute:
+      Attribute_Label: State
+      Attribute_Definition: 
+        The two character State code for the State in which the Federal land is 
+        located.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Codeset_Domain:
+          Codeset_Name:
+            Codes for the Identification of the States, the District of Columbia 
+            and the Outlying Areas of the United States, and Associated Areas;
+            FIPS PUB 5-2.
+          Codeset_Source: 
+            U.S. Department of Commerce, National Institute of Standards and 
+            Technology 
+    Attribute:
+      Attribute_Label: State_fips
+      Attribute_Definition: 
+          The two digit State code for the State in which the Federal land is 
+          located.
+      Attribute_Definition_Source: U.S. Geological Survey
+      Attribute_Domain_Values:
+        Codeset_Domain:
+          Codeset_Name: 
+            Codes for the Identification of the States, the District of Columbia 
+            and the Outlying Areas of the United States, and Associated Areas;
+            FIPS PUB 5-2.
+          Codeset_Source: 
+            U.S. Department of Commerce, National Institute of Standards and 
+            Technology 
+
+Distribution_Information:
+  Distributor:
+    Contact_Information:
+      Contact_Organization_Primary: 
+        Contact_Organization:
+          Earth Science Information Center, U.S. Geological Survey
+      Contact_Address:
+        Address_Type: mailing address
+        Address: 507 National Center
+        City: Reston
+        State_or_Province: VA
+        Postal_Code: 20192
+      Contact_Voice_Telephone: 1-888-ASK-USGS (1-888-275-8747)
+      Contact_Voice_Telephone: 703-648-5920
+      Contact_Instructions: 
+        In addition to the address above there are other ESIC offices throughout 
+        the country.  A full list of these offices is at 
+        <http://mapping.usgs.gov/esic/esic_index.html>.                
+  Distribution_Liability: 
+    Although these data have been processed successfully on a computer system at 
+    the U.S. Geological Survey, no warranty expressed or implied is made by the 
+    U.S. Geological Survey regarding the utility of the data on any other
+    system, nor shall the act of distribution constitute any such warranty.  No 
+    responsibility is assumed by the U.S. Geological Survey in the use of these 
+    data.
+  Standard_Order_Process:
+    Digital_Form:
+      Digital_Transfer_Information:
+        Format_Name: ESRI Shapefile
+      Digital_Transfer_Option:
+        Online_Option:
+          Computer_Contact_Information:
+            Network_Address:
+              Network_Resource_Name: 
+                <http://nationalatlas.gov/atlasftp.html>
+      Digital_Transfer_Option:
+        Offline_Option:
+          Offline_Media: CD_ROM
+          Recording_Format:tar
+    Digital_Form: 
+      Digital_Transfer_Information: 
+        Format_Name: SDTS 
+      Digital_Transfer_Option: 
+        Online_Option: 
+          Computer_Contact_Information: 
+            Network_Address: 
+              Network_Resource_Name:
+                <http://nationalatlas.gov/atlasftp.html>
+      Digital_Transfer_Option:
+        Offline_Option:
+          Offline_Media: CD_ROM
+          Recording_Format:tar
+    Fees:
+      There is no charge for the online option.  For National Atlas files 
+      ordered on CD-ROM there is a base price of $45.00 per disc, a handling fee 
+      of $5.00, and a per-file charge based on file size.  The charge for files 
+      less than 10 megabytes in size is $1.00.  The charge for files that range
+      in size from 10 to 150 megabytes is $7.50.  The charge for files of 150 
+      megabytes or larger is $15.00.  The charge is $7.50 for the Federal Land 
+      Features of the United States (polygon) data set.
+    Ordering_Instructions:
+      To order files on CD-ROM, please see
+      <http://nationalatlas.gov/atlasftp.html#q12>.
+Metadata_Reference_Information:
+  Metadata_Date: 20020115
+  Metadata_Contact:
+    Contact_Information:
+      Contact_Person_Primary:
+        Contact_Person: Peg Rawson
+        Contact_Organization: U.S. Geological Survey
+      Contact_Address:
+        Address_Type: mailing and physical address
+        Address: 521 National Center
+        City: Reston
+        State_or_Province: VA
+        Postal_Code: 20192
+      Contact_Voice_Telephone: 703-648-4183
+      Contact_Electronic_Mail_Address: atlasmail@usgs.gov
+  Metadata_Standard_Name: FGDC Content Standards for Digital Geospatial Metadata
+  Metadata_Standard_Version: FGDC-STD-001-1998
+  Metadata_Security_Information:
+    Metadata_Security_Classification_System: None
+    Metadata_Security_Classification: Unclassified
+    Metadata_Security_Handling_Description: None
+

@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  sphinx:
+    build:
+      context: .
+    ports:
+      - 9311:9306
+    container_name: sphinx
+    volumes:
+      - ./sphinx-conf:/etc/sphinxsearch/
+      - ./.sphinx-data:/var/lib/sphinx/data
+      - ./scripts:/app
+    environment:
+      - "SQL_DB=sphinx"
+      - "SQL_HOST=host.docker.internal"
+      - "SQL_PASS=password"
+      - "SQL_PORT=3306"
+      - "SQL_USER=user"
+    command: sh -c "/app/indexandsearch.sh"

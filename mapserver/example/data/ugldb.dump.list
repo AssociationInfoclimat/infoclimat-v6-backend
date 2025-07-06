@@ -1,0 +1,60 @@
+4; 16672 2200 SCHEMA - public postgres
+1919; 0 0 COMMENT - SCHEMA public postgres
+1920; 0 0 ACL - public postgres
+18; 1255 20277 FUNCTION public plpgsql_validator(oid) pnaciona
+580; 16402 20278 PROCEDURAL LANGUAGE public plpgsql 
+283; 1255 20594 FUNCTION public text(boolean) pnaciona
+1233; 16392 20355 OPERATOR public && pnaciona
+1230; 16392 20350 OPERATOR public &< pnaciona
+1232; 16392 20354 OPERATOR public &<| pnaciona
+1234; 16392 20349 OPERATOR public &> pnaciona
+1224; 16392 20329 OPERATOR public < pnaciona
+1229; 16392 20348 OPERATOR public << pnaciona
+1231; 16392 20352 OPERATOR public <<| pnaciona
+1225; 16392 20330 OPERATOR public <= pnaciona
+1226; 16392 20331 OPERATOR public = pnaciona
+1228; 16392 20327 OPERATOR public > pnaciona
+1227; 16392 20328 OPERATOR public >= pnaciona
+1235; 16392 20347 OPERATOR public >> pnaciona
+1239; 16392 20358 OPERATOR public @ pnaciona
+1236; 16392 20353 OPERATOR public |&> pnaciona
+1237; 16392 20351 OPERATOR public |>> pnaciona
+1240; 16392 20357 OPERATOR public ~ pnaciona
+1238; 16392 20356 OPERATOR public ~= pnaciona
+1597; 16418 20608 CAST pg_catalog CAST (boolean AS text) 
+1525; 1259 23322 TABLE public co2000_ugl pnaciona
+1921; 0 0 SEQUENCE SET public co2000_ugl_gid_seq pnaciona
+1527; 1259 23828 TABLE public fedlan_ugl pnaciona
+1922; 0 0 SEQUENCE SET public fedlan_ugl_gid_seq pnaciona
+1523; 1259 20545 TABLE public geometry_columns pnaciona
+1529; 1259 24246 TABLE public hydrop_ugl pnaciona
+1923; 0 0 SEQUENCE SET public hydrop_ugl_gid_seq pnaciona
+1531; 1259 26457 TABLE public roads_ugl pnaciona
+1924; 0 0 SEQUENCE SET public roads_ugl_gid_seq pnaciona
+1522; 1259 20538 TABLE public spatial_ref_sys pnaciona
+1533; 1259 31026 TABLE public states_ugl pnaciona
+1925; 0 0 SEQUENCE SET public states_ugl_gid_seq pnaciona
+1535; 1259 31257 TABLE public urban_ugl pnaciona
+1926; 0 0 SEQUENCE SET public urban_ugl_gid_seq pnaciona
+1911; 0 23322 TABLE DATA public co2000_ugl pnaciona
+1912; 0 23828 TABLE DATA public fedlan_ugl pnaciona
+1910; 0 20545 TABLE DATA public geometry_columns pnaciona
+1913; 0 24246 TABLE DATA public hydrop_ugl pnaciona
+1914; 0 26457 TABLE DATA public roads_ugl pnaciona
+1909; 0 20538 TABLE DATA public spatial_ref_sys pnaciona
+1915; 0 31026 TABLE DATA public states_ugl pnaciona
+1916; 0 31257 TABLE DATA public urban_ugl pnaciona
+1892; 16386 23329 CONSTRAINT public co2000_ugl_pkey pnaciona
+1895; 16386 23835 CONSTRAINT public fedlan_ugl_pkey pnaciona
+1890; 16386 20548 CONSTRAINT public geometry_columns_pk pnaciona
+1898; 16386 24253 CONSTRAINT public hydrop_ugl_pkey pnaciona
+1901; 16386 26464 CONSTRAINT public roads_ugl_pkey pnaciona
+1888; 16386 20544 CONSTRAINT public spatial_ref_sys_pkey pnaciona
+1904; 16386 31033 CONSTRAINT public states_ugl_pkey pnaciona
+1907; 16386 31264 CONSTRAINT public urban_ugl_pkey pnaciona
+1893; 1259 23334 INDEX public co2000_ugl_the_geom_gist pnaciona
+1896; 1259 23840 INDEX public fedlan_ugl_the_geom_gist pnaciona
+1899; 1259 24258 INDEX public hydrop_ugl_the_geom_gist pnaciona
+1902; 1259 26469 INDEX public roads_ugl_the_geom_gist pnaciona
+1905; 1259 31038 INDEX public states_ugl_the_geom_gist pnaciona
+1908; 1259 31269 INDEX public urban_ugl_the_geom_gist pnaciona
