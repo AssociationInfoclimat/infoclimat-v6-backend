@@ -14,9 +14,20 @@ cp .env.sample .env
 # in case your modules needs MySQL and Prisma:
 npx prisma generate
 
-npm run start:dev
+npm run api:start:dev
 ```
 
 Then, you can access the example endpoint at: http://localhost:3000/api
 
 http://localhost:3000/api/stations-meteo/temperature?year=2024&month=4&day=16&hour=20
+
+# CRON tasks
+
+```bash
+# see API, then:
+
+# Set a cron timeout in ***.cron.ts `@Timeout(2)` so it can start without waiting the schedule.
+# Choose a <name> among:
+# - refresh-stations-vignettes
+npm run cron:start:dev <name>
+```

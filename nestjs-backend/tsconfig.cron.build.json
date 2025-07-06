@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.cron.json",
+  "exclude": ["node_modules", "test", "dist-cron", "dist-api", "**/*spec.ts"]
+}

@@ -2,7 +2,7 @@
 
 ```bash
 cd api
-# -> ./api/README.md
+# -> ./nestjs-backend/README.md
 ```
 
 ## Database

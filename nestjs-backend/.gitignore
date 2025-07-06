@@ -1,5 +1,7 @@
 # compiled output
 /dist
+/dist-api
+/dist-cron
 /node_modules
 /build
 
