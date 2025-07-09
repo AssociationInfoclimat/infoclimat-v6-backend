@@ -17,5 +17,11 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
-  }
+  },
+  "include": [
+    "src/**/*",
+    "prisma-v5/**/*",
+    "prisma-v5_data_params/**/*",
+    "prisma-v5_per_year/**/*"
+  ]
 }

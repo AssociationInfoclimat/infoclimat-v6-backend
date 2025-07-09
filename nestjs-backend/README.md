@@ -11,8 +11,7 @@ npm ci
 cp .env.sample .env
 # edit .env (which your db which is running with docker in localhost)
 
-# in case your modules needs MySQL and Prisma:
-npx prisma generate
+npm run prisma:generate
 
 npm run api:start:dev
 ```

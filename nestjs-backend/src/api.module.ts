@@ -1,10 +1,14 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { MapdataModule } from './modules/mapdata/mapdata.module';
-import { PrismaModule } from './database/prisma.module';
 import { ConfigModule } from './config/config.module';
 import { StationsMeteoModule } from './modules/stations-meteo/stations-meteo.module';
 import { PreviController } from './modules/previ/previ.controller';
 import { PreviModule } from './modules/previ/previ.module';
+import { UserAuthMiddleware } from './middlewares/user-auth.middleware';
+import { UserModule } from './modules/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { UserController } from './modules/user/user.controller';
+import { AuthStrategy } from './modules/auth/auth.strategy';
 
 @Module({
   imports: [
@@ -14,8 +18,15 @@ import { PreviModule } from './modules/previ/previ.module';
     //MapdataModule,
     //StationsMeteoModule,
     PreviModule,
+    UserModule,
+    AuthModule,
   ],
-  controllers: [PreviController], // We explicitely import the controllers here. We want our services to expose controllers.
+  // We explicitely import the controllers here. We want our services to expose controllers.
+  controllers: [PreviController, UserController],
   providers: [],
 })
-export class ApiModule {}
+export class ApiModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(UserAuthMiddleware).forRoutes('*');
+  }
+}

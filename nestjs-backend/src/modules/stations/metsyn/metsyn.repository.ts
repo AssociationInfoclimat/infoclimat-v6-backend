@@ -1,8 +1,10 @@
-import { PrismaService } from 'src/database/prisma.service';
+import { v5DataParamsPrismaClient } from 'src/database/v5-data-params-prisma-client';
 import { FunctionLogger } from 'src/shared/utils';
 
 export class MetsynRepository {
-  constructor(private prisma: PrismaService) {}
+  private prisma = v5DataParamsPrismaClient;
+
+  constructor() {}
   private readonly logger = new FunctionLogger(MetsynRepository.name);
 
   /*

@@ -1,12 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/database/prisma.service';
+
 import type { Station, StationGenre, StationPays } from './stations.types';
-import type { v5_stations } from '@prisma/client';
 import { FunctionLogger } from 'src/shared/utils';
+import { v5_stations } from 'prisma-v5_data_params/v5-data-params-database-client-types';
+import { v5DataParamsPrismaClient } from 'src/database/v5-data-params-prisma-client';
 
 @Injectable()
 export class StationsRepository {
-  constructor(private prisma: PrismaService) {}
+  private prisma = v5DataParamsPrismaClient;
+
+  constructor() {}
   private readonly logger = new FunctionLogger(StationsRepository.name);
 
   private mapping(station: v5_stations): Station {

@@ -1,9 +1,58 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
+import { AuthRepository } from './auth.repository';
+import { base64Decode, Decrypte } from './auth.utils';
+import { ConfigService } from 'src/config/config.service';
+import { FunctionLogger } from 'src/shared/utils';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService) {}
+  private readonly logger = new FunctionLogger(AuthService.name);
+  constructor(
+    private readonly userService: UserService,
+    private readonly configService: ConfigService,
+    private readonly authRepository: AuthRepository,
+  ) {}
+
+  async verifyCookieToAccountId(cookie: string) {
+    try {
+      const decodedCookie = decodeURIComponent(cookie);
+      const cook = decodedCookie.split('/');
+      const accountIdToText = Decrypte(
+        base64Decode(cook[0]),
+        `${this.configService.get('SALT_AUTH_KEY')}`,
+      );
+      const tokenToTest = cook[1];
+      const accountId = await this.verifyToken({
+        accountId: parseInt(accountIdToText),
+        tokenToVerify: tokenToTest,
+      });
+      if (!accountId) {
+        throw new Error('errors.auth.invalid_token');
+      }
+      return accountId;
+    } catch (error) {
+      this.logger.error(`${error}`);
+      throw error;
+    }
+  }
+
+  private async verifyToken({
+    tokenToVerify,
+    accountId,
+  }: {
+    tokenToVerify: string;
+    accountId: number;
+  }): Promise<number | null> {
+    const token = await this.authRepository.verifyToken({
+      tokenToVerify: tokenToVerify,
+      accountId,
+    });
+    if (!token) {
+      throw new Error('errors.auth.token_not_found');
+    }
+    return accountId;
+  }
 }
 
 /*

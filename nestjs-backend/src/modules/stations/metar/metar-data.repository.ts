@@ -1,17 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, PrismaClient } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { ConfigService } from 'src/config/config.service';
-import { PrismaService } from 'src/database/prisma.service';
 import { FunctionLogger } from 'src/shared/utils';
 import { MetarPerStationPerYmdh } from './metar-data.types';
+import { PrismaClient } from 'prisma-v5_per_year/v5-per-year-database-client-types';
 
 @Injectable()
 export class MetarDataRepository {
   private readonly logger = new FunctionLogger(MetarDataRepository.name);
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly configService: ConfigService,
-  ) {}
+  constructor(private readonly configService: ConfigService) {}
 
   private clientCache: Record<string, PrismaClient> = {};
 
@@ -34,7 +31,7 @@ export class MetarDataRepository {
     }
     if (!this.clientCache[year]) {
       this.clientCache[year] = new PrismaClient({
-        datasources: { db: { url: dbUrl } },
+        datasources: { v5_data_per_year: { url: dbUrl } },
       });
     }
     // Persist the client for year ${year} in cache:
