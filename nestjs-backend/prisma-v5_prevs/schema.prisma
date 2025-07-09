@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+  output = "../prisma-v5_prevs/v5-prevs-database-client-types"
+}
+
+datasource v5_prevs {
+  provider = "mysql"
+  url      = env("V5_PREVS_DATABASE_URL")
+}
+
+model previsionnistes {
+  id         Int @id @v5_prevs.UnsignedInt
+  zone       String @v5_prevs.VarChar(255)
+  last_prev  String @v5_prevs.VarChar(255)
+} 
