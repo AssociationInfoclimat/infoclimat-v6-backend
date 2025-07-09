@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+  output = "../prisma-v5_per_year/v5-per-year-database-client-types"
+}
+
+
+datasource v5_data_per_year {
+  provider = "mysql"
+  url      = env("__WHATEVER_V5_DATABASE_URL_PER_YEAR__") // This one will be overriden with dynamic client
+}
+
+
+//
+// /*
+// $l2 = connexionSQL("V5_data_{$YYYY}", false);
+// 
+// SELECT *
+// FROM synop_{$mois}_d{$numd}
+// WHERE {$more} AND dh_utc >= DATE_SUB(UTC_TIMESTAMP(), INTERVAL 3 HOUR)
+// ORDER BY dh_utc DESC
+// LIMIT 1
+// SQL
+//
+// SELECT * 
+// FROM metar_{$mois}_d{$numd}
+// WHERE id_station = {$l2->quote($rep['id'])}
+//     AND dh_utc >= DATE_SUB(UTC_TIMESTAMP(), INTERVAL 3 HOUR)
+// ORDER BY dh_utc DESC 
+// LIMIT 1
+// SQL
+//             <<<SQL
+// SELECT *
+// FROM synop_{$mois}_d{$numd}
+// WHERE id_station = {$l2->quote($rep['id'])}
+//     AND dh_utc >= DATE_SUB(UTC_TIMESTAMP(), INTERVAL 3 HOUR)
+// ORDER BY dh_utc DESC
+// LIMIT 1
+// SQL
+//                 <<<SQL
+// SELECT * 
+// FROM metar_{$mois}_d{$numd}
+// WHERE {$more} AND dh_utc >= DATE_SUB(UTC_TIMESTAMP(), INTERVAL 3 HOUR)
+// ORDER BY dh_utc DESC 
+// LIMIT 1
+// SQL
+//             <<<SQL
+// SELECT *
+// FROM {$rep['genre']}_{$mois}_d{$numd}
+// WHERE id_station = {$l2->quote($rep['id'])}
+//     AND dh_utc >= DATE_SUB(UTC_TIMESTAMP(), INTERVAL 3 HOUR) 
+// ORDER BY dh_utc DESC 
+// LIMIT 1
+// SQL
+//
+// 
+// temperature
+// humidite
+// point_de_rosee
+// pression
+// vent_direction
+// vent_moyen
+// vent_rafales
+// vent_rafales_10min
+// temps_omm
+
+//
+// This table is not real, 
+//  it's just a placeholder for the synop data, per station per day
+model synop_MM_dDD {
+  id_station         Int      @id @v5_data_per_year.UnsignedInt
+  dh_utc             DateTime @v5_data_per_year.DateTime
+  temperature        Float    @v5_data_per_year.Float
+  humidite           Float    @v5_data_per_year.Float // in percent
+  point_de_rosee     Float    @v5_data_per_year.Float
+  pression           Float    @v5_data_per_year.Float
+  vent_direction     Float    @v5_data_per_year.Float // in degree
+  vent_moyen         Float    @v5_data_per_year.Float
+  vent_rafales       Float    @v5_data_per_year.Float
+  vent_rafales_10min Float    @v5_data_per_year.Float
+  temps_omm          Float    @v5_data_per_year.Float
+}
+
+// This table is not real, 
+//  it's just a placeholder for the metar data, per station per day
+model metar_MM_dDD {
+  id_station         Int      @id @v5_data_per_year.UnsignedInt
+  dh_utc             DateTime @v5_data_per_year.DateTime
+  temperature        Float    @v5_data_per_year.Float
+  humidite           Float    @v5_data_per_year.Float // in percent
+  point_de_rosee     Float    @v5_data_per_year.Float
+  pression           Float    @v5_data_per_year.Float
+  vent_direction     Float    @v5_data_per_year.Float // in degree
+  vent_moyen         Float    @v5_data_per_year.Float
+  vent_rafales       Float    @v5_data_per_year.Float
+  vent_rafales_10min Float    @v5_data_per_year.Float
+  temps_omm          Float    @v5_data_per_year.Float
+}

@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/database/prisma.service';
 import { FunctionLogger } from 'src/shared/utils';
 import { DonneesCartesTuiles, DonneesCartesTuilesName } from './types';
+import { v5DataParamsPrismaClient } from 'src/database/v5-data-params-prisma-client';
 
 @Injectable()
 export class StationsMeteoRepository {
-  constructor(private prisma: PrismaService) {}
+  private prisma = v5DataParamsPrismaClient;
+
+  constructor() {}
   private readonly logger = new FunctionLogger(StationsMeteoRepository.name);
 
   async getTemperatures(

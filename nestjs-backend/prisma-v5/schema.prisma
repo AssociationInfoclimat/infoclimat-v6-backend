@@ -1,0 +1,1284 @@
+generator client {
+  provider = "prisma-client-js"
+  output = "../prisma-v5/v5-database-client-types"
+}
+
+datasource v5 {
+  provider = "mysql"
+  url      = env("V5_DATABASE_URL")
+}
+
+model accueil_extremes_alertes {
+  id               BigInt                           @id @default(autoincrement()) @v5.UnsignedBigInt
+  id_station       String                           @v5.VarChar(30)
+  date             DateTime                         @v5.Date
+  deleted          accueil_extremes_alertes_deleted
+  nbr_signalements Int
+  fixed            accueil_extremes_alertes_fixed
+
+  @@unique([id_station, date])
+}
+
+model api_previ_acces {
+  id        BigInt   @id @default(autoincrement()) @v5.UnsignedBigInt
+  dh        DateTime @v5.DateTime(0)
+  ip        Int      @v5.UnsignedInt
+  useragent String?  @v5.VarChar(255)
+  referer   String?  @v5.VarChar(255)
+  key       String?  @v5.VarChar(255)
+  type      Boolean
+
+  @@index([dh, ip])
+}
+
+model comptes_tokens {
+  id              Int      @id @default(autoincrement()) @v5.UnsignedInt
+  id_compte       Int      @v5.UnsignedInt
+  token           String   @v5.VarChar(255)
+  dh_creation     DateTime @v5.DateTime(0)
+  dh_expiration   DateTime @v5.DateTime(0)
+  ip_creation     String   @v5.VarChar(50)
+  uagent_creation String   @v5.VarChar(255)
+
+  @@index([id_compte])
+  @@index([token])
+}
+
+model comptes {
+  id                    Int                          @id @default(autoincrement())
+  dh_creation           DateTime                     @v5.DateTime(0)
+  pseudo                String                       @v5.VarChar(30)
+  mdp                   String                       @v5.TinyText
+  statuts               String                       @v5.VarChar(255)
+  dh_derniere_connexion DateTime                     @v5.DateTime(0)
+  ip_derniere_connexion String                       @v5.VarChar(15)
+  id_forum              Int
+  pseudo_forum          String                       @v5.VarChar(30)
+  confidentialite       comptes_confidentialite
+  MA_statutanc          String                       @v5.TinyText
+  MA_statut             Int                          @v5.TinyInt
+  MA_warn               Int                          @v5.MediumInt
+  MA_pays               String                       @v5.TinyText
+  MA_cp                 String                       @v5.TinyText
+  MA_notes              String                       @v5.MediumText
+  MA_obstot             Int                          @v5.MediumInt
+  MA_obsdel             Int                          @v5.MediumInt
+  MA_r_tmp              comptes_MA_r_tmp             @default(dbgenerated("1"))
+  MA_r_vent             comptes_MA_r_vent            @default(dbgenerated("1"))
+  MA_r_pluie            comptes_MA_r_pluie           @default(dbgenerated("1"))
+  MA_r_banni            String                       @v5.TinyText
+  MA_a_banni            String                       @v5.TinyText
+  MA_dh_inscription     DateTime                     @v5.DateTime(0)
+  MA_participation_vdt  comptes_MA_participation_vdt
+  MA_obstoty            Int                          @v5.MediumInt
+  MA_obsdely            Int                          @v5.MediumInt
+  parametres            String                       @v5.Text
+  dh_liaison_forum      DateTime?                    @v5.DateTime(0)
+  mdp_hash              String                       @v5.VarChar(255)
+  user_twitter          String                       @default("") @v5.VarChar(255)
+  user_facebook         String                       @default("") @v5.VarChar(255)
+  user_instagram        String                       @default("") @v5.VarChar(255)
+
+  @@unique([pseudo])
+  @@index([MA_participation_vdt])
+}
+
+enum comptes_MA_r_tmp {
+  ZERO @map("0")
+  ONE  @map("1")
+}
+
+enum comptes_MA_r_vent {
+  ZERO @map("0")
+  ONE  @map("1")
+}
+
+enum comptes_MA_r_pluie {
+  ZERO @map("0")
+  ONE  @map("1")
+}
+
+enum comptes_MA_participation_vdt {
+  ZERO @map("0")
+  ONE  @map("1")
+}
+
+enum comptes_confidentialite {
+  ZERO  @map("0")
+  ONE   @map("1")
+  TWO   @map("2")
+  THREE @map("3")
+  FOUR  @map("4")
+}
+
+enum accueil_extremes_alertes_deleted {
+  ZERO @map("0")
+  ONE  @map("1")
+}
+
+enum personnes_coordonnees_confidentialite {
+  ZERO  @map("0")
+  ONE   @map("1")
+  TWO   @map("2")
+  THREE @map("3")
+  FOUR  @map("4")
+}
+
+enum accueil_extremes_alertes_fixed {
+  ZERO @map("0")
+  ONE  @map("1")
+}
+
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model api_previ_bannis {
+//   ip         Int      @v5.UnsignedInt
+//   dh_ban     DateTime @v5.DateTime(0)
+//   reason_ban String?  @v5.VarChar(50)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model apns_devices {
+//   pid           String                   @v5.VarChar(50)
+//   clientid      String                   @v5.VarChar(64)
+//   appname       String                   @v5.VarChar(255)
+//   appversion    String?                  @v5.VarChar(25)
+//   devicetoken   String                   @v5.Char(64)
+//   devicename    String                   @v5.VarChar(255)
+//   devicemodel   String                   @v5.VarChar(100)
+//   deviceversion String                   @v5.VarChar(25)
+//   pushbadge     apns_devices_pushbadge?  @default(disabled)
+//   pushalert     apns_devices_pushalert?  @default(disabled)
+//   pushsound     apns_devices_pushsound?  @default(disabled)
+//   development   apns_devices_development @default(production)
+//   status        apns_devices_status      @default(active)
+//   created       DateTime                 @v5.DateTime(0)
+//   modified      DateTime                 @default(dbgenerated("('0000-00-00 00:00:00')")) @v5.Timestamp(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model apns_messages {
+//   pid       Int                  @default(autoincrement()) @v5.UnsignedInt
+//   clientid  String               @v5.VarChar(64)
+//   fk_device String               @v5.VarChar(50)
+//   message   String?              @v5.VarChar(2048)
+//   delivery  DateTime             @v5.DateTime(0)
+//   status    apns_messages_status @default(queued)
+//   created   DateTime             @v5.DateTime(0)
+//   modified  DateTime             @default(dbgenerated("('0000-00-00 00:00:00')")) @v5.Timestamp(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model appli_logs {
+//   id       Int            @default(autoincrement()) @v5.UnsignedInt
+//   uuid     String         @v5.VarChar(255)
+//   key      String         @v5.VarChar(255)
+//   function String         @v5.VarChar(255)
+//   hit      appli_logs_hit @default(dbgenerated("0"))
+//   time     Float          @v5.Float
+//   dh       DateTime       @v5.DateTime(0)
+//   get      String         @v5.VarChar(1024)
+//   post     String         @v5.VarChar(255)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model appli_notifications {
+//   id                       Int                             @default(autoincrement()) @v5.UnsignedInt
+//   fk_device                String                          @v5.VarChar(50)
+//   device_type              appli_notifications_device_type
+//   dh                       DateTime                        @v5.DateTime(0)
+//   type_notif               Boolean
+//   alert_pluie              Boolean                         @default(false)
+//   alert_temperature        Boolean                         @default(false)
+//   alert_rr24               Boolean                         @default(false)
+//   alert_rr1                Boolean                         @default(false)
+//   alert_hr                 Boolean                         @default(false)
+//   alert_hpa                Boolean                         @default(false)
+//   alert_neige              Boolean                         @default(false)
+//   alert_vent               Boolean                         @default(false)
+//   alert_visi               Boolean                         @default(false)
+//   alert_orage_grele_gresil Boolean                         @default(false)
+//   alert_verglas            Boolean                         @default(false)
+//   alert_brouillard         Boolean                         @default(false)
+//   alert_tornade_tuba       Boolean                         @default(false)
+//   donnees                  String                          @v5.Text
+//   stations                 String?                         @v5.VarChar(255)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model appli_params {
+//   id                  Int                      @default(autoincrement()) @v5.UnsignedInt
+//   id_compte           Int?                     @v5.UnsignedInt
+//   fk_device           String                   @v5.VarChar(50)
+//   device_type         appli_params_device_type
+//   dh_maj              DateTime                 @v5.DateTime(0)
+//   has_geoloc          Boolean                  @default(false)
+//   last_latitude       Float?                   @v5.Float
+//   last_longitude      Float?                   @v5.Float
+//   last_processed_dept String?                  @v5.VarChar(20)
+//   params              String                   @v5.Text
+//   conf                String                   @v5.Text
+//   prev_geoids         String                   @v5.Text
+//   prev_num            Int                      @default(0) @v5.UnsignedTinyInt
+//   obs_ids             String                   @v5.Text
+//   obs_num             Int                      @default(0) @v5.UnsignedTinyInt
+//   bs_notif            Boolean                  @default(false)
+//   mp_notif            Boolean                  @default(false)
+//   vigi                Boolean                  @default(false)
+//   vigi_dpts           String                   @v5.Text
+//   foudre_num          Boolean                  @default(false)
+//   radar_num           Boolean                  @default(false)
+//   disabled            Boolean                  @default(false)
+//   dh_notifs_read      DateTime?                @v5.DateTime(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model appli_tokens {
+//   id                BigInt   @default(autoincrement()) @v5.UnsignedBigInt
+//   id_compte         Int      @v5.UnsignedInt
+//   UUID              String   @v5.VarChar(255)
+//   user_unique_token String   @v5.VarChar(50)
+//   dh_token          DateTime @v5.DateTime(0)
+//   dh_last_use       DateTime @v5.DateTime(0)
+//   salt2             String   @v5.VarChar(50)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model boutique {
+//   id_produit      Int    @default(autoincrement()) @v5.UnsignedInt
+//   titre           String @v5.VarChar(255)
+//   prix_unitaire   Float
+//   frais_port      Float  @v5.Float
+//   choix_couleur   String @v5.VarChar(255)
+//   disponibilite   Float
+//   txt             String @v5.LongText
+//   externe         Int    @default(0) @v5.TinyInt
+//   remise_adherent Float  @default(0) @v5.Float
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model boutique_commandes {
+//   id_commande         Int                         @default(autoincrement()) @v5.UnsignedInt
+//   produits            String                      @v5.LongText
+//   prix_tot            Float                       @v5.Float
+//   adresse             String                      @v5.Text
+//   id_compte           Int
+//   etat                Int                         @default(0) @v5.TinyInt
+//   dh_derniere_relance DateTime?                   @v5.DateTime(0)
+//   dh_commande         DateTime                    @v5.DateTime(0)
+//   dh_paiement         DateTime                    @v5.DateTime(0)
+//   dh_expedition       DateTime                    @v5.DateTime(0)
+//   paiement            boutique_commandes_paiement
+//   liste_id_produits   String?                     @v5.VarChar(255)
+//   suivi_laposte       String                      @v5.VarChar(40)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model bs_suivi_propositions {
+//   id     Int                          @default(autoincrement())
+//   dh     DateTime                     @v5.DateTime(0)
+//   pseudo String                       @v5.TinyText
+//   id_bs  Int
+//   texte  String                       @v5.MediumText
+//   valide bs_suivi_propositions_valide
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model carte_MA_cache {
+//   latitude    Float  @v5.Float
+//   longitude   Float  @v5.Float
+//   coslat      Float  @v5.Float
+//   lonrad      Float  @v5.Float
+//   sinlat      Float  @v5.Float
+//   priorite    Int
+//   uid         Int    @v5.UnsignedInt
+//   time        Int
+//   roundedtime Int
+//   data        String @v5.VarChar(4092)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model cartes {
+//   nom      String    @v5.VarChar(255)
+//   derniere DateTime? @v5.DateTime(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model cartes_tuiles {
+//   nom     String @v5.VarChar(255)
+//   donnees String @v5.VarChar(255)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model codes_valid_email {
+//   id            Int       @default(autoincrement()) @v5.UnsignedInt
+//   email         String    @v5.VarChar(255)
+//   code          String    @v5.VarChar(6)
+//   dh_envoi_code DateTime  @v5.DateTime(0)
+//   dh_valid_code DateTime? @v5.DateTime(0)
+//
+//   @@ignore
+// }
+//
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model comptes_cookie_tokens {
+//   id               BigInt   @default(autoincrement()) @v5.UnsignedBigInt
+//   credential       Int      @v5.UnsignedInt
+//   token            String   @default("") @v5.Char(40)
+//   persistent_token String   @default("") @v5.Char(40)
+//   expires          DateTime @v5.DateTime(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model comptes_pseudos {
+//   id        Int      @default(autoincrement())
+//   pseudo    String   @v5.TinyText
+//   dh_debut  DateTime @v5.DateTime(0)
+//   dh_fin    DateTime @v5.DateTime(0)
+//   id_compte Int
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model comptes_reinitialisations {
+//   id         Int       @default(autoincrement()) @v5.UnsignedInt
+//   id_compte  Int?      @v5.UnsignedInt
+//   token      String    @v5.VarChar(255)
+//   ip         String    @v5.VarChar(255)
+//   useragent  String    @v5.VarChar(255)
+//   dh         DateTime  @v5.DateTime(0)
+//   champ      String    @v5.VarChar(255)
+//   reset_ok   Int       @v5.UnsignedTinyInt
+//   reset_date DateTime? @v5.DateTime(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model comptes_statuts {
+//   id            Int    @v5.TinyInt
+//   statut        String @v5.TinyText
+//   email_contact String @v5.TinyText
+//   description   String @v5.MediumText
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model connectes {
+//   id      Int      @default(autoincrement())
+//   ip      String   @v5.VarChar(15)
+//   dh      DateTime @v5.DateTime(0)
+//   pseudo  Int?
+//   url     String?  @v5.VarChar(255)
+//   auth    String?  @v5.VarChar(50)
+//   referer String?  @v5.VarChar(255)
+//   uagent  String?  @v5.VarChar(255)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model contribuer_contributeurs {
+//   id          Int    @default(autoincrement()) @v5.UnsignedInt
+//   id_compte   Int    @v5.UnsignedInt
+//   ligne2      String @v5.VarChar(255)
+//   ligne3      String @v5.VarChar(70)
+//   description String @v5.Text
+//   photo       String @v5.VarChar(100)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model contribuer_rubriques {
+//   id               Int    @default(autoincrement()) @v5.UnsignedInt
+//   titre            String @v5.VarChar(255)
+//   ordre            Int    @v5.UnsignedInt
+//   description      String @v5.Text
+//   referents        String @v5.VarChar(255)
+//   popup_plus       String @v5.Text
+//   lien1_texte      String @v5.VarChar(255)
+//   lien1_href       String @v5.VarChar(255)
+//   lien2_texte      String @v5.VarChar(255)
+//   lien2_href       String @v5.VarChar(255)
+//   temps_necessaire String @v5.Text
+//   lien_contact     String @v5.VarChar(255)
+//   competences      String @v5.Text
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model coordonnees_types {
+//   id          Int    @v5.TinyInt
+//   description String @v5.TinyText
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model electric_comments {
+//   id          Int                      @default(autoincrement()) @v5.UnsignedInt
+//   id_point    Int                      @v5.UnsignedInt
+//   id_compte   Int                      @v5.UnsignedInt
+//   dh          DateTime                 @v5.DateTime(0)
+//   commentaire String                   @v5.Text
+//   note        Boolean?
+//   review      electric_comments_review @default(dbgenerated("0"))
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model electric_photolive {
+//   id_point        Int      @v5.UnsignedInt
+//   id_photolive    Int      @v5.UnsignedInt
+//   id_compte       Int      @v5.UnsignedInt
+//   dh              DateTime @v5.DateTime(0)
+//   point_cardinal  String?  @v5.VarChar(5)
+//   retrait_demande Int      @default(0) @v5.UnsignedInt
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model electric_photos {
+//   id             Int                    @default(autoincrement()) @v5.UnsignedInt
+//   id_point       Int                    @v5.UnsignedInt
+//   id_compte      Int                    @v5.UnsignedInt
+//   dh             DateTime               @v5.DateTime(0)
+//   filename       String                 @v5.VarChar(255)
+//   point_cardinal String?                @v5.VarChar(5)
+//   review         electric_photos_review @default(dbgenerated("0"))
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model electric_points {
+//   id          Int                         @default(autoincrement()) @v5.UnsignedInt
+//   id_compte   Int                         @v5.UnsignedInt
+//   latitude    Float                       @v5.Float
+//   longitude   Float                       @v5.Float
+//   dh_add      DateTime                    @v5.DateTime(0)
+//   dh_mod      DateTime                    @v5.DateTime(0)
+//   lieu        String                      @v5.VarChar(255)
+//   acces       Boolean?
+//   abrite      Boolean?
+//   lumiere     Boolean?
+//   connexion   Boolean?
+//   angle_vue   String                      @v5.TinyText
+//   commentaire String                      @v5.Text
+//   street_view electric_points_street_view @default(dbgenerated("0"))
+//   review      electric_points_review      @default(dbgenerated("0"))
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model electric_users {
+//   id_compte      Int       @v5.UnsignedInt
+//   tracking       Boolean   @default(false)
+//   last_known_lat Float?    @v5.Float
+//   last_known_lon Float?    @v5.Float
+//   last_known_dh  DateTime? @v5.DateTime(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model espace_stockage {
+//   id          BigInt   @default(autoincrement()) @v5.UnsignedBigInt
+//   id_compte   BigInt   @v5.UnsignedBigInt
+//   dh          DateTime @v5.DateTime(0)
+//   dossier     String?  @v5.VarChar(255)
+//   taille      Int      @v5.UnsignedInt
+//   nom_brut    String   @v5.VarChar(255)
+//   fichier     String   @v5.VarChar(255)
+//   commentaire String   @v5.Text
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model extranet_logs_consultation {
+//   id        Int                               @default(autoincrement())
+//   dh        DateTime                          @v5.DateTime(0)
+//   id_compte Int                               @v5.MediumInt
+//   pseudo    String                            @v5.VarChar(30)
+//   page      String                            @v5.TinyText
+//   ip        String                            @v5.VarChar(23)
+//   alerte    extranet_logs_consultation_alerte @default(dbgenerated("0"))
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model faq {
+//   id       Int    @default(autoincrement()) @v5.UnsignedInt
+//   position Int    @v5.UnsignedInt
+//   question String @v5.VarChar(255)
+//   reponse  String @v5.Text
+//   tags     Int    @default(0) @v5.UnsignedTinyInt
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model force_disconnect {
+//   id_compte Int @v5.UnsignedInt
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model foudre {
+//   dh        DateTime @v5.DateTime(0)
+//   dh_usec   Int      @v5.UnsignedInt
+//   key       String   @v5.VarChar(32)
+//   lat       Float    @v5.Float
+//   lon       Float    @v5.Float
+//   alt       Int      @v5.UnsignedInt
+//   intensite Int      @v5.UnsignedInt
+//   dev       Int      @v5.UnsignedSmallInt
+//   type      Int      @v5.TinyInt
+//   stations  String   @v5.VarChar(255)
+//
+//   @@ignore
+// }
+//
+// /// This table is a partition table and requires additional setup for migrations. Visit https://pris.ly/d/partition-tables for more info.
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model foudre2019 {
+//   dh        DateTime @v5.DateTime(0)
+//   dh_usec   Int      @v5.UnsignedInt
+//   key       String   @v5.VarChar(32)
+//   lat       Float    @v5.Float
+//   lon       Float    @v5.Float
+//   alt       Int      @v5.UnsignedInt
+//   intensite Int      @v5.UnsignedInt
+//   dev       Int      @v5.UnsignedSmallInt
+//   type      Int      @v5.TinyInt
+//   stations  String   @v5.VarChar(255)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model foudre2023 {
+//   dh        DateTime @v5.DateTime(0)
+//   dh_usec   Int      @v5.UnsignedInt
+//   key       String   @v5.VarChar(32)
+//   lat       Float    @v5.Float
+//   lon       Float    @v5.Float
+//   alt       Int      @v5.UnsignedInt
+//   intensite Int      @v5.UnsignedInt
+//   dev       Int      @v5.UnsignedSmallInt
+//   type      Int      @v5.TinyInt
+//   stations  String   @v5.VarChar(255)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model foudrebak2 {
+//   dh        DateTime @v5.DateTime(0)
+//   dh_usec   Int      @v5.UnsignedInt
+//   key       String   @v5.VarChar(32)
+//   lat       Float    @v5.Float
+//   lon       Float    @v5.Float
+//   alt       Int      @v5.UnsignedInt
+//   intensite Int      @v5.UnsignedInt
+//   dev       Int      @v5.UnsignedSmallInt
+//   type      Int      @v5.TinyInt
+//   stations  String   @v5.VarChar(255)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model foudrebak201904 {
+//   dh        DateTime @v5.DateTime(0)
+//   dh_usec   Int      @v5.UnsignedInt
+//   key       String   @v5.VarChar(32)
+//   lat       Float    @v5.Float
+//   lon       Float    @v5.Float
+//   alt       Int      @v5.UnsignedInt
+//   intensite Int      @v5.UnsignedInt
+//   dev       Int      @v5.UnsignedSmallInt
+//   type      Int      @v5.TinyInt
+//   stations  String   @v5.VarChar(255)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model foudrebak3 {
+//   dh        DateTime @v5.DateTime(0)
+//   dh_usec   Int      @v5.UnsignedInt
+//   key       String   @v5.VarChar(32)
+//   lat       Float    @v5.Float
+//   lon       Float    @v5.Float
+//   alt       Int      @v5.UnsignedInt
+//   intensite Int      @v5.UnsignedInt
+//   dev       Int      @v5.UnsignedSmallInt
+//   type      Int      @v5.TinyInt
+//   stations  String   @v5.VarChar(255)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model gcm_devices {
+//   pid           String                  @v5.VarChar(40)
+//   clientid      String                  @v5.VarChar(64)
+//   appname       String                  @v5.VarChar(255)
+//   appversion    String?                 @v5.VarChar(25)
+//   devicetoken   String                  @v5.Char(255)
+//   devicename    String                  @v5.VarChar(255)
+//   devicemodel   String                  @v5.VarChar(100)
+//   deviceversion String                  @v5.VarChar(25)
+//   pushbadge     gcm_devices_pushbadge?  @default(disabled)
+//   pushalert     gcm_devices_pushalert?  @default(disabled)
+//   pushsound     gcm_devices_pushsound?  @default(disabled)
+//   development   gcm_devices_development @default(production)
+//   status        gcm_devices_status      @default(active)
+//   created       DateTime                @v5.DateTime(0)
+//   modified      DateTime                @default(dbgenerated("('0000-00-00 00:00:00')")) @v5.Timestamp(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model gcm_messages {
+//   pid       Int                 @default(autoincrement()) @v5.UnsignedInt
+//   clientid  String              @v5.VarChar(64)
+//   fk_device String              @v5.VarChar(40)
+//   message   String?             @v5.VarChar(2048)
+//   delivery  DateTime            @v5.DateTime(0)
+//   status    gcm_messages_status @default(queued)
+//   created   DateTime            @v5.DateTime(0)
+//   modified  DateTime            @default(dbgenerated("('0000-00-00 00:00:00')")) @v5.Timestamp(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model ic_medias {
+//   id            Int      @default(autoincrement()) @v5.UnsignedInt
+//   dh            DateTime @v5.Date
+//   url_media     String   @v5.VarChar(255)
+//   img_media     String   @v5.VarChar(255)
+//   commentaire   String   @v5.Text
+//   data_extrait  String   @v5.VarChar(255)
+//   data_vignette String   @v5.VarChar(255)
+//   type          String   @v5.VarChar(255)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model infos_site {
+//   id     Int             @default(autoincrement()) @v5.UnsignedInt
+//   titre  String          @v5.VarChar(255)
+//   texte  String          @v5.LongText
+//   auteur Int
+//   dh     DateTime        @v5.DateTime(0)
+//   type   infos_site_type @default(autre)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model lesaviezvous {
+//   id    Int    @default(autoincrement()) @v5.UnsignedInt
+//   texte String @v5.Text
+//   lien  String @v5.VarChar(255)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model lieux_preferes {
+//   id        Int    @default(autoincrement())
+//   id_compte Int
+//   lieu      String @v5.VarChar(255)
+//   dept      String @v5.VarChar(255)
+//   pays      String @v5.VarChar(255)
+//   lat       String @v5.VarChar(255)
+//   lon       String @v5.VarChar(255)
+//   geoid     Int
+//   is_master Int?   @default(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model likes {
+//   id        Int      @default(autoincrement()) @v5.UnsignedInt
+//   id_MA     Int?     @v5.UnsignedInt
+//   id_TC     Int?     @v5.UnsignedInt
+//   id_photo  Int?     @v5.UnsignedInt
+//   id_compte Int      @v5.UnsignedInt
+//   dh        DateTime @v5.DateTime(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model likes_cache {
+//   type  likes_cache_type @default(ma)
+//   id    Int              @v5.UnsignedInt
+//   cache String           @v5.Text
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model logs_activite {
+//   id         Int                  @default(autoincrement())
+//   id_compte  Int                  @default(0)
+//   dh         DateTime             @v5.DateTime(0)
+//   ip         String               @v5.VarChar(50)
+//   url        String               @v5.VarChar(255)
+//   user_agent String               @default("0") @v5.VarChar(255)
+//   session    String               @default("0") @v5.VarChar(200)
+//   action     logs_activite_action
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model messages_alerte_bas {
+//   id         Int     @default(autoincrement())
+//   titre      String  @v5.VarChar(255)
+//   contenu    String  @v5.VarChar(5000)
+//   last_modif Int
+//   ip_modif   String  @v5.VarChar(50)
+//   valide     Int     @default(0) @v5.TinyInt
+//   importance Boolean @default(false)
+//   lien       String  @v5.VarChar(100)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model meteoalerte {
+//   id                 Int      @v5.UnsignedInt
+//   type               Boolean  @default(true)
+//   idc                Int?     @v5.UnsignedInt
+//   dh                 DateTime @v5.DateTime(0)
+//   latitude           Float    @v5.Float
+//   longitude          Float    @v5.Float
+//   countrycode        String?  @v5.Char(2)
+//   metadata           String   @v5.Text
+//   tornade            Boolean  @default(false)
+//   funnel             Boolean  @default(false)
+//   poudrerie          Boolean  @default(false)
+//   wallcloud          Boolean  @default(false)
+//   inondation         Boolean  @default(false)
+//   verglas            Boolean  @default(false)
+//   verglas_sol        Boolean  @default(false)
+//   gresil             Boolean  @default(false)
+//   grele              Boolean  @default(false)
+//   ligne_grains       Boolean  @default(false)
+//   vent               Boolean  @default(false)
+//   brouillard         Boolean  @default(false)
+//   brouillard_givrant Boolean  @default(false)
+//   pluie_neige        Boolean  @default(false)
+//   neige              Boolean  @default(false)
+//   neige_averse       Boolean  @default(false)
+//   precip_abondante   Boolean  @default(false)
+//   pluie              Boolean  @default(false)
+//   bruine_forte       Boolean  @default(false)
+//   neige_abondante    Boolean  @default(false)
+//   foudre             Boolean  @default(false)
+//   foudre_frequente   Boolean  @default(false)
+//   averses            Boolean  @default(false)
+//   canicule           Boolean  @default(false)
+//   froid              Boolean  @default(false)
+//   orage              Boolean  @default(false)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model mp_messages {
+//   id        BigInt   @default(autoincrement())
+//   id_fil    BigInt
+//   id_compte Int
+//   dh        DateTime @v5.DateTime(0)
+//   msg       String   @v5.LongText
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model mp_mp {
+//   id                Int    @default(autoincrement())
+//   id_destinataire   Int
+//   id_expediteur     Int
+//   pseudo_expediteur String @v5.Text
+//   timestamp         Int
+//   etat_dest         Int
+//   etat_envoi        Int
+//   contenu           String @v5.Text
+//   titre             String @v5.Text
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model opendata_tokens {
+//   id          Int                        @default(autoincrement()) @v5.UnsignedInt
+//   id_compte   Int                        @v5.UnsignedInt
+//   commercial  opendata_tokens_commercial
+//   cle         String                     @v5.VarChar(255)
+//   dh_creation DateTime                   @v5.DateTime(0)
+//   hits        Int                        @default(0) @v5.UnsignedInt
+//   ipv4        Int                        @v5.UnsignedInt
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model participations_sondages {
+//   cle  String   @v5.VarChar(50)
+//   date DateTime @v5.DateTime(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model participations_sondages_ancien {
+//   id_compte Int      @v5.UnsignedInt
+//   date      DateTime @v5.DateTime(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+// model personnes {
+//   id                  Int                @default(autoincrement())
+//   civilite            personnes_civilite
+//   nom                 String             @v5.TinyText
+//   prenom              String             @v5.TinyText
+//   date_naissance      DateTime           @v5.DateTime(0)
+//   lieu_naissance      String             @v5.TinyText
+//   profession          String             @v5.TinyText
+//   passion_meteo       String             @v5.Text
+//   passion_autres      String             @v5.Text
+//   confidentialite     Int                @default(2) @v5.SmallInt
+//   id_compte           Int
+//   profil_public_state Int                @default(0) @v5.TinyInt
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model personnes_coordonnees {
+//   id              Int                                   @default(autoincrement())
+//   type            personnes_coordonnees_type
+//   coordonnee      String                                @v5.TinyText
+//   confidentialite personnes_coordonnees_confidentialite @default(dbgenerated("0"))
+//   id_personne     Int
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model personnes_lieux {
+//   id                 Int                                @default(autoincrement())
+//   numero             Int                                @v5.SmallInt
+//   precision          String                             @v5.TinyText
+//   voie               String                             @v5.TinyText
+//   code_postal        String                             @v5.VarChar(10)
+//   ville              String                             @v5.TinyText
+//   id_geonames        Int
+//   domicile_principal personnes_lieux_domicile_principal
+//   dh_debut           DateTime                           @v5.DateTime(0)
+//   dh_fin             DateTime                           @v5.DateTime(0)
+//   confidentialite    personnes_lieux_confidentialite
+//   id_personne        Int
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model radar {
+//   dh   DateTime @v5.DateTime(0)
+//   p0   Int      @v5.UnsignedMediumInt
+//   p1   Int      @v5.UnsignedMediumInt
+//   p2   Int      @v5.UnsignedMediumInt
+//   p3   Int      @v5.UnsignedMediumInt
+//   p4   Int      @v5.UnsignedMediumInt
+//   p5   Int      @v5.UnsignedMediumInt
+//   p6   Int      @v5.UnsignedMediumInt
+//   p7   Int      @v5.UnsignedMediumInt
+//   p8   Int      @v5.UnsignedMediumInt
+//   p9   Int      @v5.UnsignedMediumInt
+//   p10  Int      @v5.UnsignedMediumInt
+//   p11  Int      @v5.UnsignedMediumInt
+//   ptot Int      @v5.UnsignedMediumInt
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model recherches {
+//   query      String   @v5.VarChar(255)
+//   results    Int
+//   hits       BigInt
+//   last_query DateTime @v5.DateTime(0)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model recherches_index {
+//   id    Int    @default(autoincrement()) @v5.UnsignedInt
+//   url   String @v5.VarChar(255)
+//   titre String @v5.VarChar(255)
+//   tags  String @v5.MediumText
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model saints {
+//   Jour     Int      @default(0) @v5.UnsignedMediumInt
+//   Fete     String   @default("") @v5.VarChar(255)
+//   Lever    DateTime @default(dbgenerated("('00:00:00')")) @v5.Time(0)
+//   Coucher  DateTime @default(dbgenerated("('00:00:00')")) @v5.Time(0)
+//   JourMois String   @default("") @v5.VarChar(10)
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model temps_calme {
+//   id             BigInt             @default(autoincrement()) @v5.UnsignedBigInt
+//   id_compte      Int
+//   dh_ajout       DateTime           @v5.DateTime(0)
+//   dh_ip          DateTime           @v5.DateTime(0)
+//   ip             String             @v5.VarChar(50)
+//   geonamesid     String             @v5.VarChar(200)
+//   dept           String             @v5.VarChar(50)
+//   pays           String             @v5.Text
+//   lieu           String             @v5.Text
+//   texte          String?            @v5.Text
+//   picto          String?            @v5.VarChar(255)
+//   valide         temps_calme_valide @default(dbgenerated("0"))
+//   T_air          String?            @v5.VarChar(255)
+//   T_eau          String?            @v5.VarChar(255)
+//   hauteur_neige  String?            @v5.VarChar(255)
+//   altitude_neige String?            @v5.VarChar(255)
+//   drapeau        String?            @v5.VarChar(255)
+//   altitude       Float?
+//   photoliveid    BigInt?
+//   latitude       Float?             @v5.Float
+//   longitude      Float?             @v5.Float
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model tests {
+//   id         Int              @default(autoincrement())
+//   date       DateTime         @v5.Date
+//   titre      String           @v5.TinyText
+//   action     String           @v5.MediumText
+//   lien       String           @v5.MediumText
+//   difficulte tests_difficulte
+//   valide     tests_valide
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model tests_execution {
+//   id          Int                        @default(autoincrement())
+//   pseudo      String                     @v5.TinyText
+//   dh          DateTime                   @v5.DateTime(0)
+//   validation  tests_execution_validation
+//   commentaire String                     @v5.MediumText
+//   id_test     Int
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model tests_ip_valables {
+//   id        Int      @default(autoincrement())
+//   ip        String   @v5.TinyText
+//   dh        DateTime @v5.DateTime(0)
+//   id_compte Int
+//
+//   @@ignore
+// }
+//
+// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+// model tests_pages {
+//   id     Int                @default(autoincrement())
+//   date   DateTime           @v5.Date
+//   texte  String             @v5.TinyText
+//   lien   String             @v5.MediumText
+//   valide tests_pages_valide
+//
+//   @@ignore
+// }
+//
+// enum likes_cache_type {
+//   ma
+//   tc
+// }
+//
+// enum personnes_civilite {
+//   Mademoiselle
+//   Madame
+//   Monsieur
+//   EMPTY_ENUM_VALUE @map("")
+// }
+//
+// enum personnes_coordonnees_type {
+//   // 0 @map("0")
+//   // 1 @map("1")
+//   // 2 @map("2")
+//   // 3 @map("3")
+//   // 4 @map("4")
+//   // 10 @map("10")
+//   // 11 @map("11")
+//   // 12 @map("12")
+//   // 13 @map("13")
+//   // 20 @map("20")
+//   // 21 @map("21")
+//   // 22 @map("22")
+// }
+//
+// enum appli_notifications_device_type {
+//   apns
+//   gcm
+// }
+//
+// enum opendata_tokens_commercial {
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+// enum appli_params_device_type {
+//   apns
+//   gcm
+// }
+//
+//
+// enum tests_execution_validation {
+//   // -1 @map("-1")
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+// enum tests_pages_valide {
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+// enum appli_logs_hit {
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+// enum bs_suivi_propositions_valide {
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+//
+// enum gcm_messages_status {
+//   queued
+//   delivered
+//   failed
+// }
+//
+// enum tests_difficulte {
+//   // 1 @map("1")
+//   // 2 @map("2")
+//   // 3 @map("3")
+//   // 4 @map("4")
+//   // 5 @map("5")
+// }
+//
+// enum apns_messages_status {
+//   queued
+//   delivered
+//   failed
+// }
+//
+// enum infos_site_type {
+//   webcam
+//   static
+//   station
+//   climato
+//   autre
+// }
+//
+// enum electric_photos_review {
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+// enum extranet_logs_consultation_alerte {
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+// enum tests_valide {
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+// enum electric_comments_review {
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+// enum logs_activite_action {
+//   inscription
+//   validationInscription
+//   connexion
+//   tempsCalme
+// }
+//
+// enum personnes_lieux_domicile_principal {
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+// enum apns_devices_pushbadge {
+//   disabled
+//   enabled
+// }
+//
+// enum gcm_devices_pushbadge {
+//   disabled
+//   enabled
+// }
+//
+//
+// enum apns_devices_pushalert {
+//   disabled
+//   enabled
+// }
+//
+// enum gcm_devices_pushalert {
+//   disabled
+//   enabled
+// }
+//
+// enum apns_devices_pushsound {
+//   disabled
+//   enabled
+// }
+//
+// enum boutique_commandes_paiement {
+//   paypal
+//   virement
+//   cheque
+// }
+//
+// enum gcm_devices_pushsound {
+//   disabled
+//   enabled
+// }
+//
+// enum personnes_lieux_confidentialite {
+//   // 0 @map("0")
+//   // 1 @map("1")
+//   // 2 @map("2")
+//   // 3 @map("3")
+//   // 4 @map("4")
+// }
+//
+// enum apns_devices_development {
+//   production
+//   sandbox
+// }
+//
+// enum gcm_devices_development {
+//   production
+//   sandbox
+// }
+//
+// enum temps_calme_valide {
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+// enum apns_devices_status {
+//   active
+//   uninstalled
+// }
+//
+// enum gcm_devices_status {
+//   active
+//   uninstalled
+// }
+//
+// enum electric_points_street_view {
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+// enum electric_points_review {
+//   // 0 @map("0")
+//   // 1 @map("1")
+// }
+//
+//
+//
+//
+//
