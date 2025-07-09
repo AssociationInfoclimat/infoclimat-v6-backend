@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "prisma:generate": "npx prisma generate --schema ./prisma-v5_per_year/schema.prisma && npx prisma generate --schema ./prisma-v5/schema.prisma && npx prisma generate --schema ./prisma-v5_data_params/schema.prisma",
+    "prisma:generate": "npx prisma generate --schema ./prisma-v5_per_year/schema.prisma && npx prisma generate --schema ./prisma-v5/schema.prisma && npx prisma generate --schema ./prisma-v5_data_params/schema.prisma && npx prisma generate --schema ./prisma-v5_prevs/schema.prisma",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "api:start:dev": "nest start --watch -c nest-cli.api.json -p ./tsconfig.api.json",
     "api:start:prod": "node dist/entrypoint-api",
