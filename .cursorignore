@@ -1,0 +1,7 @@
+dist
+dist-api
+dist-cron
+
+.cursorignore
+node_modules
+.env
