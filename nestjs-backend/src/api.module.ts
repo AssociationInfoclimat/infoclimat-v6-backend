@@ -8,7 +8,7 @@ import { UserAuthMiddleware } from './middlewares/user-auth.middleware';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserController } from './modules/user/user.controller';
-import { AuthStrategy } from './modules/auth/auth.strategy';
+import { AuthController } from './modules/auth/auth.controller';
 
 @Module({
   imports: [
@@ -22,7 +22,7 @@ import { AuthStrategy } from './modules/auth/auth.strategy';
     AuthModule,
   ],
   // We explicitely import the controllers here. We want our services to expose controllers.
-  controllers: [PreviController, UserController],
+  controllers: [PreviController, UserController, AuthController],
   providers: [],
 })
 export class ApiModule {

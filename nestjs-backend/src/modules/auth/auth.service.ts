@@ -9,7 +9,6 @@ import { FunctionLogger } from 'src/shared/utils';
 export class AuthService {
   private readonly logger = new FunctionLogger(AuthService.name);
   constructor(
-    private readonly userService: UserService,
     private readonly configService: ConfigService,
     private readonly authRepository: AuthRepository,
   ) {}
