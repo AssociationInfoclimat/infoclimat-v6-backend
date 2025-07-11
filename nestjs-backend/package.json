@@ -6,7 +6,12 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "prisma:generate": "npx prisma generate --schema ./prisma-v5_per_year/schema.prisma && npx prisma generate --schema ./prisma-v5/schema.prisma && npx prisma generate --schema ./prisma-v5_data_params/schema.prisma && npx prisma generate --schema ./prisma-v5_prevs/schema.prisma",
+    "prisma:generate:dico": "npx prisma generate --schema ./prisma-dico/schema.prisma",
+    "prisma:generate:v5": "npx prisma generate --schema ./prisma-v5/schema.prisma",
+    "prisma:generate:v5_per_year": "npx prisma generate --schema ./prisma-v5_per_year/schema.prisma",
+    "prisma:generate:v5_data_params": "npx prisma generate --schema ./prisma-v5_data_params/schema.prisma",
+    "prisma:generate:v5_prevs": "npx prisma generate --schema ./prisma-v5_prevs/schema.prisma",
+    "prisma:generate": "npm run prisma:generate:v5_per_year && npm run prisma:generate:v5 && npm run prisma:generate:v5_data_params && npm run prisma:generate:v5_prevs && npm run prisma:generate:dico",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "api:start:dev": "nest start --watch -c nest-cli.api.json -p ./tsconfig.api.json",
     "api:start:prod": "node dist/entrypoint-api",
