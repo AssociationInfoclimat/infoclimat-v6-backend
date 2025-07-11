@@ -9,6 +9,8 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserController } from './modules/user/user.controller';
 import { AuthController } from './modules/auth/auth.controller';
+import { DicoController } from './modules/dico/dico.controller';
+import { DicoModule } from './modules/dico/dico.module';
 
 @Module({
   imports: [
@@ -20,9 +22,15 @@ import { AuthController } from './modules/auth/auth.controller';
     PreviModule,
     UserModule,
     AuthModule,
+    DicoModule,
   ],
   // We explicitely import the controllers here. We want our services to expose controllers.
-  controllers: [PreviController, UserController, AuthController],
+  controllers: [
+    PreviController,
+    UserController,
+    AuthController,
+    DicoController,
+  ],
   providers: [],
 })
 export class ApiModule {

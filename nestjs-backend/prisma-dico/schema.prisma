@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+  output = "../prisma-dico/dico-database-client-types"
+}
+
+datasource dico {
+  provider = "mysql"
+  url      = env("DICO_DATABASE_URL")
+}
+
+model lexique {
+  id Int @id @default(autoincrement())
+  mot String
+  valide Int @default(1)
+}
