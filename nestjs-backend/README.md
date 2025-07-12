@@ -4,6 +4,8 @@ For some modules, you will need MySQL5 db access.
 
 Start a MySQL5 db (you can use the docker-compose in parent directory).
 
+Make sure you are running redis too.
+
 ```bash
 nvm use
 npm ci
