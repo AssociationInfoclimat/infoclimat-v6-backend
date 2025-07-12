@@ -1,7 +1,8 @@
 import { comptes } from 'prisma-v5/v5-database-client-types';
 import { v5DBPrismaClient } from 'src/database/v5-prisma-client';
 import { FunctionLogger } from 'src/shared/utils';
-import { User, UserStatus } from './user.types';
+import { User, UserParams, UserStatus, UserVignette } from './user.types';
+import { DEFAULT_USER_PARAMS } from './user.constants';
 
 export class UserRepository {
   private prisma = v5DBPrismaClient;
@@ -15,10 +16,28 @@ export class UserRepository {
     if (!user.pseudo) {
       throw new Error('User pseudo is required');
     }
+    let userParams: UserParams = DEFAULT_USER_PARAMS;
+    try {
+      if (!user.parametres) {
+        throw new Error('errors.user.user_params_not_found');
+      }
+      // The legacy object needs to be converted. It contains "vignettes" but not "stations".
+      const legacyUserParams = JSON.parse(user.parametres) as Omit<
+        UserParams,
+        'stations'
+      > & { s: [string, string][] };
+      userParams = {
+        vignettes: legacyUserParams.vignettes,
+        stations: legacyUserParams.s,
+      };
+    } catch (error) {
+      // Mute that error
+    }
     return {
       id: user.id,
       pseudo: user.pseudo,
       statuses: this.getStatusesFromUser(user.statuts),
+      params: userParams,
     };
   }
 
