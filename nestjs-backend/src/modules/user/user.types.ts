@@ -1,7 +1,31 @@
-export type User = {
-  id: number;
-  pseudo: string;
-  statuses: UserStatus[];
+
+// Was a bit over-complicated in PHP-legacy:
+//  $this->userparams = json_decode($val['parametres'], true)
+//  used to be like:
+//   {"vignettes":["s","p","v","c","p","p","p","p"],"s":[["07480","Lyon-Bron"]]}
+export enum UserVignette {
+  STATION = 's',
+  PHOTO = 'p',
+  VIGILANCE = 'v',
+  CRUE = 'c',
+}
+export type UserParams = {
+  // 8 vignettes définies par le user :
+  //  Be aware that this is not going to force the typing with exactly 8 elements, so check the length of the array
+  vignettes: [
+    UserVignette,
+    UserVignette,
+    UserVignette,
+    UserVignette,
+    UserVignette,
+    UserVignette,
+    UserVignette,
+    UserVignette,
+  ];
+  // Stations préférées du user :
+  //  qui viendront s'injectées dans l'ordre dans les vignettes (ci-dessus)
+  //  Il est censé y avoir autant de stations que de vignettes de type "UserVignette.STATION"
+  stations: [string, string][]; // [["07480","Lyon-Bron"], ["07149", "Orly"], ...]
 };
 
 export enum UserStatus {
@@ -25,3 +49,10 @@ export enum UserStatus {
   MEMBRE_BUREAU = 60,
   BANNI = 99,
 }
+
+export type User = {
+  id: number;
+  pseudo: string;
+  statuses: UserStatus[];
+  params: UserParams;
+};
