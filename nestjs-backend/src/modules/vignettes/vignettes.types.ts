@@ -6,6 +6,7 @@ export type VignetteStation = {
 export type VignettePhoto = {
   type: 'photo';
   timeKey: number;
+  photoIndex: number;
   backgroundPosition: [number, number]; // [x, y]
 };
 

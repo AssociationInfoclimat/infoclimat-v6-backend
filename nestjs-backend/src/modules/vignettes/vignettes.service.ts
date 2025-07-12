@@ -46,8 +46,6 @@ export class VignettesService {
       const selectedVignettes = userPrefs.vignettes;
       const selectedStations = userPrefs.stations;
 
-      console.log(userPrefs);
-
       const timeKey = Date.now();
 
       const vignettes: VignettesReponse['vignettes'] = [];
@@ -58,6 +56,7 @@ export class VignettesService {
           vignettes.push({
             type: 'photo',
             timeKey: timeKey,
+            photoIndex: photoIndex,
             backgroundPosition: [photoIndex * 90 - 90, 0],
           });
           photoIndex++;
