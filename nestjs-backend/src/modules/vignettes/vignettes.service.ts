@@ -75,37 +75,37 @@ export class VignettesService {
         } else if (selectedVignette === UserVignette.VIGILANCE) {
           vignettes.push({
             type: 'vigilance',
+            // was "<li>":
             contentAsHtml: `
-          <li class="boite_photo boite_photo_vigilances">
-            <a
-                onclick="window.open(this.href);return false;"
-                href="https://vigilance.meteofrance.fr/fr"
-            >
-                <img
-                    src="/vigi/current.png?${timeKey}"
-                    alt="Vigilance M&eacute;t&eacute;oFrance"
-                    title="Cliquez pour acc&eacute;der au site"
-                />
-            </a>
-            <a
-                href="https://vigilance.encelade.cloud/live"
-                target="_blank"
-                onclick="window.open(this.href, '_blank');return false;"
-                class="encelade"
-            >
-                ▶
-            </a>
-          </li>
-          `,
+            <div class="boite_photo boite_photo_vigilances">
+              <a
+                  onclick="window.open(this.href);return false;"
+                  href="https://vigilance.meteofrance.fr/fr"
+              >
+                  <img
+                      src="https://www.infoclimat.fr/vigi/current.png?${timeKey}"
+                      alt="Vigilance M&eacute;t&eacute;oFrance"
+                      title="Cliquez pour acc&eacute;der au site"
+                  />
+              </a>
+              <a
+                  href="https://vigilance.encelade.cloud/live"
+                  target="_blank"
+                  onclick="window.open(this.href, '_blank');return false;"
+                  class="encelade"
+              >
+                  ▶
+              </a>
+            </div>
+            `,
           });
         } else if (selectedVignette === UserVignette.CRUE) {
           vignettes.push({
             type: 'crue',
+            // was in "<li class="boite_photo">":
             contentAsHtml: `
-          <li class="boite_photo">
-            <a onclick="window.open(this.href);return false;" href="https://www.vigicrues.gouv.fr"><img src="https://www.vigicrues.gouv.fr/ftp/cruemax.png" alt="Vigicrues" title="Vigicrues - cliquez pour acc&eacute;der au site" /></a>
-          </li>
-          `,
+             <a onclick="window.open(this.href);return false;" href="https://www.vigicrues.gouv.fr"><img src="https://www.vigicrues.gouv.fr/ftp/cruemax.png" alt="Vigicrues" title="Vigicrues - cliquez pour acc&eacute;der au site" /></a>
+            `,
           });
         }
       }
