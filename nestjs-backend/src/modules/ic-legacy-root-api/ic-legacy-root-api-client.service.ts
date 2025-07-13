@@ -4,9 +4,9 @@ import { FunctionLogger } from 'src/shared/utils';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable()
-export class IcLegacyIncludeApiClientService {
+export class IcLegacyRootApiClientService {
   private readonly logger = new FunctionLogger(
-    IcLegacyIncludeApiClientService.name,
+    IcLegacyRootApiClientService.name,
   );
   constructor(private readonly icHttpService: HttpService) {}
 
@@ -14,7 +14,22 @@ export class IcLegacyIncludeApiClientService {
   async fetchIncludePathFile({ path }: { path: string }) {
     try {
       const response = await firstValueFrom(
-        this.icHttpService.get<string>(`${path}`, {
+        this.icHttpService.get<string>(`/include${path}`, {
+          responseType: 'text',
+        }),
+      );
+      return response.data;
+    } catch (error) {
+      this.logger.error(`${error}`);
+      throw error;
+    }
+  }
+
+  // Under "/photolive":
+  async fetchPhotolivePathFile({ path }: { path: string }) {
+    try {
+      const response = await firstValueFrom(
+        this.icHttpService.get<string>(`/photolive${path}`, {
           responseType: 'text',
         }),
       );

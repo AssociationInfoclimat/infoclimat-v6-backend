@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { VignettesService } from './vignettes.service';
-import { IcLegacyIncludeApiClientModule } from '../ic-legacy-include-api/ic-legacy-include-api-client.module';
+import { IcLegacyRootApiClientModule } from '../ic-legacy-root-api/ic-legacy-root-api-client.module';
 
 @Module({
-  imports: [IcLegacyIncludeApiClientModule],
+  imports: [IcLegacyRootApiClientModule],
   providers: [VignettesService],
   exports: [VignettesService],
 })

@@ -2,15 +2,33 @@ import { Injectable } from '@nestjs/common';
 import { User, UserVignette } from '../user/user.types';
 import { DEFAULT_USER_PARAMS } from '../user/user.constants';
 import { FunctionLogger } from 'src/shared/utils';
-import { IcLegacyIncludeApiClientService } from '../ic-legacy-include-api/ic-legacy-include-api-client.service';
-import { VignettesReponse } from './vignettes.types';
+import { IcLegacyRootApiClientService } from '../ic-legacy-root-api/ic-legacy-root-api-client.service';
+import {
+  GetPhotoliveVignettesResponse,
+  VignettesReponse,
+} from './vignettes.types';
 
 @Injectable()
 export class VignettesService {
   private readonly logger = new FunctionLogger(VignettesService.name);
   constructor(
-    private readonly icLegacyIncludeApiClient: IcLegacyIncludeApiClientService,
+    private readonly icLegacyIncludeApiClient: IcLegacyRootApiClientService,
   ) {}
+
+  async getPhotoLiveInformation(): Promise<GetPhotoliveVignettesResponse> {
+    try {
+      const photoLiveInformationAsString =
+        await this.icLegacyIncludeApiClient.fetchPhotolivePathFile({
+          path: `/vignettes/infos.json`,
+        });
+      return JSON.parse(
+        photoLiveInformationAsString,
+      ) as GetPhotoliveVignettesResponse;
+    } catch (error) {
+      this.logger.error(`${error}`);
+      throw error;
+    }
+  }
 
   //
   // Used to be like this:
@@ -49,17 +67,17 @@ export class VignettesService {
       const timeKey = Date.now();
 
       const vignettes: VignettesReponse['vignettes'] = [];
-      let photoIndex = 0;
+      let photoCounter = 1;
       let stationIndex = 0;
       for (const selectedVignette of selectedVignettes) {
         if (selectedVignette === UserVignette.PHOTO) {
           vignettes.push({
             type: 'photo',
             timeKey: timeKey,
-            photoIndex: photoIndex,
-            backgroundPosition: [photoIndex * 90 - 90, 0],
+            photoIndex: photoCounter,
+            backgroundPosition: [photoCounter * 90 - 90, 0],
           });
-          photoIndex++;
+          photoCounter++;
         } else if (selectedVignette === UserVignette.STATION) {
           const stationHtml =
             await this.icLegacyIncludeApiClient.fetchIncludePathFile({

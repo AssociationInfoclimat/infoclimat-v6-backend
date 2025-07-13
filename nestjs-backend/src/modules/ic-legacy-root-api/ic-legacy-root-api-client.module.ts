@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { IcLegacyIncludeApiClientService } from './ic-legacy-include-api-client.service';
+import { IcLegacyRootApiClientService } from './ic-legacy-root-api-client.service';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from 'src/config/config.module';
 import { ConfigService } from 'src/config/config.service';
@@ -11,12 +11,12 @@ import { ConfigService } from 'src/config/config.service';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         return {
-          baseURL: `${configService.get('IC_LEGACY_INCLUDE_API_URL')}`, // ends with "/include"
+          baseURL: `${configService.get('IC_LEGACY_ROOT_API_URL')}`, // ends with "/include"
         };
       },
     }),
   ],
-  providers: [IcLegacyIncludeApiClientService],
-  exports: [IcLegacyIncludeApiClientService],
+  providers: [IcLegacyRootApiClientService],
+  exports: [IcLegacyRootApiClientService],
 })
-export class IcLegacyIncludeApiClientModule {}
+export class IcLegacyRootApiClientModule {}
