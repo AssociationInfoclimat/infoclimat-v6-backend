@@ -11,10 +11,19 @@ export class VignettesController {
   constructor(private readonly vignettesService: VignettesService) {}
 
   @Get()
-  @Auth()
   async getVignettes(@UserDecorator() user: User) {
     try {
       return this.vignettesService.getUserVignettes(user);
+    } catch (error) {
+      this.logger.error(`${error}`);
+      throw error;
+    }
+  }
+
+  @Get('photolive-json')
+  async getPhotoLiveInformation() {
+    try {
+      return this.vignettesService.getPhotoLiveInformation();
     } catch (error) {
       this.logger.error(`${error}`);
       throw error;
