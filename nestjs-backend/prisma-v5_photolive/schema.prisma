@@ -1,0 +1,17 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "../prisma-v5_photolive/v5-photolive-database-client-types"
+}
+
+datasource v5_photolive {
+    provider = "mysql"
+    url      = env("V5_PHOTOLIVE_DATABASE_URL")
+}
+
+model photos {
+    id        Int      @id @v5_photolive.UnsignedInt
+    photo_url String   @v5_photolive.VarChar(255)
+    dh_prise  DateTime @v5_photolive.DateTime
+    titre     String   @v5_photolive.VarChar(255)
+    statut    String   @v5_photolive.VarChar(255)
+}

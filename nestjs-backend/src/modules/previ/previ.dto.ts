@@ -18,3 +18,13 @@ export class PostComingDaysForecastPayload {
   @IsNotEmpty()
   entropy!: string;
 }
+
+export type GetCommonRegionsDeptsResponse = {
+  responseData: {
+    id: number;
+    slug: string;
+    label: string;
+    updated_at: string;
+    url: string;
+  }[];
+};

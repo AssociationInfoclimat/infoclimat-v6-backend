@@ -7,10 +7,11 @@ import {
 } from '@nestjs/common';
 import { PreviService } from './previ.service';
 import {
+  GetCommonRegionsDeptsResponse,
   PostComingDaysForecastPayload,
   PostComingDaysTicketPayload,
 } from './previ.dto';
-import { FunctionLogger } from 'src/shared/utils';
+import { FunctionLogger, toSnakeCase } from 'src/shared/utils';
 
 //
 // This controller
@@ -47,9 +48,14 @@ export class PreviController {
   }
 
   @Get('common-regions-depts')
-  async getCommonRegionsDepts() {
+  async getCommonRegionsDepts(): Promise<
+    GetCommonRegionsDeptsResponse['responseData']
+  > {
     try {
-      return await this.previService.getCommonRegionsDepts();
+      // We already automatically convert into snake_case in the interceptor
+      //  but this is not clear because we can't know the type of the response
+      //  from the controller, So we should always explicitly convert it to snake_case:
+      return toSnakeCase(await this.previService.getCommonRegionsDepts());
     } catch (error) {
       this.logger.error(`${error}`);
       throw new BadRequestException(error);

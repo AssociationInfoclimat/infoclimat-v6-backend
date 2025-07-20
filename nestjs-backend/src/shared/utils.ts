@@ -101,3 +101,105 @@ export const isStagingEnv = () => {
       process.env.HOST.indexOf('127.0.0.1') > -1)
   );
 };
+
+//
+// From PHP: get_slug(string $name): string
+//
+export const slugify = (word: string) => {
+  if (word.length > 120) {
+    word = word.substring(0, 120);
+  }
+
+  const accents = [
+    'á',
+    'à',
+    'â',
+    'é',
+    'è',
+    'ê',
+    'í',
+    'î',
+    'ó',
+    'ò',
+    'ô',
+    'œ',
+    'ú',
+    'ù',
+    'û',
+    'ü',
+    '¨',
+    'ñ',
+    'ç',
+    ' ',
+    '&',
+    '°',
+    '\\.',
+    ',',
+    ';',
+    '\\!',
+    '\\?',
+    ' - ',
+    '_',
+    '  ',
+    '\\.\\.\\.',
+    '\\^',
+    '\\(',
+    '\\)',
+  ];
+  const replace = [
+    'a',
+    'a',
+    'a',
+    'e',
+    'e',
+    'e',
+    'i',
+    'i',
+    'o',
+    'o',
+    'o',
+    'oe',
+    'u',
+    'u',
+    'u',
+    'u',
+    'u',
+    'n',
+    'c',
+    '',
+    '',
+    'degres',
+    '',
+    '-',
+    '',
+    '',
+    '',
+    '-',
+    '',
+    '-',
+    '',
+    '',
+    '',
+    '',
+  ];
+
+  // Convert HTML entities to their corresponding characters
+  let normalizedWord = word.trim();
+
+  // Replace accents and special characters
+  for (let i = 0; i < accents.length; i++) {
+    normalizedWord = normalizedWord.replace(
+      new RegExp(accents[i], 'g'),
+      replace[i],
+    );
+  }
+
+  // Replace any non-alphanumeric characters with hyphens
+  normalizedWord = normalizedWord.replace(/[^a-zA-Z0-9-]/g, '-');
+
+  // Convert to lowercase
+  normalizedWord = normalizedWord.toLowerCase();
+
+  // Replace multiple consecutive hyphens with a single hyphen
+  return normalizedWord.replace(/-+/g, '-');
+};

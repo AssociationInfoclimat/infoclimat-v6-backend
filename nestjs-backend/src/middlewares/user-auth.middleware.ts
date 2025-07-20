@@ -23,7 +23,7 @@ export class UserAuthMiddleware implements NestMiddleware {
     let user: User | undefined = undefined;
     if (userInfoclimatToken !== undefined) {
       try {
-        this.logger.debug(`userInfoclimatToken: ${userInfoclimatToken}`);
+        // this.logger.debug(`userInfoclimatToken: ${userInfoclimatToken}`);
         const verifiedAccountId =
           await this.authService.verifyCookieToAccountId(userInfoclimatToken);
         user = (await this.userService.getUser(verifiedAccountId)) || undefined;
