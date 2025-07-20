@@ -13,17 +13,19 @@ export class PhotoLiveService {
       const photos = await this.photoLiveRepository.getLastElevenPhotolive();
 
       const nthBig = Math.floor(Math.random() * 10);
-      const i = 0;
+      let i = 0;
 
       return photos.map((photo) => {
-        return {
+        const photoData = {
           id: photo.id,
           isBig: i === nthBig,
-          photoUrl: `/photolive/photos/${photo.dhPrise.substring(0, 7)}/${photo.photoUrl.replace('.jpg', '_m.jpg')}`,
-          url: `/photolive-photos-meteo-${photo.id}-${slugify(photo.titre)}.html`,
+          photoUrl: `https://www.infoclimat.fr/photolive/photos/${photo.dhPrise.substring(0, 7)}/${photo.photoUrl.replace('.jpg', '_m.jpg')}`,
+          url: `https://www.infoclimat.fr/photolive-photos-meteo-${photo.id}-${slugify(photo.titre)}.html`,
           dhPrise: photo.dhPrise,
           titre: photo.titre,
         };
+        i++;
+        return photoData;
       });
     } catch (error) {
       this.logger.error(`${error}`);
