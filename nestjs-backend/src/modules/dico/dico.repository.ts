@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { lexique, PrismaClient } from 'prisma-dico/dico-database-client-types';
 import { FunctionLogger, slugify } from 'src/shared/utils';
 import { LexiqueWord } from './dico.types';
-import { dicoPrismaClient } from 'src/database/v5-dico-client';
+import { dicoPrismaClient } from 'src/database/dico-prisma-client';
 
 @Injectable()
 export class DicoRepository {

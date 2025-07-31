@@ -1,0 +1,213 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../prisma-v5_chroniques/v5-chroniques-database-client-types"
+}
+
+datasource v5_chroniques {
+  provider = "mysql"
+  url      = env("V5_CHRONIQUES_DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model actualites {
+  id                Int             @id @default(autoincrement()) @v5_chroniques.UnsignedInt
+  dh_pub            DateTime        @v5_chroniques.DateTime(0)
+  dh_modif          DateTime        @v5_chroniques.DateTime(0)
+  dh_ouverture      DateTime?       @v5_chroniques.DateTime(0)
+  titre             String          @v5_chroniques.LongText
+  id_auteur         Int             @v5_chroniques.UnsignedInt
+  pseudo            String          @v5_chroniques.VarChar(255)
+  contenu           String          @v5_chroniques.LongText
+  type              actualites_type
+  md5xml            String?         @v5_chroniques.VarChar(255)
+  bqs_day           DateTime?       @v5_chroniques.Date
+  bim_end           DateTime?       @v5_chroniques.Date
+  indice_importance Int             @default(0)
+  image_header      String?         @v5_chroniques.VarChar(255)
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model actualites_commentaires {
+  id           Int                            @id @default(autoincrement()) @v5_chroniques.UnsignedInt
+  id_actualite Int                            @v5_chroniques.UnsignedInt
+  id_compte    Int                            @v5_chroniques.UnsignedInt
+  dh           DateTime                       @v5_chroniques.DateTime(0)
+  commentaire  String                         @v5_chroniques.Text
+  source       actualites_commentaires_source @default(site)
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model bim {
+  id        Int      @id @default(autoincrement()) @v5_chroniques.UnsignedInt
+  id_compte Int
+  pseudo    String   @v5_chroniques.VarChar(255)
+  dh        DateTime @v5_chroniques.DateTime(0)
+  dh_fin    DateTime @v5_chroniques.Date
+  dh_maj    DateTime @v5_chroniques.DateTime(0)
+  texte     String   @v5_chroniques.LongText
+  valide    Int      @default(1)
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model bqs {
+  id               Int      @id @default(autoincrement()) @v5_chroniques.UnsignedInt
+  dh               DateTime @v5_chroniques.Date
+  dh_lastmodif     DateTime @v5_chroniques.DateTime(0)
+  titre            String?  @v5_chroniques.VarChar(255)
+  txt              String   @v5_chroniques.Text
+  auteur           String   @v5_chroniques.VarChar(255)
+  id_compte        Int
+  valide           Boolean
+  est_exceptionnel Boolean  @default(false)
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model bqs_calendrier {
+  id        Int      @id @default(autoincrement()) @v5_chroniques.UnsignedInt
+  id_compte Int      @v5_chroniques.UnsignedInt
+  pseudo    String   @v5_chroniques.VarChar(255)
+  dh        DateTime @v5_chroniques.Date
+  type      Int      @v5_chroniques.UnsignedInt
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model bqs_users {
+  id_compte  Int      @id @v5_chroniques.UnsignedInt
+  pseudo     String   @v5_chroniques.VarChar(255)
+  dh_demande DateTime @v5_chroniques.DateTime(0)
+  etat       Int      @v5_chroniques.SmallInt
+  bqs_faits  Int      @v5_chroniques.MediumInt
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model bulletins_speciaux {
+  id           Int      @id @default(autoincrement()) @v5_chroniques.UnsignedInt
+  is_suivi     Boolean  @default(false)
+  dh_pub       DateTime @v5_chroniques.DateTime(0)
+  dh_maj       DateTime @v5_chroniques.DateTime(0)
+  dh_clot      DateTime @v5_chroniques.DateTime(0)
+  rewriting    String   @v5_chroniques.VarChar(255)
+  intro        String   @v5_chroniques.Text
+  situ_evo     String   @v5_chroniques.Text
+  valide       Int      @v5_chroniques.TinyInt
+  types        String   @v5_chroniques.VarChar(255)
+  departements String   @v5_chroniques.VarChar(255)
+  id_forum     Int?     @v5_chroniques.UnsignedInt
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model bulletins_speciaux_suivi {
+  id          Int                           @id @default(autoincrement())
+  id_unique   Int                           @default(0) @v5_chroniques.UnsignedInt
+  id_bulletin Int                           @v5_chroniques.UnsignedInt
+  dh_pub      DateTime                      @v5_chroniques.DateTime(0)
+  dh_modif    DateTime                      @v5_chroniques.DateTime(0)
+  texte       String                        @v5_chroniques.LongText
+  valide      Int                           @v5_chroniques.TinyInt
+  revision    Int                           @default(0) @v5_chroniques.UnsignedInt
+  type        bulletins_speciaux_suivi_type
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model chroniques {
+  id       Int    @id @default(autoincrement())
+  titre    String @v5_chroniques.Text
+  archivee Int    @default(0) @v5_chroniques.TinyInt
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model contenus_chroniques {
+  id           Int      @id @default(autoincrement()) @v5_chroniques.UnsignedInt
+  id_chronique Int
+  contenu      String   @v5_chroniques.Text
+  id_membre    Int
+  dh           DateTime @v5_chroniques.DateTime(0)
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model droits_ecriture {
+  id           Int    @id @default(autoincrement())
+  id_compte    Int
+  dh_debut     Int
+  dh_fin       Int
+  id_chronique String @v5_chroniques.VarChar(255)
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model sauvegarde_chronique {
+  id           Int    @id @default(autoincrement())
+  titre        String @v5_chroniques.Text
+  contenu      String @v5_chroniques.Text
+  id_chronique Int
+  id_membre    Int
+  date_enreg   Int
+  restore      Int
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model suivi_special {
+  id           Int      @id @default(autoincrement()) @v5_chroniques.UnsignedInt
+  dh_deb       DateTime @v5_chroniques.DateTime(0)
+  dh_fin       DateTime @v5_chroniques.DateTime(0)
+  dh_maj       DateTime @v5_chroniques.DateTime(0)
+  titre        String   @v5_chroniques.Text
+  rewriting    String   @v5_chroniques.VarChar(255)
+  types        String   @v5_chroniques.VarChar(255)
+  departements String   @v5_chroniques.VarChar(255)
+
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model suivi_special_elm {
+  id        Int                    @id @default(autoincrement()) @v5_chroniques.UnsignedInt
+  id_suivi  Int                    @v5_chroniques.UnsignedInt
+  id_compte Int?                   @v5_chroniques.UnsignedInt
+  dh        DateTime               @v5_chroniques.DateTime(0)
+  texte     String                 @v5_chroniques.LongText
+  type      suivi_special_elm_type @default(suivi)
+
+}
+
+enum suivi_special_elm_type {
+  suivi
+  vigi
+}
+
+enum actualites_commentaires_source {
+  site
+  mobile
+}
+
+enum actualites_type {
+  anecdotes
+  meteo
+  ic
+  bim
+  bqs
+  asso
+  static
+}
+
+enum bulletins_speciaux_suivi_type {
+  vigi
+  suivi
+  previ
+  vigi_ancien
+}

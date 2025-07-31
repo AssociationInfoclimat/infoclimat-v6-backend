@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
 import { ConfigService } from 'src/config/config.service';
 import { FunctionLogger } from 'src/shared/utils';
 import { MetarPerStationPerYmdh } from './metar-data.types';
-import { PrismaClient } from 'prisma-v5_per_year/v5-per-year-database-client-types';
+import { metar_MM_dDD, PrismaClient, Prisma } from 'prisma-v5_per_year/v5-per-year-database-client-types';
 
 @Injectable()
 export class MetarDataRepository {
@@ -38,7 +37,7 @@ export class MetarDataRepository {
     return this.clientCache[year];
   }
 
-  private mapping(row: Prisma.metar_MM_dDDCreateInput): MetarPerStationPerYmdh {
+  private mapping(row: metar_MM_dDD): MetarPerStationPerYmdh {
     return {
       stationId: row.id_station,
       dhUtc: new Date(row.dh_utc),
@@ -77,7 +76,7 @@ export class MetarDataRepository {
   }) {
     try {
       const client = this.getClientForYear(yyyy);
-      const row = await client.$queryRaw<Prisma.metar_MM_dDDCreateInput>`
+      const row = await client.$queryRaw<metar_MM_dDD>`
           SELECT * 
             FROM metar_${mm}_d${dd} WHERE id_station = ${stationId}
             AND dh_utc >= DATE_SUB(${Prisma.sql`${now || 'UTC_TIMESTAMP()'}`}, INTERVAL 3 HOUR)

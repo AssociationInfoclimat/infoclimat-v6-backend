@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
 import { ConfigService } from 'src/config/config.service';
 import { FunctionLogger } from 'src/shared/utils';
 import { SynopPerStationPerYmdh } from './synop-data.types';
-import { PrismaClient } from 'prisma-v5_per_year/v5-per-year-database-client-types';
+import {
+  PrismaClient,
+  Prisma,
+  synop_MM_dDD,
+} from 'prisma-v5_per_year/v5-per-year-database-client-types';
 
 @Injectable()
 export class SynopDataRepository {
@@ -39,7 +42,7 @@ export class SynopDataRepository {
     return this.clientCache[year];
   }
 
-  private mapping(row: Prisma.synop_MM_dDDCreateInput): SynopPerStationPerYmdh {
+  private mapping(row: synop_MM_dDD): SynopPerStationPerYmdh {
     return {
       stationId: row.id_station,
       dhUtc: new Date(row.dh_utc),
@@ -78,7 +81,7 @@ export class SynopDataRepository {
   }) {
     try {
       const client = this.getClientForYear(yyyy);
-      const row = await client.$queryRaw<Prisma.synop_MM_dDDCreateInput>`
+      const row = await client.$queryRaw<synop_MM_dDD>`
           SELECT * 
             FROM synop_${mm}_d${dd} WHERE id_station = ${stationId}
             AND dh_utc >= DATE_SUB(${Prisma.sql`${now || 'UTC_TIMESTAMP()'}`}, INTERVAL 3 HOUR)

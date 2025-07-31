@@ -15,6 +15,8 @@ import { VignettesController } from './modules/vignettes/vignettes.controller';
 import { VignettesModule } from './modules/vignettes/vignettes.module';
 import { PhotoLiveController } from './modules/photo-live/photo-live.controller';
 import { PhotoLiveModule } from './modules/photo-live/photo-live.module';
+import { ChroniquesModule } from './modules/chroniques/chroniques.modules';
+import { ChroniquesController } from './modules/chroniques/chroniques.controller';
 
 @Module({
   imports: [
@@ -29,6 +31,7 @@ import { PhotoLiveModule } from './modules/photo-live/photo-live.module';
     DicoModule,
     VignettesModule,
     PhotoLiveModule,
+    ChroniquesModule,
   ],
   //
   // We explicitely import the controllers here. We want our services to expose controllers.
@@ -41,6 +44,7 @@ import { PhotoLiveModule } from './modules/photo-live/photo-live.module';
     DicoController,
     VignettesController,
     PhotoLiveController,
+    ChroniquesController,
   ],
   providers: [],
 })
