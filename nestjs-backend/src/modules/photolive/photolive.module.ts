@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { PhotoLiveRepository } from './photo-live.repository';
-import { PhotoLiveService } from './photo-live.service';
+import { PhotoLiveRepository } from './photolive.repository';
+import { PhotoLiveService } from './photolive.service';
 
 @Module({
   providers: [PhotoLiveService, PhotoLiveRepository],

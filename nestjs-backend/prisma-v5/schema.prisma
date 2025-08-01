@@ -400,19 +400,18 @@ enum accueil_extremes_alertes_fixed {
 //
 // /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 //
-// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-// model connectes {
-//   id      Int      @default(autoincrement())
-//   ip      String   @v5.VarChar(15)
-//   dh      DateTime @v5.DateTime(0)
-//   pseudo  Int?
-//   url     String?  @v5.VarChar(255)
-//   auth    String?  @v5.VarChar(50)
-//   referer String?  @v5.VarChar(255)
-//   uagent  String?  @v5.VarChar(255)
-//
-//   @@ignore
-// }
+
+model connectes {
+  id      Int      @id @default(autoincrement()) @v5.UnsignedInt
+  ip      String   @v5.VarChar(15)
+  dh      DateTime @v5.DateTime(0)
+  pseudo  Int?
+  url     String?  @v5.VarChar(255)
+  auth    String?  @v5.VarChar(50)
+  referer String?  @v5.VarChar(255)
+  uagent  String?  @v5.VarChar(255)
+}
+
 //
 // /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 // model contribuer_contributeurs {

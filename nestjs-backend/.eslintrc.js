@@ -21,5 +21,9 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    // Template literal string fixes for JavaScript
+    //  'prefer-template': 'error',
+    //  'template-curly-spacing': 'error',
+    //  'no-useless-concat': 'error',
   },
 };

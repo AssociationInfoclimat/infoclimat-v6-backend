@@ -1,8 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
-import { PhotoLiveService } from './photo-live.service';
+import { PhotoLiveService } from './photolive.service';
 import { FunctionLogger, toSnakeCase } from 'src/shared/utils';
 
-@Controller('photo-live')
+@Controller('photolive')
 export class PhotoLiveController {
   private readonly logger = new FunctionLogger(PhotoLiveController.name);
   constructor(private readonly photoLiveService: PhotoLiveService) {}

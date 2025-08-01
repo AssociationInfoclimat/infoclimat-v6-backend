@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PhotoLiveRepository } from './photo-live.repository';
+import { PhotoLiveRepository } from './photolive.repository';
 import { FunctionLogger, slugify } from 'src/shared/utils';
 
 @Injectable()
