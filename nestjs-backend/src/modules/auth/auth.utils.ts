@@ -1,4 +1,4 @@
-import {createHash} from 'crypto';
+import { createHash } from 'crypto';
 
 const md5 = (text: string) => {
   return createHash('md5').update(text).digest('hex');
@@ -15,7 +15,9 @@ export function Decrypte(text: string, key: string) {
   for (let i = 0; i < decodedText.length; i++) {
     const md5: string = decodedText[i]; // one-char
     i++;
-    variableTemp += String.fromCharCode(decodedText.charCodeAt(i) ^ md5.charCodeAt(0));
+    variableTemp += String.fromCharCode(
+      decodedText.charCodeAt(i) ^ md5.charCodeAt(0),
+    );
   }
   return variableTemp;
 }
@@ -29,7 +31,9 @@ export const GenerationCle = (text: string, key: string) => {
     if (counter === keyMd5.length) {
       counter = 0;
     }
-    variableTemp += String.fromCharCode(text.charCodeAt(i) ^ keyMd5.charCodeAt(counter));
+    variableTemp += String.fromCharCode(
+      text.charCodeAt(i) ^ keyMd5.charCodeAt(counter),
+    );
     counter++;
   }
   return variableTemp;

@@ -1,4 +1,3 @@
-
 // Was a bit over-complicated in PHP-legacy:
 //  $this->userparams = json_decode($val['parametres'], true)
 //  used to be like:

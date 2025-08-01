@@ -11,8 +11,6 @@ export class SignupService {
 
   async signup(body: any) {
     try {
-    } catch (error) {
-        
-    }
+    } catch (error) {}
   }
 }

@@ -61,12 +61,11 @@ export class ChroniquesRepository {
     }
   }
 
-
   private mappingBimNews(row: actualites) {
     return {
       id: row.id,
       title: replaceAccents(row.titre),
-      publishedAt: row.dh_pub, 
+      publishedAt: row.dh_pub,
       content: replaceAccents(row.contenu),
     };
   }
@@ -131,7 +130,9 @@ export class ChroniquesRepository {
           take: limit || undefined,
         },
       );
-      return getSpecialBulletins.map(item => this.mappingSpecialBulletins(item));
+      return getSpecialBulletins.map((item) =>
+        this.mappingSpecialBulletins(item),
+      );
     } catch (error) {
       this.logger.error(`${error}`);
       throw error;
@@ -163,6 +164,6 @@ export class ChroniquesRepository {
       },
       take: limit || undefined,
     });
-    return getSuiviSpecial.map(item => this.mappingSuiviSpecial(item));
+    return getSuiviSpecial.map((item) => this.mappingSuiviSpecial(item));
   }
 }
