@@ -13,7 +13,12 @@ export enum Types {
   Secheresse = 'Sécheresse',
 }
 
-export enum ChroniquesType {
+export enum BulletingSpecialType {
   BulletinSpecial = 'sb',
   SuiviSpecial = 'ss',
+}
+
+export enum ChroniquesType {
+  Bim = 'bim',
+  Bqs = 'bqs',
 }

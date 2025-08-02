@@ -1,4 +1,5 @@
 import { Logger } from '@nestjs/common';
+import { createHash } from 'crypto';
 
 export class FunctionLogger extends Logger {
   _getCallerFnName(stack: any) {
@@ -408,4 +409,73 @@ export const strToUrl = (str: string) => {
 
 export const stripTags = (str: string) => {
   return str.replace(/<[^>]*>?/g, '');
+};
+
+export const md5 = (str: string, binary: boolean = false) => {
+  if (binary) {
+    return createHash('md5').update(str).digest('binary');
+  }
+  return createHash('md5').update(str).digest('hex');
+};
+
+// Adapted from https://locutus.io/php/strings/strtr/
+//  for strings only (trFrom and trTo are strings)
+export const strtr = (str: string, trFrom: string, trTo: string) => {
+  //  discuss at: https://locutus.io/php/strtr/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //    input by: uestla
+  //    input by: Alan C
+  //    input by: Taras Bogach
+  //    input by: jpfle
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: var $trans = {'hello' : 'hi', 'hi' : 'hello'}
+  //   example 1: strtr('hi all, I said hello', $trans)
+  //   returns 1: 'hello all, I said hi'
+  //   example 2: strtr('äaabaåccasdeöoo', 'äåö','aao')
+  //   returns 2: 'aaabaaccasdeooo'
+  //   example 3: strtr('ääääääää', 'ä', 'a')
+  //   returns 3: 'aaaaaaaa'
+  //   example 4: strtr('http', 'pthxyz','xyzpth')
+  //   returns 4: 'zyyx'
+  //   example 5: strtr('zyyx', 'pthxyz','xyzpth')
+  //   returns 5: 'http'
+  let i = 0;
+  let j = 0;
+  let lenStr = 0;
+  let lenFrom = 0;
+
+  let istr = '';
+  let ret = '';
+  let match = false;
+
+  // Walk through subject and replace chars when needed
+  lenStr = str.length;
+  lenFrom = trFrom.length;
+
+  for (i = 0; i < lenStr; i++) {
+    match = false;
+
+    istr = str.charAt(i);
+    for (j = 0; j < lenFrom; j++) {
+      if (istr === trFrom.charAt(j)) {
+        match = true;
+        break;
+      }
+    }
+
+    if (match) {
+      ret += trTo.charAt(j);
+    } else {
+      ret += str.charAt(i);
+    }
+  }
+  return ret;
+};
+
+export const base64url_encode = (data: string) => {
+  // .rtrim( xxx , '=')
+  return strtr(btoa(data), '+/', '-_').replace(/\=+$/g, '');
 };

@@ -2,12 +2,35 @@ import { Injectable } from '@nestjs/common';
 import { ChroniquesRepository } from './chroniques.repository';
 import dayjs from 'dayjs';
 import { FunctionLogger, stripTags, strToUrl } from 'src/shared/utils';
-import { ChroniquesType, Types } from './chroniques.types';
+import {
+  BulletingSpecialType,
+  ChroniquesType,
+  Types,
+} from './chroniques.types';
 
 @Injectable()
 export class ChroniquesService {
   private readonly logger = new FunctionLogger(ChroniquesService.name);
   constructor(private readonly repository: ChroniquesRepository) {}
+
+  async getMobileNews({ limit = 4 }: { limit?: number }) {
+    try {
+      // TODO: See head_responsives.php
+      //  There were `V5_rencontres.rencontres`, `V5.messages_alerte_bas`,
+      //  and not only `V5_chroniques.actualites`(like below):
+      const chroniques = await this.repository.getNews({ limit });
+      return chroniques.map((chronique) => ({
+        ...chronique,
+        type: chronique.type === ChroniquesType.Bqs ? 'bqs' : 'bim',
+        publishedAt: dayjs(chronique.publishedAt).format('DD/MM'),
+        summary: stripTags(chronique.content).slice(0, 80) + '...',
+        url: `/actualites/${chronique.type}/${chronique.id}/${strToUrl(chronique.title)}.html`,
+      }));
+    } catch (error) {
+      this.logger.error(`${error}`);
+      throw error;
+    }
+  }
 
   // bqs : FROM V5_chroniques.actualites WHERE `type` = 'bqs'
   async getBqsNews({ limit = 4 }: { limit?: number }) {
@@ -53,14 +76,14 @@ export class ChroniquesService {
       const mergedBs25 = [
         ...bulletinsSpeciaux.map((item) => ({
           ...item,
-          type: ChroniquesType.BulletinSpecial,
+          type: BulletingSpecialType.BulletinSpecial,
           title: item.summaryTitle,
           startedAt: dayjs(item.createdAt),
           endedAt: dayjs(item.closedAt),
         })),
         ...suiviSpecial.map((item) => ({
           ...item,
-          type: ChroniquesType.SuiviSpecial,
+          type: BulletingSpecialType.SuiviSpecial,
           title: '',
           startedAt: dayjs(item.startedAt),
           endedAt: dayjs(item.endedAt),
@@ -90,7 +113,7 @@ export class ChroniquesService {
           }
         }
         const link =
-          item.type === ChroniquesType.SuiviSpecial
+          item.type === BulletingSpecialType.SuiviSpecial
             ? `/suivi-special-${item.id}.html`
             : `/bulletin-special-${item.id}-${strToUrl(item.title)}.html`;
 

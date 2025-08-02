@@ -9,7 +9,8 @@ import { ConfigService } from 'src/config/config.service';
 import { v5ChroniquesPrismaClient } from 'src/database/v5-chroniques-prisma-client';
 import { FunctionLogger, replaceAccents } from 'src/shared/utils';
 import { MAPPING_NUM_TO_TYPE } from './chroniques.constants';
-import { Types } from './chroniques.types';
+import { ChroniquesType, Types } from './chroniques.types';
+import { getNewsThumbnailImage } from './chroniques.helpers';
 
 @Injectable()
 export class ChroniquesRepository {
@@ -61,16 +62,16 @@ export class ChroniquesRepository {
     }
   }
 
-
   private mappingBimNews(row: actualites) {
     return {
       id: row.id,
       title: replaceAccents(row.titre),
-      publishedAt: row.dh_pub, 
+      publishedAt: row.dh_pub,
       content: replaceAccents(row.contenu),
     };
   }
 
+  // TODO: could be merged with `getBqsNews`, but mapping is different
   async getBimNews({ limit = 5 }: { limit?: number }) {
     try {
       /*
@@ -96,6 +97,58 @@ export class ChroniquesRepository {
         take: limit || undefined,
       });
       return bimNewsRows.map(this.mappingBimNews);
+    } catch (error) {
+      this.logger.error(`${error}`);
+      throw error;
+    }
+  }
+
+  // See `getBimNews` comment,
+  //  That's why we create a common function:
+  private mappingNews(row: actualites) {
+    return {
+      id: row.id,
+      type:
+        row.type === 'bim'
+          ? ChroniquesType.Bim
+          : row.type === 'bqs'
+            ? ChroniquesType.Bqs
+            : undefined,
+      title: replaceAccents(row.titre),
+      publishedAt: row.dh_pub,
+      content: replaceAccents(row.contenu),
+      thumbnail: getNewsThumbnailImage({
+        contenu: row.contenu,
+        thumbHeight: 200,
+        thumbWidth: 200,
+      }),
+    };
+  }
+
+  // Merged function to get `actualites`
+  // TODO: Could replace both `getBimNews` and `getBqsNews`
+  // For now, only used for a mobile endpoint:
+  async getNews({
+    limit = 5,
+    type,
+    onlyImportant,
+  }: {
+    limit?: number;
+    type?: 'bim' | 'bqs';
+    onlyImportant?: boolean;
+  }) {
+    try {
+      const newsRows = await this.prisma.actualites.findMany({
+        where: {
+          type,
+          indice_importance: onlyImportant ? { not: -1 } : undefined,
+        },
+        orderBy: {
+          dh_pub: 'desc',
+        },
+        take: limit || undefined,
+      });
+      return newsRows.map(this.mappingNews);
     } catch (error) {
       this.logger.error(`${error}`);
       throw error;
@@ -131,7 +184,9 @@ export class ChroniquesRepository {
           take: limit || undefined,
         },
       );
-      return getSpecialBulletins.map(item => this.mappingSpecialBulletins(item));
+      return getSpecialBulletins.map((item) =>
+        this.mappingSpecialBulletins(item),
+      );
     } catch (error) {
       this.logger.error(`${error}`);
       throw error;
@@ -163,6 +218,6 @@ export class ChroniquesRepository {
       },
       take: limit || undefined,
     });
-    return getSuiviSpecial.map(item => this.mappingSuiviSpecial(item));
+    return getSuiviSpecial.map((item) => this.mappingSuiviSpecial(item));
   }
 }
