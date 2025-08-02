@@ -55,4 +55,5 @@ export type User = {
   pseudo: string;
   statuses: UserStatus[];
   params: UserParams;
+  profilePicture: string;
 };

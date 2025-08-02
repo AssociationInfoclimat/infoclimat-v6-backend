@@ -1,12 +1,15 @@
 import { comptes } from 'prisma-v5/v5-database-client-types';
 import { v5DBPrismaClient } from 'src/database/v5-prisma-client';
-import { FunctionLogger } from 'src/shared/utils';
+import { FunctionLogger, md5 } from 'src/shared/utils';
 import { User, UserParams, UserStatus, UserVignette } from './user.types';
 import { DEFAULT_USER_PARAMS } from './user.constants';
+import { ConfigService } from 'src/config/config.service';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class UserRepository {
   private prisma = v5DBPrismaClient;
-  constructor() {}
+  constructor(private readonly configService: ConfigService) {}
   private readonly logger = new FunctionLogger(UserRepository.name);
 
   private mappingUser(user: comptes): User {
@@ -33,11 +36,16 @@ export class UserRepository {
     } catch (error) {
       // Mute that error
     }
+
+    const profilePictureHash = md5(
+      `${user.id}${this.configService.get('SALT_PROFILE_PIC')}`,
+    );
     return {
       id: user.id,
       pseudo: user.pseudo,
       statuses: this.getStatusesFromUser(user.statuts),
       params: userParams,
+      profilePicture: `/passionnes/photos/thumbs/${profilePictureHash.substring(0, 1)}/${profilePictureHash}.jpg`,
     };
   }
 
