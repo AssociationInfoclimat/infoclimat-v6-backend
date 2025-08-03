@@ -1,9 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { AuthRepository } from './auth.repository';
-import { base64Decode, Decrypte } from './auth.utils';
+import { base64Decode, base64Encode, Crypte, Decrypte } from './auth.utils';
 import { ConfigService } from 'src/config/config.service';
-import { FunctionLogger } from 'src/shared/utils';
+import { FunctionLogger, md5 } from 'src/shared/utils';
+import { RedisCacheManagerService } from '../redis-cache-manager/redis-cache-manager.service';
+import dayjs from 'dayjs';
+import bcrypt from 'bcrypt';
+import { UserStatus } from '../user/user.types';
+import { randomBytes } from 'crypto';
 
 @Injectable()
 export class AuthService {
@@ -11,6 +16,8 @@ export class AuthService {
   constructor(
     private readonly configService: ConfigService,
     private readonly authRepository: AuthRepository,
+    private readonly cacheService: RedisCacheManagerService,
+    private readonly userService: UserService,
   ) {}
 
   async verifyCookieToAccountId(cookie: string) {
@@ -51,6 +58,107 @@ export class AuthService {
       throw new Error('errors.auth.token_not_found');
     }
     return accountId;
+  }
+
+  async login({
+    email,
+    password,
+    ip,
+    uagent,
+  }: {
+    email: string;
+    password: string;
+    ip: string;
+    uagent: string;
+  }) {
+    try {
+      const bruteforceKey = `tentative_connexion_${md5(email)}`;
+      const nbPasswordAttempt =
+        (await this.cacheService.getItem<number>(bruteforceKey)) ?? 0;
+      if (nbPasswordAttempt >= 3) {
+        throw new Error('errors.auth.too_many_attempts_in_1_minute');
+      }
+      await this.cacheService.setItem(bruteforceKey, nbPasswordAttempt + 1, 60); // nb essais en 1 minute
+
+      const user = await this.userService.findByUsername(email);
+      if (!user) {
+        // Dont be too explicit when returing an auth error, it could be used to bruteforce the account emails list:
+        throw new Error('errors.auth.invalid_credentials');
+      }
+
+      if (user.mdpHash) {
+        const isPasswordValid = await bcrypt.compare(password, user.mdpHash);
+        if (!isPasswordValid) {
+          throw new Error('errors.auth.invalid_credentials');
+        }
+      } else {
+        const decryptedPassword = Decrypte(
+          password,
+          `${this.configService.get('SALT_OLD_AUTH_METHOD_PASSWORD_KEY')}`,
+        );
+        if (decryptedPassword !== user.mdp) {
+          throw new Error('errors.auth.invalid_credentials');
+        }
+      }
+
+      if (user.statuses.includes(UserStatus.EN_ATTENTE_DE_VALIDATION_EMAIL)) {
+        throw new Error('errors.auth.account_pending_email_validation');
+      }
+
+      if (
+        user.statuses.includes(UserStatus.EN_ATTENTE_DE_VALIDATION_MODERATION)
+      ) {
+        throw new Error('errors.auth.account_pending_moderation_validation');
+      }
+
+      const persist = randomBytes(32).toString('hex');
+      const expires = dayjs().add(300, 'day').unix();
+
+      await this.authRepository.createToken({
+        accountId: user.id,
+        token: persist,
+        expires,
+        ip,
+        uagent,
+      });
+      return this.generateAuthCookie({
+        accountId: user.id,
+        salt: `${this.configService.get('SALT_AUTH_KEY')}`,
+        persistUniqueHash: persist,
+      });
+
+      /*
+        // adding timestamp for cache
+        $d = parse_url('https://' . $subdomain . '.infoclimat.fr' . $redir);
+        if (!empty($d['query'])) {
+            $redir .= '&_ut_co=' . time();
+        } else {
+            $redir .= '?_ut_co=' . time();
+        }
+        sleep(2);
+        require '../include/template/head.php';
+        echo '<br /><p class="success">Connexion effectu&eacute;e avec succ&egrave;s, bienvenue !<br />Vous allez &ecirc;tre redirig&eacute;, merci de patienter ou de <a href="https://' . $subdomain . '.infoclimat.fr' . htmlentities($redir) . '">cliquer ici.</a></p>';
+        echo '<script type="text/javascript">setTimeout(function(){ document.location = \'https://' . $subdomain . '.infoclimat.fr' . htmlentities($redir) . '\'; }, 3000);</script>';
+        include('../include/template/foot.php');
+        exit;
+   
+        */
+    } catch (error) {
+      this.logger.error(`${error}`);
+      throw error;
+    }
+  }
+
+  private generateAuthCookie({
+    accountId,
+    salt,
+    persistUniqueHash,
+  }: {
+    accountId: number;
+    salt: string;
+    persistUniqueHash: string;
+  }) {
+    return `${base64Encode(Crypte(`${accountId}`, salt))}/${persistUniqueHash}`;
   }
 }
 

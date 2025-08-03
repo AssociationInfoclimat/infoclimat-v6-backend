@@ -479,3 +479,11 @@ export const base64url_encode = (data: string) => {
   // .rtrim( xxx , '=')
   return strtr(btoa(data), '+/', '-_').replace(/\=+$/g, '');
 };
+
+export const getIPFromRequest = (req: Request) => {
+  const forwardedFor = req.headers['x-forwarded-for'];
+  const ip = Array.isArray(forwardedFor)
+    ? forwardedFor[0]
+    : forwardedFor || (req as any)?.socket?.remoteAddress;
+  return ip;
+};

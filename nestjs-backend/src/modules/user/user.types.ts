@@ -1,4 +1,3 @@
-
 // Was a bit over-complicated in PHP-legacy:
 //  $this->userparams = json_decode($val['parametres'], true)
 //  used to be like:
@@ -29,7 +28,8 @@ export type UserParams = {
 };
 
 export enum UserStatus {
-  EN_ATTENTE_DE_VALIDATION = 1,
+  EN_ATTENTE_DE_VALIDATION_EMAIL = 0,
+  EN_ATTENTE_DE_VALIDATION_MODERATION = 1,
   ADHERENT = 3,
   MODERATEUR_TEMPS_CALME = 10,
   MODERATEUR_PHOTOLIVE = 11,
@@ -56,4 +56,8 @@ export type User = {
   statuses: UserStatus[];
   params: UserParams;
   profilePicture: string;
+
+  // These properties are not mapped by default, but are needed for auth:
+  mdpHash?: string; // new auth method (see auth.service.ts)
+  mdp?: string; // old auth method
 };

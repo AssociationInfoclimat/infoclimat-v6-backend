@@ -3,9 +3,10 @@ import { AuthService } from './auth.service';
 import { UserModule } from '../user/user.module';
 import { AuthRepository } from './auth.repository';
 import { AuthStrategy } from './auth.strategy';
+import { CacheManagerModule } from '../redis-cache-manager/redis-cache-manager.module';
 
 @Module({
-  imports: [UserModule],
+  imports: [UserModule, CacheManagerModule],
   providers: [AuthService, AuthRepository, AuthStrategy],
   exports: [AuthService],
 })

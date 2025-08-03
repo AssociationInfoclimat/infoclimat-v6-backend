@@ -13,4 +13,15 @@ export class UserService {
       throw new Error('errors.user.user_not_found');
     }
   }
+
+  async findByUsername(username: string): Promise<User | null> {
+    try {
+      return await this.repository.getUserByUsername({
+        username,
+        includesPasswordHash: true, // This `findByUsername` is used for auth, so we need to include the password hash
+      });
+    } catch (error) {
+      throw new Error('errors.user.user_not_found');
+    }
+  }
 }

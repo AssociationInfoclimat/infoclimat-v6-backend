@@ -12,7 +12,14 @@ export class UserRepository {
   constructor(private readonly configService: ConfigService) {}
   private readonly logger = new FunctionLogger(UserRepository.name);
 
-  private mappingUser(user: comptes): User {
+  private mappingUser(
+    user: comptes,
+    // To specifically include user hidden properties that are not mapped by default (mdpHash...)
+    extraIncludesProperties?: (keyof Omit<
+      User,
+      'id' | 'pseudo' | 'statuses' | 'params' | 'profilePicture'
+    >)[],
+  ): User {
     if (!user.id) {
       throw new Error('User id is required');
     }
@@ -46,6 +53,25 @@ export class UserRepository {
       statuses: this.getStatusesFromUser(user.statuts),
       params: userParams,
       profilePicture: `/passionnes/photos/thumbs/${profilePictureHash.substring(0, 1)}/${profilePictureHash}.jpg`,
+      ...(extraIncludesProperties ?? []).reduce(
+        (acc, property) => {
+          if (property === 'mdpHash') {
+            acc[property] = user.mdp_hash;
+          } else if (property === 'mdp') {
+            acc[property] = user.mdp;
+          } else {
+            throw new Error(`errors.user.property_${property}_is_not_mapped`);
+          }
+          return acc;
+        },
+        {} as Record<
+          keyof Omit<
+            User,
+            'id' | 'pseudo' | 'statuses' | 'params' | 'profilePicture'
+          >,
+          any
+        >,
+      ),
     };
   }
 
@@ -63,6 +89,31 @@ export class UserRepository {
       return null;
     }
     return this.mappingUser(user);
+  }
+
+  async getUserByUsername({
+    username,
+    includesPasswordHash = false,
+  }: {
+    username: string;
+    includesPasswordHash?: boolean;
+  }): Promise<User | null> {
+    if (!username) {
+      return null;
+    }
+    const user = await this.prisma.comptes.findFirst({
+      where: {
+        pseudo: username,
+      },
+      take: 1,
+    });
+    if (!user) {
+      return null;
+    }
+    return this.mappingUser(
+      user,
+      includesPasswordHash ? ['mdpHash', 'mdp'] : [],
+    );
   }
 
   private getStatusesFromUser(statuses: string): UserStatus[] {
