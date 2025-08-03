@@ -40,7 +40,6 @@ export class AuthController {
   @Post('login')
   async login(@Body() body: LoginDto, @Req() req: Request) {
     try {
-      console.log('body', body);
       // See `toSnakeCase` in controllers. Use it just to be explicit instead of letting interceptor do it.
       return toSnakeCase({
         cookieToken: await this.authService.login({
