@@ -61,18 +61,18 @@ export class AuthService {
   }
 
   async login({
-    email,
+    username,
     password,
     ip,
     uagent,
   }: {
-    email: string;
+    username: string;
     password: string;
     ip: string;
     uagent: string;
   }) {
     try {
-      const bruteforceKey = `tentative_connexion_${md5(email)}`;
+      const bruteforceKey = `tentative_connexion_${md5(username)}`;
       const nbPasswordAttempt =
         (await this.cacheService.getItem<number>(bruteforceKey)) ?? 0;
       if (nbPasswordAttempt >= 3) {
@@ -80,14 +80,16 @@ export class AuthService {
       }
       await this.cacheService.setItem(bruteforceKey, nbPasswordAttempt + 1, 60); // nb essais en 1 minute
 
-      const user = await this.userService.findByUsername(email);
+      const user = await this.userService.findByUsername(username);
       if (!user) {
         // Dont be too explicit when returing an auth error, it could be used to bruteforce the account emails list:
         throw new Error('errors.auth.invalid_credentials');
       }
 
       if (user.mdpHash) {
-        const isPasswordValid = await bcrypt.compare(password, user.mdpHash);
+        // PHP uses $2y$ for bcrypt, but bcrypt.js uses $2b$
+        const normalizedHash = user.mdpHash.replace(/^\$2y\$/, '$2b$');
+        const isPasswordValid = await bcrypt.compare(password, normalizedHash);
         if (!isPasswordValid) {
           throw new Error('errors.auth.invalid_credentials');
         }

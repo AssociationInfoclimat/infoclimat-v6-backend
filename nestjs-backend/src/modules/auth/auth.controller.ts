@@ -10,7 +10,11 @@ import { Auth } from 'src/decorators/auth.decorator';
 import { UserService } from '../user/user.service';
 import { User } from 'src/modules/user/user.types';
 import { User as UserDecorator } from 'src/decorators/user.decorator';
-import { FunctionLogger, getIPFromRequest } from 'src/shared/utils';
+import {
+  FunctionLogger,
+  getIPFromRequest,
+  toSnakeCase,
+} from 'src/shared/utils';
 import { LoginDto } from './auth.dto';
 import { AuthService } from './auth.service';
 
@@ -36,11 +40,17 @@ export class AuthController {
   @Post('login')
   async login(@Body() body: LoginDto, @Req() req: Request) {
     try {
-      return this.authService.login({
-        email: body.email,
-        password: body.password,
-        ip: getIPFromRequest(req),
-        uagent: (req as any)?.headers ? (req as any).headers['user-agent'] : '',
+      console.log('body', body);
+      // See `toSnakeCase` in controllers. Use it just to be explicit instead of letting interceptor do it.
+      return toSnakeCase({
+        cookieToken: await this.authService.login({
+          username: body.username,
+          password: body.password,
+          ip: getIPFromRequest(req),
+          uagent: (req as any)?.headers
+            ? (req as any).headers['user-agent']
+            : '',
+        }),
       });
     } catch (error) {
       this.logger.error(`${error}`);
