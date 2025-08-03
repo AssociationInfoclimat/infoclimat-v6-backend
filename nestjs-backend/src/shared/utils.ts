@@ -481,9 +481,11 @@ export const base64url_encode = (data: string) => {
 };
 
 export const getIPFromRequest = (req: Request) => {
-  const forwardedFor = req.headers['x-forwarded-for'];
-  const ip = Array.isArray(forwardedFor)
+  const forwardedFor: string | undefined = (req as any)?.headers
+    ? (req as any)?.headers['x-forwarded-for']
+    : undefined;
+  const ip: string = Array.isArray(forwardedFor)
     ? forwardedFor[0]
-    : forwardedFor || (req as any)?.socket?.remoteAddress;
+    : forwardedFor || (req as any)?.socket?.remoteAddress || '';
   return ip;
 };

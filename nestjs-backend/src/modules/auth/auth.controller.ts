@@ -40,7 +40,7 @@ export class AuthController {
         email: body.email,
         password: body.password,
         ip: getIPFromRequest(req),
-        uagent: req.headers['user-agent'] || '',
+        uagent: (req as any)?.headers ? (req as any).headers['user-agent'] : '',
       });
     } catch (error) {
       this.logger.error(`${error}`);
