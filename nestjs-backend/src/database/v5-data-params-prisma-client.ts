@@ -10,4 +10,5 @@ export const v5DataParamsPrismaClient =
   globalV5DataParamsPrismaClient.v5DataParamsPrismaClient || getPrisma();
 
 if (process.env.NODE_ENV !== 'production')
-  globalV5DataParamsPrismaClient.v5DataParamsPrismaClient = v5DataParamsPrismaClient;
+  globalV5DataParamsPrismaClient.v5DataParamsPrismaClient =
+    v5DataParamsPrismaClient;

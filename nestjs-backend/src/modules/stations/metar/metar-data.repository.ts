@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from 'src/config/config.service';
 import { FunctionLogger } from 'src/shared/utils';
 import { MetarPerStationPerYmdh } from './metar-data.types';
-import { metar_MM_dDD, PrismaClient, Prisma } from 'prisma-v5_per_year/v5-per-year-database-client-types';
+import {
+  metar_MM_dDD,
+  PrismaClient,
+  Prisma,
+} from 'prisma-v5_per_year/v5-per-year-database-client-types';
 
 @Injectable()
 export class MetarDataRepository {
