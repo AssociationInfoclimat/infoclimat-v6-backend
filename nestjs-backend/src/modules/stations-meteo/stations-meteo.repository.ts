@@ -13,18 +13,13 @@ export class StationsMeteoRepository {
   async getTemperatures(
     nom: DonneesCartesTuilesName,
   ): Promise<DonneesCartesTuiles | undefined> {
-    try {
-      const cartesTuiles = await this.prisma.cartes_tuiles.findUnique({
-        where: { nom: nom as string },
-      });
-      if (!cartesTuiles) {
-        return undefined;
-      }
-      const data = JSON.parse(cartesTuiles.donnees) as DonneesCartesTuiles;
-      return data;
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
+    const cartesTuiles = await this.prisma.cartes_tuiles.findUnique({
+      where: { nom: nom as string },
+    });
+    if (!cartesTuiles) {
+      return undefined;
     }
+    const data = JSON.parse(cartesTuiles.donnees) as DonneesCartesTuiles;
+    return data;
   }
 }

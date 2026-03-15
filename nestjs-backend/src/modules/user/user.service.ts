@@ -6,12 +6,12 @@ import { User } from './user.types';
 export class UserService {
   constructor(private readonly repository: UserRepository) {}
 
-  async getUser(userId: number): Promise<User | null> {
-    try {
-      return await this.repository.getUserById(userId);
-    } catch (error) {
+  async getUser(userId: number): Promise<User> {
+    const user = await this.repository.getUserById(userId);
+    if (!user) {
       throw new Error('errors.user.user_not_found');
     }
+    return user;
   }
 
   async findByUsername(username: string): Promise<User | null> {

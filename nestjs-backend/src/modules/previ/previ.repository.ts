@@ -24,15 +24,10 @@ export class PreviRepository {
   // Was "function get_last_17_previsionnistes(): PDOStatement" in php
   //
   async getCommonRegionsDepts() {
-    try {
-      const previsionnistes = await this.prisma.previsionnistes.findMany({
-        orderBy: { last_prev: 'desc' },
-        take: 17,
-      });
-      return previsionnistes.map(this.mapping);
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+    const previsionnistes = await this.prisma.previsionnistes.findMany({
+      orderBy: { last_prev: 'desc' },
+      take: 17,
+    });
+    return previsionnistes.map(this.mapping);
   }
 }

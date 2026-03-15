@@ -15,17 +15,12 @@ export class MetsynRepository {
     SQL
   */
   async getMetsynTextId(stationId: number): Promise<string> {
-    try {
-      const metsyn = await this.prisma.metsyn.findFirst({
-        where: { id_station: stationId },
-      });
-      if (!metsyn) {
-        throw new Error('errors.not_found');
-      }
-      return metsyn.id_textuel;
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
+    const metsyn = await this.prisma.metsyn.findFirst({
+      where: { id_station: stationId },
+    });
+    if (!metsyn) {
+      throw new Error('errors.not_found');
     }
+    return metsyn.id_textuel;
   }
 }

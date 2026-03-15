@@ -42,20 +42,15 @@ export class AuthRepository {
     ip: string;
     uagent: string;
   }): Promise<void> {
-    try {
-      await this.prisma.comptes_tokens.create({
-        data: {
-          id_compte: accountId,
-          token,
-          dh_creation: dayjs().toDate(),
-          dh_expiration: dayjs(expires).toDate(),
-          ip_creation: ip,
-          uagent_creation: uagent,
-        },
-      });
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+    await this.prisma.comptes_tokens.create({
+      data: {
+        id_compte: accountId,
+        token,
+        dh_creation: dayjs().toDate(),
+        dh_expiration: dayjs(expires).toDate(),
+        ip_creation: ip,
+        uagent_creation: uagent,
+      },
+    });
   }
 }

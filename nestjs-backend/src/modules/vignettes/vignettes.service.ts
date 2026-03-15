@@ -15,19 +15,16 @@ export class VignettesService {
     private readonly icLegacyIncludeApiClient: IcLegacyRootApiClientService,
   ) {}
 
-  async getPhotoLiveInformation(): Promise<GetPhotoliveVignettesResponse> {
-    try {
-      const photoLiveInformationAsString =
-        await this.icLegacyIncludeApiClient.fetchPhotolivePathFile({
-          path: `/vignettes/infos.json`,
-        });
-      return JSON.parse(
-        photoLiveInformationAsString,
-      ) as GetPhotoliveVignettesResponse;
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+  async getPhotoLiveInformation(): Promise<
+    GetPhotoliveVignettesResponse['responseData']
+  > {
+    const photoLiveInformationAsString =
+      await this.icLegacyIncludeApiClient.fetchPhotolivePathFile({
+        path: `/vignettes/infos.json`,
+      });
+    return JSON.parse(
+      photoLiveInformationAsString,
+    ) as GetPhotoliveVignettesResponse['responseData'];
   }
 
   //
@@ -58,43 +55,42 @@ export class VignettesService {
   // We are going to NOT process the k=7, and k=8 cases because they are corner. TODO: Process them later.
   //
   async getUserVignettes(user?: User): Promise<VignettesReponse> {
-    try {
-      const userPrefs = !user ? DEFAULT_USER_PARAMS : user.params;
+    const userPrefs = !user ? DEFAULT_USER_PARAMS : user.params;
 
-      const selectedVignettes = userPrefs.vignettes;
-      const selectedStations = userPrefs.stations;
+    const selectedVignettes = userPrefs.vignettes;
+    const selectedStations = userPrefs.stations;
 
-      const timeKey = Date.now();
+    const timeKey = Date.now();
 
-      const vignettes: VignettesReponse['vignettes'] = [];
-      let photoCounter = 1;
-      let stationIndex = 0;
-      for (const selectedVignette of selectedVignettes) {
-        if (selectedVignette === UserVignette.PHOTO) {
-          vignettes.push({
-            type: 'photo',
-            timeKey: timeKey,
-            photoIndex: photoCounter,
-            backgroundPosition: [photoCounter * 90 - 90, 0],
+    const vignettes: VignettesReponse['vignettes'] = [];
+    let photoCounter = 1;
+    let stationIndex = 0;
+    for (const selectedVignette of selectedVignettes) {
+      if (selectedVignette === UserVignette.PHOTO) {
+        vignettes.push({
+          type: 'photo',
+          timeKey: timeKey,
+          photoIndex: photoCounter,
+          backgroundPosition: [photoCounter * 90 - 90, 0],
+        });
+        photoCounter++;
+      } else if (selectedVignette === UserVignette.STATION) {
+        const stationHtml =
+          await this.icLegacyIncludeApiClient.fetchIncludePathFile({
+            path: `/vignettes/stations-meteo/${encodeURIComponent(
+              selectedStations[stationIndex][0],
+            )}.html`,
           });
-          photoCounter++;
-        } else if (selectedVignette === UserVignette.STATION) {
-          const stationHtml =
-            await this.icLegacyIncludeApiClient.fetchIncludePathFile({
-              path: `/vignettes/stations-meteo/${encodeURIComponent(
-                selectedStations[stationIndex][0],
-              )}.html`,
-            });
-          vignettes.push({
-            type: 'station',
-            contentAsHtml: stationHtml,
-          });
-          stationIndex++;
-        } else if (selectedVignette === UserVignette.VIGILANCE) {
-          vignettes.push({
-            type: 'vigilance',
-            // was "<li>":
-            contentAsHtml: `
+        vignettes.push({
+          type: 'station',
+          contentAsHtml: stationHtml,
+        });
+        stationIndex++;
+      } else if (selectedVignette === UserVignette.VIGILANCE) {
+        vignettes.push({
+          type: 'vigilance',
+          // was "<li>":
+          contentAsHtml: `
             <div class="boite_photo boite_photo_vigilances">
               <a
                   onclick="window.open(this.href);return false;"
@@ -116,26 +112,22 @@ export class VignettesService {
               </a>
             </div>
             `,
-          });
-        } else if (selectedVignette === UserVignette.CRUE) {
-          vignettes.push({
-            type: 'crue',
-            // was in "<li class="boite_photo">":
-            contentAsHtml: `
+        });
+      } else if (selectedVignette === UserVignette.CRUE) {
+        vignettes.push({
+          type: 'crue',
+          // was in "<li class="boite_photo">":
+          contentAsHtml: `
              <a onclick="window.open(this.href);return false;" href="https://www.vigicrues.gouv.fr"><img src="https://www.vigicrues.gouv.fr/ftp/cruemax.png" alt="Vigicrues" title="Vigicrues - cliquez pour acc&eacute;der au site" /></a>
             `,
-          });
-        }
+        });
       }
-      return {
-        vignettes,
-        photosSpriteUrl:
-          'https://www.infoclimat.fr/photolive/vignettes/sprite.jpg',
-      };
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
     }
+    return {
+      vignettes,
+      photosSpriteUrl:
+        'https://www.infoclimat.fr/photolive/vignettes/sprite.jpg',
+    };
   }
 }
 

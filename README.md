@@ -19,7 +19,7 @@ Using the root docker-compose.yml:
 
 ```bash
 mkdir ./data # if ./data does not exist
-docker compose up
+docker compose up mysql
 ```
 
 ## Mapserver

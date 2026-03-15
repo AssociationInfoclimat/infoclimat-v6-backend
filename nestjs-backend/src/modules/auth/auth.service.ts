@@ -20,27 +20,22 @@ export class AuthService {
     private readonly userService: UserService,
   ) {}
 
-  async verifyCookieToAccountId(cookie: string) {
-    try {
-      const decodedCookie = decodeURIComponent(cookie);
-      const cook = decodedCookie.split('/');
-      const accountIdToText = Decrypte(
-        base64Decode(cook[0]),
-        `${this.configService.get('SALT_AUTH_KEY')}`,
-      );
-      const tokenToTest = cook[1];
-      const accountId = await this.verifyToken({
-        accountId: parseInt(accountIdToText),
-        tokenToVerify: tokenToTest,
-      });
-      if (!accountId) {
-        throw new Error('errors.auth.invalid_token');
-      }
-      return accountId;
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
+  async verifyCookieToAccountId(cookie: string): Promise<number> {
+    const decodedCookie = decodeURIComponent(cookie);
+    const cook = decodedCookie.split('/');
+    const accountIdToText = Decrypte(
+      base64Decode(cook[0]),
+      `${this.configService.get('SALT_AUTH_KEY')}`,
+    );
+    const tokenToTest = cook[1];
+    const accountId = await this.verifyToken({
+      accountId: parseInt(accountIdToText),
+      tokenToVerify: tokenToTest,
+    });
+    if (!accountId) {
+      throw new Error('errors.auth.invalid_token');
     }
+    return accountId;
   }
 
   private async verifyToken({
@@ -60,6 +55,9 @@ export class AuthService {
     return accountId;
   }
 
+  /**
+   * Returns the authentication cookie
+   */
   async login({
     username,
     password,
@@ -70,66 +68,65 @@ export class AuthService {
     password: string;
     ip: string;
     uagent: string;
-  }) {
-    try {
-      const bruteforceKey = `tentative_connexion_${md5(username)}`;
-      const nbPasswordAttempt =
-        (await this.cacheService.getItem<number>(bruteforceKey)) ?? 0;
-      if (nbPasswordAttempt >= 3) {
-        throw new Error('errors.auth.too_many_attempts_in_1_minute');
-      }
-      await this.cacheService.setItem(bruteforceKey, nbPasswordAttempt + 1, 60); // nb essais en 1 minute
+  }): Promise<string> {
+    const bruteforceKey = `tentative_connexion_${md5(username)}`;
+    const nbPasswordAttempt =
+      (await this.cacheService.getItem<number>(bruteforceKey)) ?? 0;
+    if (nbPasswordAttempt >= 3) {
+      throw new Error('errors.auth.too_many_attempts_in_1_minute');
+    }
+    await this.cacheService.setItem(bruteforceKey, nbPasswordAttempt + 1, 60); // nb essais en 1 minute
 
-      const user = await this.userService.findByUsername(username);
-      if (!user) {
-        // Dont be too explicit when returing an auth error, it could be used to bruteforce the account emails list:
+    const user = await this.userService.findByUsername(username);
+    if (!user) {
+      // Dont be too explicit when returing an auth error, it could be used to bruteforce the account emails list:
+      throw new Error('errors.auth.invalid_credentials');
+    }
+
+    if (user.mdpHash) {
+      // PHP uses $2y$ for bcrypt, but bcrypt.js uses $2b$
+      const normalizedHash = user.mdpHash.replace(/^\$2y\$/, '$2b$');
+      const isPasswordValid = await bcrypt.compare(password, normalizedHash);
+      if (!isPasswordValid) {
         throw new Error('errors.auth.invalid_credentials');
       }
-
-      if (user.mdpHash) {
-        // PHP uses $2y$ for bcrypt, but bcrypt.js uses $2b$
-        const normalizedHash = user.mdpHash.replace(/^\$2y\$/, '$2b$');
-        const isPasswordValid = await bcrypt.compare(password, normalizedHash);
-        if (!isPasswordValid) {
-          throw new Error('errors.auth.invalid_credentials');
-        }
-      } else {
-        const decryptedPassword = Decrypte(
-          password,
-          `${this.configService.get('SALT_OLD_AUTH_METHOD_PASSWORD_KEY')}`,
-        );
-        if (decryptedPassword !== user.mdp) {
-          throw new Error('errors.auth.invalid_credentials');
-        }
+    } else {
+      const decryptedPassword = Decrypte(
+        password,
+        `${this.configService.get('SALT_OLD_AUTH_METHOD_PASSWORD_KEY')}`,
+      );
+      if (decryptedPassword !== user.mdp) {
+        throw new Error('errors.auth.invalid_credentials');
       }
+    }
 
-      if (user.statuses.includes(UserStatus.EN_ATTENTE_DE_VALIDATION_EMAIL)) {
-        throw new Error('errors.auth.account_pending_email_validation');
-      }
+    if (user.statuses.includes(UserStatus.EN_ATTENTE_DE_VALIDATION_EMAIL)) {
+      throw new Error('errors.auth.account_pending_email_validation');
+    }
 
-      if (
-        user.statuses.includes(UserStatus.EN_ATTENTE_DE_VALIDATION_MODERATION)
-      ) {
-        throw new Error('errors.auth.account_pending_moderation_validation');
-      }
+    if (
+      user.statuses.includes(UserStatus.EN_ATTENTE_DE_VALIDATION_MODERATION)
+    ) {
+      throw new Error('errors.auth.account_pending_moderation_validation');
+    }
 
-      const persist = randomBytes(32).toString('hex');
-      const expires = dayjs().add(300, 'day').unix();
+    const persist = randomBytes(32).toString('hex');
+    const expires = dayjs().add(300, 'day').unix();
 
-      await this.authRepository.createToken({
-        accountId: user.id,
-        token: persist,
-        expires,
-        ip,
-        uagent,
-      });
-      return this.generateAuthCookie({
-        accountId: user.id,
-        salt: `${this.configService.get('SALT_AUTH_KEY')}`,
-        persistUniqueHash: persist,
-      });
+    await this.authRepository.createToken({
+      accountId: user.id,
+      token: persist,
+      expires,
+      ip,
+      uagent,
+    });
+    return this.generateAuthCookie({
+      accountId: user.id,
+      salt: `${this.configService.get('SALT_AUTH_KEY')}`,
+      persistUniqueHash: persist,
+    });
 
-      /*
+    /*
         // adding timestamp for cache
         $d = parse_url('https://' . $subdomain . '.infoclimat.fr' . $redir);
         if (!empty($d['query'])) {
@@ -145,12 +142,11 @@ export class AuthService {
         exit;
    
         */
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
   }
 
+  /**
+   * Creates the authentication cookie value, based on the accountId, the salt and the persistUniqueHash
+   */
   private generateAuthCookie({
     accountId,
     salt,
@@ -159,7 +155,7 @@ export class AuthService {
     accountId: number;
     salt: string;
     persistUniqueHash: string;
-  }) {
+  }): string {
     return `${base64Encode(Crypte(`${accountId}`, salt))}/${persistUniqueHash}`;
   }
 }

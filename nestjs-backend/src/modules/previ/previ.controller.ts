@@ -19,12 +19,12 @@ import { FunctionLogger, toSnakeCase } from 'src/shared/utils';
 //
 // We would have to update the previ.service to make it work directly in nestjs
 //
-@Controller('/previ')
+@Controller('')
 export class PreviController {
   private readonly logger = new FunctionLogger(PreviController.name);
   constructor(private readonly previService: PreviService) {}
 
-  @Post('ticket')
+  @Post('/previ/ticket')
   async postTicket(@Body() body: PostComingDaysTicketPayload) {
     try {
       return await this.previService.getTicket(body);
@@ -34,7 +34,7 @@ export class PreviController {
     }
   }
 
-  @Post('coming-days')
+  @Post('/previ/coming-days')
   async postComingDaysForecast(@Body() body: PostComingDaysForecastPayload) {
     try {
       return await this.previService.getForecast({
@@ -47,7 +47,7 @@ export class PreviController {
     }
   }
 
-  @Get('common-regions-depts')
+  @Get('/previ/common-regions-depts')
   async getCommonRegionsDepts(): Promise<
     GetCommonRegionsDeptsResponse['responseData']
   > {

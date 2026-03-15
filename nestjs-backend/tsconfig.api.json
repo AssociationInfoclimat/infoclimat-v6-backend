@@ -10,14 +10,16 @@
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist-api",
-    "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "*": ["./*"]
+    }
   },
   "include": [
     "src/**/*",

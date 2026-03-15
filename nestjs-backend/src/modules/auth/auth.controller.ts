@@ -15,10 +15,10 @@ import {
   getIPFromRequest,
   toSnakeCase,
 } from 'src/shared/utils';
-import { LoginDto } from './auth.dto';
+import { LoginDto, LoginResponseDto, UserDto } from './auth.dto';
 import { AuthService } from './auth.service';
 
-@Controller('auth')
+@Controller('')
 export class AuthController {
   private readonly logger = new FunctionLogger(AuthController.name);
   constructor(
@@ -26,22 +26,25 @@ export class AuthController {
     private readonly authService: AuthService,
   ) {}
 
-  @Get('me')
+  @Get('/auth/me')
   @Auth()
-  async me(@UserDecorator() user: User) {
+  async me(@UserDecorator() user: User): Promise<UserDto> {
     try {
-      return this.userService.getUser(user.id);
+      return UserDto.toDto(await this.userService.getUser(user.id));
     } catch (error) {
       this.logger.error(`${error}`);
       throw new BadRequestException(error);
     }
   }
 
-  @Post('login')
-  async login(@Body() body: LoginDto, @Req() req: Request) {
+  @Post('/auth/login')
+  async login(
+    @Body() body: LoginDto,
+    @Req() req: Request,
+  ): Promise<LoginResponseDto> {
     try {
       // See `toSnakeCase` in controllers. Use it just to be explicit instead of letting interceptor do it.
-      return toSnakeCase({
+      const response = toSnakeCase({
         cookieToken: await this.authService.login({
           username: body.username,
           password: body.password,
@@ -51,6 +54,7 @@ export class AuthController {
             : '',
         }),
       });
+      return LoginResponseDto.toDto(response.cookie_token);
     } catch (error) {
       this.logger.error(`${error}`);
       throw new BadRequestException(error);

@@ -20,17 +20,12 @@ export class SynopDataService {
     dd: number;
     now?: string; // datetime  as a `DATE_SUB` argument
   }) {
-    try {
-      return this.synopDataRepository.getSynopData({
-        stationId,
-        yyyy,
-        mm,
-        dd,
-        now,
-      });
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+    return this.synopDataRepository.getSynopData({
+      stationId,
+      yyyy,
+      mm,
+      dd,
+      now,
+    });
   }
 }

@@ -1,9 +1,5 @@
 import type { ExecutionContext } from '@nestjs/common';
-import {
-  ForbiddenException,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import type { Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
@@ -30,7 +26,7 @@ export class InfoclimatAuthGuard extends AuthGuard(STRATEGY_NAME) {
     info: any,
     context: ExecutionContext,
     _status?: any,
-  ) {
+  ): T {
     if (user && !err && !info) {
       const request = context.switchToHttp().getRequest();
       /*if (

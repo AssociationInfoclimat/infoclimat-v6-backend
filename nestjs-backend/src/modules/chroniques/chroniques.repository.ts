@@ -1,16 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import {
-  actualites,
-  bulletins_speciaux,
-  PrismaClient,
-  suivi_special,
-} from 'prisma-v5_chroniques/v5-chroniques-database-client-types';
 import { ConfigService } from 'src/config/config.service';
 import { v5ChroniquesPrismaClient } from 'src/database/v5-chroniques-prisma-client';
-import { FunctionLogger, replaceAccents } from 'src/shared/utils';
-import { MAPPING_NUM_TO_TYPE } from './chroniques.constants';
-import { ChroniquesType, Types } from './chroniques.types';
-import { getNewsThumbnailImage } from './chroniques.helpers';
+import { FunctionLogger } from 'src/shared/utils';
+import {
+  ChroniqueNewsFromActualites,
+  CommonChroniquesNews,
+  mappingBimToChroniqueNews,
+  mappingBqsToChroniqueNews,
+  mappingNewsToChroniqueNews,
+  mappingSpecialBulletins,
+  mappingSuiviSpecial,
+  SpecialBulletins,
+  SuiviSpecial,
+} from './chroniques.types';
 
 @Injectable()
 export class ChroniquesRepository {
@@ -18,22 +20,12 @@ export class ChroniquesRepository {
   private readonly logger = new FunctionLogger(ChroniquesRepository.name);
   constructor(private readonly configService: ConfigService) {}
 
-  private mapType(type: number): Types | 'Unknown' {
-    return MAPPING_NUM_TO_TYPE[type] || 'Unknown';
-  }
-
-  private mappingBqs(row: actualites) {
-    return {
-      id: row.id,
-      title: replaceAccents(row.titre),
-      publishedAt: row.bqs_day, // dh - date heure
-      content: replaceAccents(row.contenu),
-    };
-  }
-
-  async getBqsNews({ limit = 4 }: { limit?: number }) {
-    try {
-      /*
+  async getBqsNews({
+    limit = 4,
+  }: {
+    limit?: number;
+  }): Promise<CommonChroniquesNews[]> {
+    /*
         SELECT
             id,
             titre,
@@ -45,36 +37,26 @@ export class ChroniquesRepository {
             ORDER BY bqs_day DESC
             LIMIT 4
       */
-      const getNews = await this.prisma.actualites.findMany({
-        where: {
-          type: 'bqs',
-          indice_importance: { not: -1 },
-        },
-        orderBy: {
-          bqs_day: 'desc',
-        },
-        take: limit || undefined,
-      });
-      return getNews.map(this.mappingBqs);
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
-  }
-
-  private mappingBimNews(row: actualites) {
-    return {
-      id: row.id,
-      title: replaceAccents(row.titre),
-      publishedAt: row.dh_pub,
-      content: replaceAccents(row.contenu),
-    };
+    const getNews = await this.prisma.actualites.findMany({
+      where: {
+        type: 'bqs',
+        indice_importance: { not: -1 },
+      },
+      orderBy: {
+        bqs_day: 'desc',
+      },
+      take: limit || undefined,
+    });
+    return getNews.map(mappingBqsToChroniqueNews);
   }
 
   // TODO: could be merged with `getBqsNews`, but mapping is different
-  async getBimNews({ limit = 5 }: { limit?: number }) {
-    try {
-      /*
+  async getBimNews({
+    limit = 5,
+  }: {
+    limit?: number;
+  }): Promise<CommonChroniquesNews[]> {
+    /*
         SELECT
             id,
             dh_pub AS dh,
@@ -86,43 +68,17 @@ export class ChroniquesRepository {
         ORDER BY dh_pub DESC
         LIMIT 5
       */
-      const bimNewsRows = await this.prisma.actualites.findMany({
-        where: {
-          type: 'bim',
-          indice_importance: { not: -1 },
-        },
-        orderBy: {
-          dh_pub: 'desc',
-        },
-        take: limit || undefined,
-      });
-      return bimNewsRows.map(this.mappingBimNews);
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
-  }
-
-  // See `getBimNews` comment,
-  //  That's why we create a common function:
-  private mappingNews(row: actualites) {
-    return {
-      id: row.id,
-      type:
-        row.type === 'bim'
-          ? ChroniquesType.Bim
-          : row.type === 'bqs'
-            ? ChroniquesType.Bqs
-            : undefined,
-      title: replaceAccents(row.titre),
-      publishedAt: row.dh_pub,
-      content: replaceAccents(row.contenu),
-      thumbnail: getNewsThumbnailImage({
-        contenu: row.contenu,
-        thumbHeight: 200,
-        thumbWidth: 200,
-      }),
-    };
+    const bimNewsRows = await this.prisma.actualites.findMany({
+      where: {
+        type: 'bim',
+        indice_importance: { not: -1 },
+      },
+      orderBy: {
+        dh_pub: 'desc',
+      },
+      take: limit || undefined,
+    });
+    return bimNewsRows.map(mappingBimToChroniqueNews);
   }
 
   // Merged function to get `actualites`
@@ -136,76 +92,45 @@ export class ChroniquesRepository {
     limit?: number;
     type?: 'bim' | 'bqs';
     onlyImportant?: boolean;
-  }) {
-    try {
-      const newsRows = await this.prisma.actualites.findMany({
-        where: {
-          type,
-          indice_importance: onlyImportant ? { not: -1 } : undefined,
-        },
-        orderBy: {
-          dh_pub: 'desc',
-        },
-        take: limit || undefined,
-      });
-      return newsRows.map(this.mappingNews);
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+  }): Promise<ChroniqueNewsFromActualites[]> {
+    const newsRows = await this.prisma.actualites.findMany({
+      where: {
+        type,
+        indice_importance: onlyImportant ? { not: -1 } : undefined,
+      },
+      orderBy: {
+        dh_pub: 'desc',
+      },
+      take: limit || undefined,
+    });
+    return newsRows.map(mappingNewsToChroniqueNews);
   }
 
-  private mappingSpecialBulletins(row: bulletins_speciaux) {
-    const types = row.types.split(',');
-    return {
-      id: row.id,
-      summaryTitle: row.rewriting,
-      types: types
-        .map((type) => this.mapType(+type))
-        .filter((type) => type !== 'Unknown'),
-      createdAt: row.dh_pub,
-      closedAt: row.dh_clot,
-    };
-  }
-
-  async getSpecialBulletins({ limit = 3 }: { limit?: number }) {
-    try {
-      /*
+  async getSpecialBulletins({
+    limit = 3,
+  }: {
+    limit?: number;
+  }): Promise<SpecialBulletins[]> {
+    /*
         SELECT id, rewriting, types, dh_pub, dh_clot
         FROM V5_chroniques.bulletins_speciaux
             ORDER BY dh_pub DESC
             LIMIT 3
       */
-      const getSpecialBulletins = await this.prisma.bulletins_speciaux.findMany(
-        {
-          orderBy: {
-            dh_pub: 'desc',
-          },
-          take: limit || undefined,
-        },
-      );
-      return getSpecialBulletins.map((item) =>
-        this.mappingSpecialBulletins(item),
-      );
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+    const getSpecialBulletins = await this.prisma.bulletins_speciaux.findMany({
+      orderBy: {
+        dh_pub: 'desc',
+      },
+      take: limit || undefined,
+    });
+    return getSpecialBulletins.map((item) => mappingSpecialBulletins(item));
   }
 
-  private mappingSuiviSpecial(row: suivi_special) {
-    const types = row.types.split(',');
-    return {
-      id: row.id,
-      types: types
-        .map((type) => this.mapType(+type))
-        .filter((type) => type !== 'Unknown'),
-      startedAt: row.dh_deb,
-      endedAt: row.dh_fin,
-    };
-  }
-
-  async getSuiviSpecial({ limit = 3 }: { limit?: number }) {
+  async getSuiviSpecial({
+    limit = 3,
+  }: {
+    limit?: number;
+  }): Promise<SuiviSpecial[]> {
     /*
         SELECT id, types, dh_deb, dh_fin
         FROM V5_chroniques.suivi_special
@@ -218,6 +143,6 @@ export class ChroniquesRepository {
       },
       take: limit || undefined,
     });
-    return getSuiviSpecial.map((item) => this.mappingSuiviSpecial(item));
+    return getSuiviSpecial.map((item) => mappingSuiviSpecial(item));
   }
 }

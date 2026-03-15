@@ -9,12 +9,10 @@ Make sure you are running redis too.
 ```bash
 nvm use
 npm ci
-
 cp .env.sample .env
 # edit .env (which your db which is running with docker in localhost)
-
 npm run prisma:generate
-
+# Start the db and the redis server (see the main README), then:
 npm run api:start:dev
 ```
 

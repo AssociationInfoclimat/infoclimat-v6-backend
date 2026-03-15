@@ -9,12 +9,12 @@ import { StationsMeteoService } from './stations-meteo.service';
 import { DonneesCartesTuilesName } from './types';
 import { FunctionLogger } from 'src/shared/utils';
 
-@Controller('/stations-meteo')
+@Controller('')
 export class StationsMeteoController {
   private readonly logger = new FunctionLogger(StationsMeteoController.name);
   constructor(private readonly stationsMeteoService: StationsMeteoService) {}
 
-  @Get('/:nom')
+  @Get('/stations-meteo/:nom')
   async getTemperatures(
     @Param('nom') name: string,
     @Query('hour') hour: number,

@@ -2,12 +2,12 @@ import { Controller, Get } from '@nestjs/common';
 import { PhotoLiveService } from './photolive.service';
 import { FunctionLogger, toSnakeCase } from 'src/shared/utils';
 
-@Controller('photolive')
+@Controller('')
 export class PhotoLiveController {
   private readonly logger = new FunctionLogger(PhotoLiveController.name);
   constructor(private readonly photoLiveService: PhotoLiveService) {}
 
-  @Get('latest')
+  @Get('/photolive/latest')
   async getLastElevenPhotolive() {
     try {
       // See previ controller about `toSnakeCase`

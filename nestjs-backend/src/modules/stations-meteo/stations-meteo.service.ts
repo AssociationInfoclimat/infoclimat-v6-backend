@@ -23,15 +23,10 @@ export class StationsMeteoService {
     day: number;
     hour: number;
   }) {
-    try {
-      const donnees = await this.stationsMeteoRepository.getTemperatures(name);
-      if (!donnees) {
-        throw new Error('errors.not_found');
-      }
-      return donnees;
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
+    const donnees = await this.stationsMeteoRepository.getTemperatures(name);
+    if (!donnees) {
+      throw new Error('errors.not_found');
     }
+    return donnees;
   }
 }

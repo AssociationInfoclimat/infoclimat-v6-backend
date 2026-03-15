@@ -8,11 +8,6 @@ export class MetsynService {
   constructor(private readonly metsynRepository: MetsynRepository) {}
 
   async getMetsynTextId(stationId: number): Promise<string> {
-    try {
-      return this.metsynRepository.getMetsynTextId(stationId);
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+    return this.metsynRepository.getMetsynTextId(stationId);
   }
 }

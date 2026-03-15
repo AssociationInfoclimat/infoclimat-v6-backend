@@ -79,22 +79,17 @@ export class SynopDataRepository {
     dd: number;
     now?: string; // datetime  as a `DATE_SUB` argument
   }) {
-    try {
-      const client = this.getClientForYear(yyyy);
-      const row = await client.$queryRaw<synop_MM_dDD>`
+    const client = this.getClientForYear(yyyy);
+    const row = await client.$queryRaw<synop_MM_dDD>`
           SELECT * 
             FROM synop_${mm}_d${dd} WHERE id_station = ${stationId}
             AND dh_utc >= DATE_SUB(${Prisma.sql`${now || 'UTC_TIMESTAMP()'}`}, INTERVAL 3 HOUR)
             ORDER BY dh_utc 
             DESC LIMIT 1
         `;
-      if (!row) {
-        return undefined;
-      }
-      return this.mapping(row);
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
+    if (!row) {
+      return undefined;
     }
+    return this.mapping(row);
   }
 }

@@ -13,7 +13,7 @@ const getIcImageServerUrl = ({
   h?: number;
   type?: string;
   quality?: number;
-}) => {
+}): string => {
   const base64String = btoa(
     JSON.stringify({
       img: url,
@@ -41,7 +41,7 @@ export const getNewsThumbnailImage = ({
   thumbHeight?: number;
   defaultImage?: string;
   giveRandom?: boolean;
-}) => {
+}): string | null => {
   // dans le futur ?
   // http://imageserver.infoclimat.fr/local/150/150/URL.jpg
 

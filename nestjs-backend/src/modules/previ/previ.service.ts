@@ -12,39 +12,24 @@ export class PreviService {
   ) {}
 
   async getTicket(body: { lat?: number; lon?: number; accuracy?: number }) {
-    try {
-      return await this.icLegacyApiClientService.getWeatherApiTicket(body);
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+    return await this.icLegacyApiClientService.getWeatherApiTicket(body);
   }
 
   async getForecast(body: { data: string; entropy: string }) {
-    try {
-      return await this.icLegacyApiClientService.getWeatherApiForecast(body);
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+    return await this.icLegacyApiClientService.getWeatherApiForecast(body);
   }
 
   async getCommonRegionsDepts() {
-    try {
-      const previsionsRegionsDepts =
-        await this.previRepository.getCommonRegionsDepts();
-      return previsionsRegionsDepts.map((prevision) => {
-        return {
-          id: prevision.id,
-          slug: prevision.slug,
-          label: prevision.zone,
-          updatedAt: prevision.updatedAt,
-          url: `/previsions-regionales-meteo-${prevision.id}-${prevision.slug}.html`,
-        };
-      });
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+    const previsionsRegionsDepts =
+      await this.previRepository.getCommonRegionsDepts();
+    return previsionsRegionsDepts.map((prevision) => {
+      return {
+        id: prevision.id,
+        slug: prevision.slug,
+        label: prevision.zone,
+        updatedAt: prevision.updatedAt,
+        url: `/previsions-regionales-meteo-${prevision.id}-${prevision.slug}.html`,
+      };
+    });
   }
 }

@@ -26,18 +26,13 @@ export class StationsRepository {
   }
 
   async getStationById(stationId: number): Promise<Station> {
-    try {
-      const station = await this.prisma.v5_stations.findUnique({
-        where: { id: stationId },
-      });
-      if (!station) {
-        throw new Error('errors.not_found');
-      }
-      return this.mapping(station);
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
+    const station = await this.prisma.v5_stations.findUnique({
+      where: { id: stationId },
+    });
+    if (!station) {
+      throw new Error('errors.not_found');
     }
+    return this.mapping(station);
   }
 
   /*
@@ -52,17 +47,12 @@ export class StationsRepository {
     );
   */
   async getCommonStations(): Promise<Station[]> {
-    try {
-      const stations = await this.prisma.v5_stations.findMany({
-        where: {
-          genre: { not: 'metar' },
-          pays: { in: ['FR', 'BE', 'CH', 'CA', 'DE', 'IT'] },
-        },
-      });
-      return stations.map(this.mapping);
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+    const stations = await this.prisma.v5_stations.findMany({
+      where: {
+        genre: { not: 'metar' },
+        pays: { in: ['FR', 'BE', 'CH', 'CA', 'DE', 'IT'] },
+      },
+    });
+    return stations.map(this.mapping);
   }
 }

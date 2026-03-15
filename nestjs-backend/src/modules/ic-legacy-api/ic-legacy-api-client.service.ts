@@ -20,24 +20,19 @@ export class IcLegacyApiClientService {
     lat?: number;
     lon?: number;
     accuracy?: number;
-  }) {
-    try {
-      // They can be "undefined" (literally, in the endpoint string):
-      const response = await firstValueFrom(
-        this.icHttpService.get<GetOpenDataApiTicketResponse>(
-          `/previ/${lat};${lon};${accuracy}/ticket`,
-          {
-            headers: {
-              'X-Requested-With': 'XMLHttpRequest',
-            },
+  }): Promise<GetOpenDataApiTicketResponse> {
+    // They can be "undefined" (literally, in the endpoint string):
+    const response = await firstValueFrom(
+      this.icHttpService.get<GetOpenDataApiTicketResponse>(
+        `/previ/${lat};${lon};${accuracy}/ticket`,
+        {
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
           },
-        ),
-      );
-      return response.data;
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+        },
+      ),
+    );
+    return response.data;
   }
 
   async getWeatherApiForecast({
@@ -46,22 +41,17 @@ export class IcLegacyApiClientService {
   }: {
     data: string;
     entropy: string;
-  }) {
-    try {
-      const response = await firstValueFrom(
-        this.icHttpService.get<GetOpenDataApiForecastResponse>(
-          `/previ/${data}/get?u=${entropy}`,
-          {
-            headers: {
-              'X-Requested-With': 'XMLHttpRequest',
-            },
+  }): Promise<GetOpenDataApiForecastResponse> {
+    const response = await firstValueFrom(
+      this.icHttpService.get<GetOpenDataApiForecastResponse>(
+        `/previ/${data}/get?u=${entropy}`,
+        {
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
           },
-        ),
-      );
-      return response.data;
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+        },
+      ),
+    );
+    return response.data;
   }
 }

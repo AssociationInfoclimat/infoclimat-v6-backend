@@ -11,32 +11,22 @@ export class IcLegacyRootApiClientService {
   constructor(private readonly icHttpService: HttpService) {}
 
   // Under "/include":
-  async fetchIncludePathFile({ path }: { path: string }) {
-    try {
-      const response = await firstValueFrom(
-        this.icHttpService.get<string>(`/include${path}`, {
-          responseType: 'text',
-        }),
-      );
-      return response.data;
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+  async fetchIncludePathFile({ path }: { path: string }): Promise<string> {
+    const response = await firstValueFrom(
+      this.icHttpService.get<string>(`/include${path}`, {
+        responseType: 'text',
+      }),
+    );
+    return response.data;
   }
 
   // Under "/photolive":
-  async fetchPhotolivePathFile({ path }: { path: string }) {
-    try {
-      const response = await firstValueFrom(
-        this.icHttpService.get<string>(`/photolive${path}`, {
-          responseType: 'text',
-        }),
-      );
-      return response.data;
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+  async fetchPhotolivePathFile({ path }: { path: string }): Promise<string> {
+    const response = await firstValueFrom(
+      this.icHttpService.get<string>(`/photolive${path}`, {
+        responseType: 'text',
+      }),
+    );
+    return response.data;
   }
 }

@@ -1,7 +1,7 @@
 import { comptes } from 'prisma-v5/v5-database-client-types';
 import { v5DBPrismaClient } from 'src/database/v5-prisma-client';
 import { FunctionLogger, md5 } from 'src/shared/utils';
-import { User, UserParams, UserStatus, UserVignette } from './user.types';
+import { User, UserParams, UserStatus } from './user.types';
 import { DEFAULT_USER_PARAMS } from './user.constants';
 import { ConfigService } from 'src/config/config.service';
 import { Injectable } from '@nestjs/common';

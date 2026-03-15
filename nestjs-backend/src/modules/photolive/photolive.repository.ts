@@ -22,20 +22,15 @@ export class PhotoLiveRepository {
 
   // was "function get_last_eleven_photolive(): PDOStatement"
   async getLastElevenPhotolive() {
-    try {
-      const photos = await this.v5PhotolivePrismaClient.photos.findMany({
-        where: {
-          statut: '1',
-        },
-        orderBy: {
-          dh_prise: 'desc',
-        },
-        take: 11,
-      });
-      return photos.map(this.mapping);
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+    const photos = await this.v5PhotolivePrismaClient.photos.findMany({
+      where: {
+        statut: '1',
+      },
+      orderBy: {
+        dh_prise: 'desc',
+      },
+      take: 11,
+    });
+    return photos.map(this.mapping);
   }
 }

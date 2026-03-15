@@ -4,8 +4,10 @@ import dayjs from 'dayjs';
 import { FunctionLogger, stripTags, strToUrl } from 'src/shared/utils';
 import {
   BulletingSpecialType,
+  CommonChroniquesNews,
   ChroniquesType,
-  Types,
+  Bs2s,
+  MobileNews,
 } from './chroniques.types';
 
 @Injectable()
@@ -13,122 +15,117 @@ export class ChroniquesService {
   private readonly logger = new FunctionLogger(ChroniquesService.name);
   constructor(private readonly repository: ChroniquesRepository) {}
 
-  async getMobileNews({ limit = 4 }: { limit?: number }) {
-    try {
-      // TODO: See head_responsives.php
-      //  There were `V5_rencontres.rencontres`, `V5.messages_alerte_bas`,
-      //  and not only `V5_chroniques.actualites`(like below):
-      const chroniques = await this.repository.getNews({ limit });
-      return chroniques.map((chronique) => ({
-        ...chronique,
-        type: chronique.type === ChroniquesType.Bqs ? 'bqs' : 'bim',
-        publishedAt: dayjs(chronique.publishedAt).format('DD/MM'),
-        summary: stripTags(chronique.content).slice(0, 80) + '...',
-        url: `/actualites/${chronique.type}/${chronique.id}/${strToUrl(chronique.title)}.html`,
-      }));
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+  async getMobileNews({
+    limit = 4,
+  }: {
+    limit?: number;
+  }): Promise<MobileNews[]> {
+    // TODO: See head_responsives.php
+    //  There were `V5_rencontres.rencontres`, `V5.messages_alerte_bas`,
+    //  and not only `V5_chroniques.actualites`(like below):
+    const chroniques = await this.repository.getNews({ limit });
+    return chroniques.map((chronique) => ({
+      ...chronique,
+      type: chronique.type === ChroniquesType.Bqs ? 'bqs' : 'bim',
+      publishedAt: dayjs(chronique.publishedAt).format('DD/MM'),
+      summary: stripTags(chronique.content).slice(0, 80) + '...',
+      url: `/actualites/${chronique.type}/${chronique.id}/${strToUrl(chronique.title)}.html`,
+    }));
   }
 
   // bqs : FROM V5_chroniques.actualites WHERE `type` = 'bqs'
-  async getBqsNews({ limit = 4 }: { limit?: number }) {
-    try {
-      const chroniques = await this.repository.getBqsNews({ limit });
-      return chroniques.map((chronique) => ({
-        ...chronique,
-        publishedAt: dayjs(chronique.publishedAt).format('DD/MM'),
-        summary: stripTags(chronique.content).slice(0, 80) + '...',
-        url: `/actualites/bqs/${chronique.id}/${strToUrl(chronique.title)}.html`,
-      }));
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+  async getBqsNews({ limit = 4 }: { limit?: number }): Promise<
+    (Omit<CommonChroniquesNews, 'publishedAt'> & {
+      publishedAt: string;
+      summary: string;
+      url: string;
+    })[]
+  > {
+    const chroniques = await this.repository.getBqsNews({ limit });
+    return chroniques.map((chronique) => ({
+      ...chronique,
+      publishedAt: dayjs(chronique.publishedAt).format('DD/MM'),
+      summary: stripTags(chronique.content).slice(0, 80) + '...',
+      url: `/actualites/bqs/${chronique.id}/${strToUrl(chronique.title)}.html`,
+    }));
   }
 
   // bqs : FROM V5_chroniques.actualites WHERE `type` = 'bim' AND indice_importance <> -1
-  async getBimNews({ limit = 5 }: { limit?: number }) {
-    try {
-      const chroniques = await this.repository.getBimNews({ limit });
-      return chroniques.map((chronique) => ({
-        ...chronique,
-        publishedAt: dayjs(chronique.publishedAt).format('DD/MM'),
-        summary: stripTags(chronique.content).slice(0, 100) + '...',
-        url: `/actualites/bim/${chronique.id}/${strToUrl(chronique.title)}.html`,
-      }));
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+  async getBimNews({ limit = 5 }: { limit?: number }): Promise<
+    (Omit<CommonChroniquesNews, 'publishedAt'> & {
+      publishedAt: string;
+      summary: string;
+      url: string;
+    })[]
+  > {
+    const chroniques = await this.repository.getBimNews({ limit });
+    return chroniques.map((chronique) => ({
+      ...chronique,
+      publishedAt: dayjs(chronique.publishedAt).format('DD/MM'),
+      summary: stripTags(chronique.content).slice(0, 100) + '...',
+      url: `/actualites/bim/${chronique.id}/${strToUrl(chronique.title)}.html`,
+    }));
   }
 
-  async getBs2s() {
-    try {
-      const bulletinsSpeciaux = await this.repository.getSpecialBulletins({
-        limit: 4,
-      });
-      const suiviSpecial = await this.repository.getSuiviSpecial({ limit: 4 });
+  async getBs2s(): Promise<Bs2s[]> {
+    const bulletinsSpeciaux = await this.repository.getSpecialBulletins({
+      limit: 4,
+    });
+    const suiviSpecial = await this.repository.getSuiviSpecial({ limit: 4 });
 
-      // We just gonna merge bulletins speciaux and suivi special:
+    // We just gonna merge bulletins speciaux and suivi special:
 
-      const mergedBs25 = [
-        ...bulletinsSpeciaux.map((item) => ({
-          ...item,
-          type: BulletingSpecialType.BulletinSpecial,
-          title: item.summaryTitle,
-          startedAt: dayjs(item.createdAt),
-          endedAt: dayjs(item.closedAt),
-        })),
-        ...suiviSpecial.map((item) => ({
-          ...item,
-          type: BulletingSpecialType.SuiviSpecial,
-          title: '',
-          startedAt: dayjs(item.startedAt),
-          endedAt: dayjs(item.endedAt),
-        })),
-      ].sort((a, b) => b.endedAt.diff(a.endedAt));
+    const mergedBs25 = [
+      ...bulletinsSpeciaux.map((item) => ({
+        ...item,
+        type: BulletingSpecialType.BulletinSpecial,
+        title: item.summaryTitle,
+        startedAt: dayjs(item.createdAt),
+        endedAt: dayjs(item.closedAt),
+      })),
+      ...suiviSpecial.map((item) => ({
+        ...item,
+        type: BulletingSpecialType.SuiviSpecial,
+        title: '',
+        startedAt: dayjs(item.startedAt),
+        endedAt: dayjs(item.endedAt),
+      })),
+    ].sort((a, b) => b.endedAt.diff(a.endedAt));
 
-      const results: { link: string; dateRange: string; types: string[] }[] =
-        [];
+    const results: { link: string; dateRange: string; types: string[] }[] = [];
 
-      let i = 0;
-      for (const item of mergedBs25) {
-        if (i > 4) {
-          break;
-        }
-        const startedAtDay = item.startedAt.format('DD');
-        const startedAtMonth = item.startedAt.format('MM');
-        const endedAtDay = item.endedAt.format('DD');
-        const endedAtMonth = item.endedAt.format('MM');
-        let dateRangeAsText = '';
-        if (startedAtDay == endedAtDay && startedAtMonth == endedAtMonth) {
-          dateRangeAsText = `le ${endedAtDay}/${endedAtMonth}`;
-        } else {
-          if (startedAtMonth == endedAtMonth) {
-            dateRangeAsText = `du ${startedAtDay} au ${endedAtDay}/${endedAtMonth}`;
-          } else {
-            dateRangeAsText = `du ${startedAtDay}/${startedAtMonth} au ${endedAtDay}/${endedAtMonth}`;
-          }
-        }
-        const link =
-          item.type === BulletingSpecialType.SuiviSpecial
-            ? `/suivi-special-${item.id}.html`
-            : `/bulletin-special-${item.id}-${strToUrl(item.title)}.html`;
-
-        results.push({
-          link,
-          dateRange: dateRangeAsText,
-          types: [...new Set(item.types.map((type) => type.toLowerCase()))],
-        });
-
-        i++;
+    let i = 0;
+    for (const item of mergedBs25) {
+      if (i > 4) {
+        break;
       }
-      return results;
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
+      const startedAtDay = item.startedAt.format('DD');
+      const startedAtMonth = item.startedAt.format('MM');
+      const endedAtDay = item.endedAt.format('DD');
+      const endedAtMonth = item.endedAt.format('MM');
+      let dateRangeAsText = '';
+      if (startedAtDay == endedAtDay && startedAtMonth == endedAtMonth) {
+        dateRangeAsText = `le ${endedAtDay}/${endedAtMonth}`;
+      } else {
+        if (startedAtMonth == endedAtMonth) {
+          dateRangeAsText = `du ${startedAtDay} au ${endedAtDay}/${endedAtMonth}`;
+        } else {
+          dateRangeAsText = `du ${startedAtDay}/${startedAtMonth} au ${endedAtDay}/${endedAtMonth}`;
+        }
+      }
+      const link =
+        item.type === BulletingSpecialType.SuiviSpecial
+          ? `/suivi-special-${item.id}.html`
+          : `/bulletin-special-${item.id}-${strToUrl(item.title)}.html`;
+
+      results.push({
+        link: link,
+        dateRange: dateRangeAsText,
+        types: [...new Set(item.types.map((type) => type.toLowerCase()))],
+      });
+
+      i++;
     }
+    return results;
   }
 }

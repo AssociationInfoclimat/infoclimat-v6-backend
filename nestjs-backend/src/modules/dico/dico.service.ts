@@ -1,19 +1,15 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { DicoRepository } from './dico.repository';
 import { FunctionLogger } from 'src/shared/utils';
+import { LexiqueWord } from './dico.types';
 
 @Injectable()
 export class DicoService {
   private readonly logger = new FunctionLogger(DicoService.name);
   constructor(private readonly dicoRepository: DicoRepository) {}
 
-  async getTenRandomLexique() {
-    try {
-      // TODO: handle cache
-      return this.dicoRepository.getTenRandomLexique();
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+  async getTenRandomLexique(): Promise<LexiqueWord[]> {
+    // TODO: handle cache
+    return this.dicoRepository.getTenRandomLexique();
   }
 }

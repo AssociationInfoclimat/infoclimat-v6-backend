@@ -9,11 +9,6 @@ export class StationsService {
   constructor(private readonly repository: StationsRepository) {}
 
   async getCommonStations(): Promise<Station[]> {
-    try {
-      return await this.repository.getCommonStations();
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
-    }
+    return await this.repository.getCommonStations();
   }
 }

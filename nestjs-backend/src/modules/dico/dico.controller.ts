@@ -4,7 +4,7 @@ import { FunctionLogger } from 'src/shared/utils';
 import { RedisCacheManagerService } from '../redis-cache-manager/redis-cache-manager.service';
 import { LexiqueWord } from './dico.types';
 
-@Controller('dico')
+@Controller('')
 export class DicoController {
   private readonly logger = new FunctionLogger(DicoController.name);
   constructor(
@@ -12,7 +12,7 @@ export class DicoController {
     private readonly redisCacheManagerService: RedisCacheManagerService,
   ) {}
 
-  @Get('random')
+  @Get('/dico/random')
   async getRandomLexique(): Promise<LexiqueWord[]> {
     try {
       // Just to test the cache:

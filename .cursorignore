@@ -5,3 +5,9 @@ dist-cron
 .cursorignore
 node_modules
 .env
+
+redis-cache-data
+mapserver
+init-data
+demo-tiles
+sphinx

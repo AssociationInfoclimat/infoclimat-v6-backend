@@ -1,47 +1,59 @@
 import { BadRequestException, Controller, Get, Query } from '@nestjs/common';
 import { ChroniquesService } from './chroniques.service';
+import {
+  GetBimNewsDto,
+  GetBqsNewsDto,
+  GetBs2sDto,
+  GetMobileNewsDto,
+} from './chroniques.dto';
 
-@Controller('chroniques')
+@Controller('')
 export class ChroniquesController {
   constructor(private readonly chroniquesService: ChroniquesService) {}
 
-  @Get('/mobile') // dont set '/bqs' or '/bim', because mobile endpoint returns both
-  getMobileNews(@Query('limit') limit: number) {
+  @Get('/chroniques/mobile') // dont set '/bqs' or '/bim', because mobile endpoint returns both
+  async getMobileNews(
+    @Query('limit') limit: number,
+  ): Promise<GetMobileNewsDto[]> {
     try {
-      return this.chroniquesService.getMobileNews({
+      const news = await this.chroniquesService.getMobileNews({
         limit: +limit || undefined,
       });
+      return news.map(GetMobileNewsDto.toDto);
     } catch (error) {
       throw new BadRequestException(error);
     }
   }
 
-  @Get('/bqs')
-  getChroniques(@Query('limit') limit: number) {
+  @Get('/chroniques/bqs')
+  async getChroniques(@Query('limit') limit: number): Promise<GetBqsNewsDto[]> {
     try {
-      return this.chroniquesService.getBqsNews({
+      const news = await this.chroniquesService.getBqsNews({
         limit: +limit || undefined,
       });
+      return news.map(GetBqsNewsDto.toDto);
     } catch (error) {
       throw new BadRequestException(error);
     }
   }
 
-  @Get('/bim')
-  getBimNews(@Query('limit') limit: number) {
+  @Get('/chroniques/bim')
+  async getBimNews(@Query('limit') limit: number): Promise<GetBimNewsDto[]> {
     try {
-      return this.chroniquesService.getBimNews({
+      const news = await this.chroniquesService.getBimNews({
         limit: +limit || undefined,
       });
+      return news.map(GetBimNewsDto.toDto);
     } catch (error) {
       throw new BadRequestException(error);
     }
   }
 
-  @Get('/bs2s')
-  getBs2s() {
+  @Get('/chroniques/bs2s')
+  async getBs2s(): Promise<GetBs2sDto[]> {
     try {
-      return this.chroniquesService.getBs2s();
+      const bs2s = await this.chroniquesService.getBs2s();
+      return bs2s.map(GetBs2sDto.toDto);
     } catch (error) {
       throw new BadRequestException(error);
     }

@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from 'src/config/config.service';
 import { FunctionLogger } from 'src/shared/utils';
 import { MetarPerStationPerYmdh } from './metar-data.types';
-import { metar_MM_dDD, PrismaClient, Prisma } from 'prisma-v5_per_year/v5-per-year-database-client-types';
+import {
+  metar_MM_dDD,
+  PrismaClient,
+  Prisma,
+} from 'prisma-v5_per_year/v5-per-year-database-client-types';
 
 @Injectable()
 export class MetarDataRepository {
@@ -74,22 +78,17 @@ export class MetarDataRepository {
     dd: number;
     now?: string; // datetime  as a `DATE_SUB` argument
   }) {
-    try {
-      const client = this.getClientForYear(yyyy);
-      const row = await client.$queryRaw<metar_MM_dDD>`
+    const client = this.getClientForYear(yyyy);
+    const row = await client.$queryRaw<metar_MM_dDD>`
           SELECT * 
             FROM metar_${mm}_d${dd} WHERE id_station = ${stationId}
             AND dh_utc >= DATE_SUB(${Prisma.sql`${now || 'UTC_TIMESTAMP()'}`}, INTERVAL 3 HOUR)
             ORDER BY dh_utc 
             DESC LIMIT 1
         `;
-      if (!row) {
-        return undefined;
-      }
-      return this.mapping(row);
-    } catch (error) {
-      this.logger.error(`${error}`);
-      throw error;
+    if (!row) {
+      return undefined;
     }
+    return this.mapping(row);
   }
 }
