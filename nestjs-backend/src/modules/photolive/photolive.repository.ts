@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import dayjs from 'dayjs';
-import { photos } from 'prisma-v5_photolive/v5-photolive-database-client-types';
 import { v5PhotolivePrismaClient } from 'src/database/v5-photolive-prisma-client';
 import { FunctionLogger } from 'src/shared/utils';
+import { mappingPhotolivePhoto, PhotolivePhoto } from './photolive.types';
 
 @Injectable()
 export class PhotoLiveRepository {
@@ -11,17 +10,8 @@ export class PhotoLiveRepository {
 
   constructor() {}
 
-  mapping(photo: photos) {
-    return {
-      id: photo.id,
-      photoUrl: photo.photo_url,
-      dhPrise: dayjs(photo.dh_prise).format('YYYY-MM-DD HH:mm:ss'),
-      titre: photo.titre,
-    };
-  }
-
   // was "function get_last_eleven_photolive(): PDOStatement"
-  async getLastElevenPhotolive() {
+  async getLastElevenPhotolive(): Promise<PhotolivePhoto[]> {
     const photos = await this.v5PhotolivePrismaClient.photos.findMany({
       where: {
         statut: '1',
@@ -31,6 +21,6 @@ export class PhotoLiveRepository {
       },
       take: 11,
     });
-    return photos.map(this.mapping);
+    return photos.map((photo) => mappingPhotolivePhoto(photo));
   }
 }

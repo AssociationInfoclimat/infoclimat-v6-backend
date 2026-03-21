@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { FunctionLogger } from 'src/shared/utils';
-import { DonneesCartesTuiles, DonneesCartesTuilesName } from './types';
+import {
+  DonneesCartesTuiles,
+  DonneesCartesTuilesName,
+} from './stations-meteo.types';
 import { v5DataParamsPrismaClient } from 'src/database/v5-data-params-prisma-client';
 
 @Injectable()

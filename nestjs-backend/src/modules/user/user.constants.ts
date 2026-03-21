@@ -1,4 +1,4 @@
-import { UserParams, UserVignette } from './user.types';
+import { type UserParams, UserVignette } from './user.types';
 
 export const DEFAULT_USER_PARAMS: UserParams = {
   vignettes: [

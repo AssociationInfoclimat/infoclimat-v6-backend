@@ -40,7 +40,7 @@ export class UserRepository {
         vignettes: legacyUserParams.vignettes,
         stations: legacyUserParams.s,
       };
-    } catch (error) {
+    } catch (_error) {
       // Mute that error
     }
 
@@ -59,8 +59,6 @@ export class UserRepository {
             acc[property] = user.mdp_hash;
           } else if (property === 'mdp') {
             acc[property] = user.mdp;
-          } else {
-            throw new Error(`errors.user.property_${property}_is_not_mapped`);
           }
           return acc;
         },

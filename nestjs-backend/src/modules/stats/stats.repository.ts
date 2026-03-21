@@ -7,12 +7,8 @@ export class StatsRepository {
 
   constructor() {}
 
-  async getNbConnectes() {
-    try {
-      const stats = await this.prisma.connectes.count();
-      return stats;
-    } catch (error) {
-      throw new Error(`Error getting stats: ${error}`);
-    }
+  async getNbConnectes(): Promise<number> {
+    const stats = await this.prisma.connectes.count();
+    return stats;
   }
 }
