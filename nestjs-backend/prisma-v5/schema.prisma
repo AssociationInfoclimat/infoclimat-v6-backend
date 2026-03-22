@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output = "../prisma-v5/v5-database-client-types"
+  output   = "../prisma-v5/v5-database-client-types"
 }
 
 datasource v5 {
@@ -127,6 +127,11 @@ enum personnes_coordonnees_confidentialite {
 enum accueil_extremes_alertes_fixed {
   ZERO @map("0")
   ONE  @map("1")
+}
+
+model cartes_tuiles {
+  nom     String @id @v5.VarChar(255)
+  donnees String @v5.VarChar(255)
 }
 
 // /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
@@ -331,13 +336,6 @@ enum accueil_extremes_alertes_fixed {
 //   @@ignore
 // }
 //
-// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-// model cartes_tuiles {
-//   nom     String @v5.VarChar(255)
-//   donnees String @v5.VarChar(255)
-//
-//   @@ignore
-// }
 //
 // /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 // model codes_valid_email {

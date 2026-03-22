@@ -7,7 +7,7 @@ import { isStagingEnv } from './shared/utils';
 
 let server: { close: (arg0: (err: any) => void) => void };
 
-const shutdown = () => {
+const shutdown = async (): Promise<void> => {
   // Gracefully close outstanding HTTP connections
   server.close((err) => {
     if (err) {
@@ -18,7 +18,9 @@ const shutdown = () => {
   });
 };
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
+  const logger = new Logger('bootstrap');
+
   const api = await NestFactory.create(ApiModule);
   api.setGlobalPrefix('api');
   api.useGlobalPipes(
@@ -36,7 +38,10 @@ async function bootstrap() {
       })
     : api.enableCors();
 
-  server = await api.listen(3000);
+  const PORT = process.env.PORT || 3000;
+  logger.log(`ℹ️  Server is running on port ${PORT}`);
+  server = await api.listen(PORT);
+
   process.on('SIGINT', shutdown);
   process.on('SIGTERM', shutdown);
 
@@ -45,4 +50,4 @@ async function bootstrap() {
     logger.error(`[FATAL][unhandledRejection] ${err} : ${err.stack as string}`);
   });
 }
-bootstrap();
+void bootstrap();

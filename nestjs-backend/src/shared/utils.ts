@@ -477,7 +477,7 @@ export const strtr = (str: string, trFrom: string, trTo: string) => {
 
 export const base64url_encode = (data: string) => {
   // .rtrim( xxx , '=')
-  return strtr(btoa(data), '+/', '-_').replace(/\=+$/g, '');
+  return strtr(btoa(data), '+/', '-_').replace(/=+$/g, '');
 };
 
 export const getIPFromRequest = (req: Request) => {

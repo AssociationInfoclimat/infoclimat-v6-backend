@@ -2,9 +2,9 @@ import type { NestMiddleware } from '@nestjs/common';
 import { Injectable, Logger } from '@nestjs/common';
 import type { NextFunction, Response } from 'express';
 import type { Request } from 'express';
-import { AuthService } from 'src/modules/auth/auth.service';
-import { User } from 'src/modules/user/user.types';
-import { UserService } from 'src/modules/user/user.service';
+import { AuthService } from 'src/modules/feature-modules/auth/auth.service';
+import { User } from 'src/modules/entity-modules/user/user.types';
+import { UserService } from 'src/modules/entity-modules/user/user.service';
 
 export type ICRequest = Request & {
   user?: User;

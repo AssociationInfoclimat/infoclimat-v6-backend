@@ -1,21 +1,23 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule } from './config/config.module';
-import { PreviController } from './modules/previ/previ.controller';
-import { PreviModule } from './modules/previ/previ.module';
+import { PreviAggregateController } from './modules/feature-modules/previ-aggregate/previ-aggregate.controller';
+import { PreviAggregateModule } from './modules/feature-modules/previ-aggregate/previ-aggregate.module';
 import { UserAuthMiddleware } from './middlewares/user-auth.middleware';
-import { UserModule } from './modules/user/user.module';
-import { AuthModule } from './modules/auth/auth.module';
-import { AuthController } from './modules/auth/auth.controller';
-import { DicoController } from './modules/dico/dico.controller';
-import { DicoModule } from './modules/dico/dico.module';
-import { VignettesController } from './modules/vignettes/vignettes.controller';
-import { VignettesModule } from './modules/vignettes/vignettes.module';
-import { PhotoLiveController } from './modules/photolive/photolive.controller';
-import { PhotoLiveModule } from './modules/photolive/photolive.module';
-import { ChroniquesModule } from './modules/chroniques/chroniques.modules';
-import { ChroniquesController } from './modules/chroniques/chroniques.controller';
-import { StatsController } from './modules/stats/stats.controller';
-import { StatsModule } from './modules/stats/stats.module';
+import { UserModule } from './modules/entity-modules/user/user.module';
+import { AuthModule } from './modules/feature-modules/auth/auth.module';
+import { AuthController } from './modules/feature-modules/auth/auth.controller';
+import { VignettesController } from './modules/feature-modules/vignettes/vignettes.controller';
+import { VignettesModule } from './modules/feature-modules/vignettes/vignettes.module';
+import { PhotoLiveController } from './modules/entity-modules/photolive/photolive.controller';
+import { PhotoLiveModule } from './modules/entity-modules/photolive/photolive.module';
+import { CachedStatsController } from './modules/feature-modules/cached-stats/cached-stats.controller';
+import { CachedStatsModule } from './modules/feature-modules/cached-stats/cached-stats.module';
+import { ChroniquesModule } from './modules/entity-modules/chroniques/chroniques.modules';
+import { ChroniquesController } from './modules/entity-modules/chroniques/chroniques.controller';
+import { HomepageMapDataModule } from './modules/feature-modules/homepage-map-data/homepage-map-data.module';
+import { HomepageMapDataController } from './modules/feature-modules/homepage-map-data/homepage-map-data.controller';
+import { CachedDicoModule } from './modules/feature-modules/cached-dico/cached-dico.module';
+import { CachedDicoController } from './modules/feature-modules/cached-dico/cached-dico.controller';
 
 @Module({
   imports: [
@@ -24,27 +26,29 @@ import { StatsModule } from './modules/stats/stats.module';
     //PrismaModule,
     //MapdataModule,
     //StationsMeteoModule,
-    PreviModule,
+    PreviAggregateModule,
     UserModule,
     AuthModule,
-    DicoModule,
+    CachedDicoModule,
     VignettesModule,
     PhotoLiveModule,
     ChroniquesModule,
-    StatsModule,
+    CachedStatsModule,
+    HomepageMapDataModule,
   ],
   //
   // We explicitely import the controllers here. We want our services to expose controllers.
   // /!\ Dont forget to inject the module above, before injecting the controller below:
   //
   controllers: [
-    PreviController,
+    PreviAggregateController,
     AuthController,
-    DicoController,
+    CachedDicoController,
     VignettesController,
     PhotoLiveController,
     ChroniquesController,
-    StatsController,
+    CachedStatsController,
+    HomepageMapDataController,
   ],
   providers: [],
 })

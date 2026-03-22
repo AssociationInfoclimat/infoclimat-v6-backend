@@ -2,15 +2,15 @@ import { Injectable, Module } from '@nestjs/common';
 import { FunctionLogger } from '../../../shared/utils';
 import { ConfigModule } from 'src/config/config.module';
 import { ScheduleModule, Cron, Timeout } from '@nestjs/schedule';
-import { SynopDataModule } from 'src/modules/stations/synop/synop-data.module';
-import { MetarDataModule } from 'src/modules/stations/metar/metar-data.module';
-import { StationsModule } from 'src/modules/stations/stations.module';
-import { SynopDataService } from 'src/modules/stations/synop/synop-data.service';
-import { MetarDataService } from 'src/modules/stations/metar/metar-data.service';
-import { StationsService } from 'src/modules/stations/stations.service';
-import { StationGenre } from 'src/modules/stations/stations.types';
-import { MetsynService } from 'src/modules/stations/metsyn/metsyn.service';
-import { MetsynModule } from 'src/modules/stations/metsyn/metsyn.module';
+import { SynopDataModule } from 'src/modules/entity-modules/stations-synop/synop-data.module';
+import { MetarDataModule } from 'src/modules/entity-modules/stations-metar/metar-data.module';
+import { StationsModule } from 'src/modules/entity-modules/stations/stations.module';
+import { SynopDataService } from 'src/modules/entity-modules/stations-synop/synop-data.service';
+import { MetarDataService } from 'src/modules/entity-modules/stations-metar/metar-data.service';
+import { StationsService } from 'src/modules/entity-modules/stations/stations.service';
+import { StationGenre } from 'src/modules/entity-modules/stations/stations.types';
+import { MetsynService } from 'src/modules/entity-modules/stations-metsyn/metsyn.service';
+import { MetsynModule } from 'src/modules/entity-modules/stations-metsyn/metsyn.module';
 
 @Injectable()
 class RefreshStationsVignettesCronService {

@@ -14,7 +14,7 @@ enum CronName {
 
 let server: undefined | INestApplicationContext = undefined;
 
-async function bootstrapCron(module: string) {
+async function bootstrapCron(module: string): Promise<void> {
   let cronModule;
   const logger = new Logger('Cron');
 
@@ -41,7 +41,7 @@ async function bootstrapCron(module: string) {
 
     await server.init();
 
-    const shutdown = async (signal: string) => {
+    const shutdown = async (signal: string): Promise<void> => {
       const logger = new Logger('shutdown');
       logger.warn(
         `Requested a shutdown.. \`server.close\` will be triggered after the app gracefully closed. ${signal}`,
