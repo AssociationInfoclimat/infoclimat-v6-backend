@@ -6,26 +6,31 @@ import type {
 import { Injectable } from '@nestjs/common';
 import type { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { toSnakeCase } from '../utils';
 
 export interface Response<T> {
   success: boolean;
   data: T;
 }
 @Injectable()
-export class SnakeCaseInterceptor<T>
-  implements NestInterceptor<T, Response<T>>
-{
+export class DataResponseInterceptor<T> implements NestInterceptor<
+  T,
+  Response<T>
+> {
   intercept(
     _context: ExecutionContext,
     next: CallHandler<T>,
   ): Observable<Response<T>> {
     return next.handle().pipe(
       map((data) => {
-        const snakedData = toSnakeCase(data);
+        //
+        // We used to automatically snake-case the data,
+        //  but it's too dangerous and unexpected to do it automatically,
+        //  especially when we will have sometimes the new version of our data,
+        //  and sometimes the old version/legacy of our data.
+
         const cleanedResponse = {
           success: true,
-          data: snakedData,
+          data: data,
         } as Response<T>;
         return cleanedResponse;
       }),

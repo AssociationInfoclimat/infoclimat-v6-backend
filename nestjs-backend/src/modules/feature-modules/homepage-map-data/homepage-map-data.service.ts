@@ -1,7 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { StationsMeteoService } from 'src/modules/entity-modules/stations-meteo/stations-meteo.service';
 import { md5key } from 'src/modules/entity-modules/stations-meteo/stations-meteo.utils';
-import { HomepageMapData, HomepageTileInfo } from './homepage-map-data.types';
+import {
+  HomepageMapData,
+  HomepageMapDataWithAdditionalKeys,
+  HomepageTileInfo,
+} from './homepage-map-data.types';
 
 const ALLOWED_PARAMS = new Set<string>([
   'colorac60radaric',
@@ -58,8 +62,12 @@ const getUtcTileInfoFromMs = (timestampMs: number): HomepageTileInfo =>
 export class HomepageMapDataService {
   constructor(private readonly stationsMeteoService: StationsMeteoService) {}
 
-  async getAndPersistHomepageMapData(): Promise<HomepageMapData> {
+  async getAndPersistHomepageMapData(): Promise<HomepageMapDataWithAdditionalKeys> {
+    //
+    // Fetch the data from the db and enrich it with the additional keys:
     const lastDataPrd = await this._getHomepageMapData();
+
+    // Was persisted in `$_memcached->get('in****hp:l****sqlite')` in legacy
     await this._persistHomepageMapData(lastDataPrd);
 
     return lastDataPrd;
@@ -72,11 +80,13 @@ export class HomepageMapDataService {
    * For some tiles, the keys already are in `getTilesData` method, but for other ones
    *  we need to build the key manually.
    */
-  private async _getHomepageMapData(): Promise<HomepageMapData> {
+  private async _getHomepageMapData(): Promise<HomepageMapDataWithAdditionalKeys> {
     const tilesData = await this.stationsMeteoService.getTilesData();
 
-    const lastDataPrd: HomepageMapData = {
-      ltiles: {},
+    const lastDataPrd: Omit<HomepageMapDataWithAdditionalKeys, 'ltiles'> & {
+      ltiles: Partial<HomepageMapDataWithAdditionalKeys['ltiles']>;
+    } = {
+      ltiles: {} as Partial<HomepageMapDataWithAdditionalKeys['ltiles']>,
       lanim: {},
       isNightTime: false,
     };
@@ -204,12 +214,23 @@ export class HomepageMapDataService {
 
     const nowHour = new Date().getHours();
     lastDataPrd.isNightTime = nowHour >= 19 || nowHour <= 6;
+    //
+    // From here, `lastDataPrd.ltiles` is fully populated,
+    //  not a Partial<> anymore,
+    //  we can build the final object:
+    //
+    const finalData: HomepageMapDataWithAdditionalKeys = {
+      ...lastDataPrd,
+      ltiles: lastDataPrd.ltiles as HomepageMapDataWithAdditionalKeys['ltiles'],
+    };
 
-    return lastDataPrd;
+    return finalData;
   }
 
   private async _addMetOfficeTiles(
-    lastDataPrd: HomepageMapData,
+    lastDataPrd: Omit<HomepageMapDataWithAdditionalKeys, 'ltiles'> & {
+      ltiles: Partial<HomepageMapDataWithAdditionalKeys['ltiles']>;
+    },
   ): Promise<void> {
     const observationUrl =
       'http://www.metoffice.gov.uk/public/data/LayerCache/GetCapabilities/Item/Observation';

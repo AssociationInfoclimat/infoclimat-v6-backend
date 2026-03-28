@@ -6,7 +6,10 @@ import {
   Query,
 } from '@nestjs/common';
 import { StationsMeteoService } from './stations-meteo.service';
-import { DonneesCartesTuilesName } from './stations-meteo.types';
+import {
+  DonneesCartesTuiles,
+  DonneesCartesTuilesName,
+} from './stations-meteo.types';
 import { FunctionLogger } from 'src/shared/utils';
 
 @Controller('')
@@ -21,7 +24,7 @@ export class StationsMeteoController {
     @Query('year') year: number,
     @Query('day') day: number,
     @Query('month') month: number,
-  ) {
+  ): Promise<DonneesCartesTuiles> {
     try {
       const data = await this.stationsMeteoService.getStationsData({
         name: name as DonneesCartesTuilesName,

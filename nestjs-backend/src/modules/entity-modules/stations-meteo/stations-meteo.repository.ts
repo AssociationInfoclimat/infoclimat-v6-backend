@@ -42,7 +42,7 @@ export class StationsMeteoRepository {
   async getTilesData(): Promise<DonneesCartesTuilesWithNom[]> {
     const cartesTuiles = await this.v5Prisma.cartes_tuiles.findMany();
     return cartesTuiles.map((cartesTuile) => ({
-      nom: cartesTuile.nom,
+      nom: cartesTuile.nom as DonneesCartesTuilesName,
       ...(JSON.parse(cartesTuile.donnees) as DonneesCartesTuiles),
     }));
   }
@@ -58,7 +58,11 @@ export class StationsMeteoRepository {
       return undefined;
     }
     return {
-      nom: cartesTuile.nom,
+      //
+      // TODO: Check this ⚠️
+      // Here, we assume what comes from the database is always valid:
+      //
+      nom: cartesTuile.nom as DonneesCartesTuilesName,
       ...(JSON.parse(cartesTuile.donnees) as DonneesCartesTuiles),
     };
   }

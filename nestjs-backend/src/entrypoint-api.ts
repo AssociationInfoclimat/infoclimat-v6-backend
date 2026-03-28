@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { ApiModule } from './api.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
-import { SnakeCaseInterceptor } from './shared/interceptors/snake-case.interceptor';
+import { DataResponseInterceptor } from './shared/interceptors/response-data.interceptor';
 import { HttpExceptionFilter } from './shared/filters/http-exception.filter';
 import { isStagingEnv } from './shared/utils';
 
@@ -29,7 +29,7 @@ async function bootstrap(): Promise<void> {
     }),
   );
   api.useGlobalFilters(new HttpExceptionFilter());
-  api.useGlobalInterceptors(new SnakeCaseInterceptor());
+  api.useGlobalInterceptors(new DataResponseInterceptor());
 
   isStagingEnv()
     ? api.enableCors({
