@@ -20,10 +20,10 @@ export class IcLegacyApiClientService {
     lat?: number;
     lon?: number;
     accuracy?: number;
-  }): Promise<GetOpenDataApiTicketResponse> {
+  }): Promise<GetOpenDataApiTicketResponse['responseData']> {
     // They can be "undefined" (literally, in the endpoint string):
     const response = await firstValueFrom(
-      this.icHttpService.get<GetOpenDataApiTicketResponse>(
+      this.icHttpService.get<GetOpenDataApiTicketResponse['responseData']>(
         `/previ/${lat};${lon};${accuracy}/ticket`,
         {
           headers: {
@@ -41,9 +41,9 @@ export class IcLegacyApiClientService {
   }: {
     data: string;
     entropy: string;
-  }): Promise<GetOpenDataApiForecastResponse> {
+  }): Promise<GetOpenDataApiForecastResponse['reponseData']> {
     const response = await firstValueFrom(
-      this.icHttpService.get<GetOpenDataApiForecastResponse>(
+      this.icHttpService.get<GetOpenDataApiForecastResponse['reponseData']>(
         `/previ/${data}/get?u=${entropy}`,
         {
           headers: {

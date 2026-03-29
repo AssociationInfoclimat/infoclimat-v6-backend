@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { createHash } from 'crypto';
+import type { Request } from 'express';
 
 export class FunctionLogger extends Logger {
   _getCallerFnName(stack: any) {
@@ -480,12 +481,15 @@ export const base64url_encode = (data: string) => {
   return strtr(btoa(data), '+/', '-_').replace(/=+$/g, '');
 };
 
-export const getIPFromRequest = (req: Request) => {
-  const forwardedFor: string | undefined = (req as any)?.headers
-    ? (req as any)?.headers['x-forwarded-for']
-    : undefined;
+export const getIPFromRequest = (req: Request): string => {
+  const forwardedFor: string[] | undefined =
+    req?.headers && req.headers['x-forwarded-for']
+      ? Array.isArray(req.headers['x-forwarded-for'])
+        ? req.headers['x-forwarded-for']
+        : [req.headers['x-forwarded-for']]
+      : undefined;
   const ip: string = Array.isArray(forwardedFor)
     ? forwardedFor[0]
-    : forwardedFor || (req as any)?.socket?.remoteAddress || '';
+    : (forwardedFor ?? req?.socket?.remoteAddress) || '';
   return ip;
 };

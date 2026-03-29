@@ -7,11 +7,15 @@ import {
 } from '@nestjs/common';
 import { PreviAggregateService } from './previ-aggregate.service';
 import {
-  GetCommonRegionsDeptsResponse,
+  GetCommonRegionsDeptsResponseDto,
   PostComingDaysForecastPayload,
   PostComingDaysTicketPayload,
 } from './previ-aggregate.dto';
-import { FunctionLogger, toSnakeCase } from 'src/shared/utils';
+import { FunctionLogger } from 'src/shared/utils';
+import {
+  GetOpenDataApiForecastResponse,
+  GetOpenDataApiTicketResponse,
+} from '../ic-legacy-api/ic-legacy-api-client.types';
 
 //
 // This controller
@@ -25,7 +29,9 @@ export class PreviAggregateController {
   constructor(private readonly previAggregateService: PreviAggregateService) {}
 
   @Post('/previ/ticket')
-  async postTicket(@Body() body: PostComingDaysTicketPayload) {
+  async postTicket(
+    @Body() body: PostComingDaysTicketPayload,
+  ): Promise<GetOpenDataApiTicketResponse['responseData']> {
     try {
       return await this.previAggregateService.getTicket(body);
     } catch (error) {
@@ -35,7 +41,9 @@ export class PreviAggregateController {
   }
 
   @Post('/previ/coming-days')
-  async postComingDaysForecast(@Body() body: PostComingDaysForecastPayload) {
+  async postComingDaysForecast(
+    @Body() body: PostComingDaysForecastPayload,
+  ): Promise<GetOpenDataApiForecastResponse['reponseData']> {
     try {
       return await this.previAggregateService.getForecast({
         data: body.ticket_data,
@@ -48,14 +56,9 @@ export class PreviAggregateController {
   }
 
   @Get('/previ/common-regions-depts')
-  async getCommonRegionsDepts(): Promise<
-    GetCommonRegionsDeptsResponse['responseData']
-  > {
+  async getCommonRegionsDepts(): Promise<GetCommonRegionsDeptsResponseDto> {
     try {
-      // We already automatically convert into snake_case in the interceptor
-      //  but this is not clear because we can't know the type of the response
-      //  from the controller, So we should always explicitly convert it to snake_case:
-      return toSnakeCase(
+      return GetCommonRegionsDeptsResponseDto.toDto(
         await this.previAggregateService.getCommonRegionsDepts(),
       );
     } catch (error) {

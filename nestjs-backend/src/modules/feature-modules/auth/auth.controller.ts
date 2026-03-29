@@ -17,6 +17,7 @@ import {
 } from 'src/shared/utils';
 import { LoginDto, LoginResponseDto, UserDto } from './auth.dto';
 import { AuthService } from './auth.service';
+import { Request } from 'express';
 
 @Controller('')
 export class AuthController {
@@ -43,15 +44,16 @@ export class AuthController {
     @Req() req: Request,
   ): Promise<LoginResponseDto> {
     try {
-      // See `toSnakeCase` in controllers. Use it just to be explicit instead of letting interceptor do it.
+      // TODO: Use DTO for response
       const response = toSnakeCase({
         cookieToken: await this.authService.login({
           username: body.username,
           password: body.password,
           ip: getIPFromRequest(req),
-          uagent: (req as any)?.headers
-            ? (req as any).headers['user-agent']
-            : '',
+          uagent:
+            req?.headers && req.headers['user-agent']
+              ? req.headers['user-agent']
+              : '',
         }),
       });
       return LoginResponseDto.toDto(response.cookie_token);

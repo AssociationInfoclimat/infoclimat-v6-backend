@@ -83,7 +83,7 @@ export class HomepageMapDataDto {
   >;
 
   @IsBoolean()
-  isNightTime: boolean;
+  is_night_time: boolean;
 
   /**
    *
@@ -209,7 +209,7 @@ export class HomepageMapDataDto {
     return {
       ltiles: ltiles,
       lanim: lanim,
-      isNightTime: homepageMapData.isNightTime,
+      is_night_time: homepageMapData.isNightTime,
     };
   }
 }
