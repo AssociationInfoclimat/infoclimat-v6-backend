@@ -18,6 +18,8 @@ import { HomepageMapDataModule } from './modules/feature-modules/homepage-map-da
 import { HomepageMapDataController } from './modules/feature-modules/homepage-map-data/homepage-map-data.controller';
 import { CachedDicoModule } from './modules/feature-modules/cached-dico/cached-dico.module';
 import { CachedDicoController } from './modules/feature-modules/cached-dico/cached-dico.controller';
+import { CarteObservationsModule } from './modules/feature-modules/carte-observations/carte-observations.module';
+import { CarteObservationsController } from './modules/feature-modules/carte-observations/carte-observations.controller';
 
 @Module({
   imports: [
@@ -35,6 +37,7 @@ import { CachedDicoController } from './modules/feature-modules/cached-dico/cach
     ChroniquesModule,
     CachedStatsModule,
     HomepageMapDataModule,
+    CarteObservationsModule,
   ],
   //
   // We explicitely import the controllers here. We want our services to expose controllers.
@@ -49,6 +52,7 @@ import { CachedDicoController } from './modules/feature-modules/cached-dico/cach
     ChroniquesController,
     CachedStatsController,
     HomepageMapDataController,
+    CarteObservationsController,
   ],
   providers: [],
 })
