@@ -20,6 +20,8 @@ import { CachedDicoModule } from './modules/feature-modules/cached-dico/cached-d
 import { CachedDicoController } from './modules/feature-modules/cached-dico/cached-dico.controller';
 import { CarteObservationsModule } from './modules/feature-modules/carte-observations/carte-observations.module';
 import { CarteObservationsController } from './modules/feature-modules/carte-observations/carte-observations.controller';
+import { CarteStationModule } from './modules/feature-modules/carte-station/carte-station.module';
+import { CarteStationController } from './modules/feature-modules/carte-station/carte-station.controller';
 
 @Module({
   imports: [
@@ -38,6 +40,7 @@ import { CarteObservationsController } from './modules/feature-modules/carte-obs
     CachedStatsModule,
     HomepageMapDataModule,
     CarteObservationsModule,
+    CarteStationModule,
   ],
   //
   // We explicitely import the controllers here. We want our services to expose controllers.
@@ -53,6 +56,7 @@ import { CarteObservationsController } from './modules/feature-modules/carte-obs
     CachedStatsController,
     HomepageMapDataController,
     CarteObservationsController,
+    CarteStationController,
   ],
   providers: [],
 })

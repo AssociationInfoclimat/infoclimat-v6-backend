@@ -180,20 +180,17 @@ model cartes_tuiles {
 //   @@ignore
 // }
 //
-// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-// model appli_logs {
-//   id       Int            @default(autoincrement()) @v5.UnsignedInt
-//   uuid     String         @v5.VarChar(255)
-//   key      String         @v5.VarChar(255)
-//   function String         @v5.VarChar(255)
-//   hit      appli_logs_hit @default(dbgenerated("0"))
-//   time     Float          @v5.Float
-//   dh       DateTime       @v5.DateTime(0)
-//   get      String         @v5.VarChar(1024)
-//   post     String         @v5.VarChar(255)
-//
-//   @@ignore
-// }
+model appli_logs {
+  id       Int            @id @default(autoincrement()) @v5.UnsignedInt
+  uuid     String         @v5.VarChar(255)
+  key      String         @v5.VarChar(255)
+  function String         @v5.VarChar(255)
+  hit      appli_logs_hit @default(dbgenerated("'0'"))
+  time     Float          @v5.Float
+  dh       DateTime       @v5.DateTime(0)
+  get      String         @v5.VarChar(1024)
+  post     String         @v5.VarChar(255)
+}
 //
 // /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 // /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -1124,10 +1121,10 @@ model connectes {
 //   // 1 @map("1")
 // }
 //
-// enum appli_logs_hit {
-//   // 0 @map("0")
-//   // 1 @map("1")
-// }
+enum appli_logs_hit {
+  ZERO @map("0")
+  ONE  @map("1")
+}
 //
 // enum bs_suivi_propositions_valide {
 //   // 0 @map("0")
